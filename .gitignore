@@ -1,0 +1,24 @@
+;; gitignore for Django using pyCharm
+;;
+
+;;files to ignore
+.env
+.venv
+
+;;extensions to ignore
+*.log
+*.pot
+*.pyc
+*.pid
+
+;;directories to ignore
+.idea/
+venv/
+env/
+static/
+staticfiles/
+
+__pycache__/*
+
+# IDE Settings
+.vscode
