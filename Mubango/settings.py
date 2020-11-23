@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'debug_toolbar',
-    'mubango.apps.mb.account',
+    'account',
 ]
 
 MIDDLEWARE = [
