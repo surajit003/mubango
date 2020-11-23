@@ -15,4 +15,4 @@ class TestUserProfile:
 
     def test_state(self):
         obj = mixer.blend("account.State")
-        assert obj.pk == 1, "Should create a Country instance"
+        assert obj.pk == 1, "Should create a State instance"
