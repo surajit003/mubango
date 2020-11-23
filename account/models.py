@@ -11,7 +11,7 @@ class Country(models.Model):
         return self.country.name
 
     class Meta:
-        verbose_name_plural = "countries"
+        verbose_name_plural = "Countries"
 
 
 class State(models.Model):
@@ -23,7 +23,7 @@ class State(models.Model):
 
     class Meta:
         unique_together = ("country", "name")
-        verbose_name_plural = "states"
+        verbose_name_plural = "States"
 
 
 class City(models.Model):
@@ -35,7 +35,7 @@ class City(models.Model):
 
     class Meta:
         unique_together = ("state", "name")
-        verbose_name_plural = "cities"
+        verbose_name_plural = "Cities"
 
 
 class Address(models.Model):
@@ -46,14 +46,14 @@ class Address(models.Model):
     country = models.ForeignKey(Country, on_delete=models.CASCADE)
 
     class Meta:
-        verbose_name_plural = "addresses"
+        verbose_name_plural = "Addresses"
 
     def __str__(self):
         return self.location
 
 
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, unique=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     verification_id = models.CharField(max_length=120, unique=True, db_index=True)
     birth_date = models.DateField(null=True, blank=True)
     points = models.IntegerField(default=0)
@@ -64,4 +64,17 @@ class Profile(models.Model):
         return "{} {}".format(self.user.username, self.active)
 
     class Meta:
-        verbose_name_plural = "profiles"
+        verbose_name_plural = "Profiles"
+
+
+class Follower(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    follower = models.ForeignKey(User, on_delete=models.CASCADE)
+    followed_date = models.DateField(auto_now=True)
+    unfollowed_date = models.DateField(null=True, blank=True)
+
+    def __str__(self):
+        return "{} {}".format(self.user, self.follower)
+
+    class Meta:
+        verbose_name_plural = "Followers"
