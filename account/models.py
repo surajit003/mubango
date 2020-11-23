@@ -68,8 +68,10 @@ class Profile(models.Model):
 
 
 class Follower(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    follower = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="user")
+    follower = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name="follower"
+    )
     followed_date = models.DateField(auto_now=True)
     unfollowed_date = models.DateField(null=True, blank=True)
 
