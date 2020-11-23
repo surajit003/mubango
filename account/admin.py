@@ -6,7 +6,7 @@ from . import models
 
 @admin.register(models.Country)
 class CountryAdmin(admin.ModelAdmin):
-    list_display = ("name",)
+    list_display = ("country",)
 
 
 @admin.register(models.State)
