@@ -9,10 +9,18 @@ class Country(models.Model):
 
 class State(models.Model):
     country = models.ForeignKey(Country, on_delete=models.CASCADE, db_index=True)
-    name = models.CharField(max_length=50, db_index=True)
+    name = models.CharField(max_length=50, db_index=True, unique=True)
 
     class Meta:
         unique_together = ("country", "name")
+
+
+class City(models.Model):
+    state = models.ForeignKey(Country, on_delete=models.CASCADE, db_index=True)
+    name = models.CharField(max_length=50, db_index=True, unique=True)
+
+    class Meta:
+        unique_together = ("state", "name")
 
 
 class Profile(models.Model):
