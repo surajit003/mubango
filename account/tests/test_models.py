@@ -16,3 +16,7 @@ class TestUserProfile:
     def test_state(self):
         obj = mixer.blend("account.State")
         assert obj.pk == 1, "Should create a State instance"
+
+    def test_city(self):
+        obj = mixer.blend("account.City")
+        assert obj.pk == 1, "Should create a City instance"
