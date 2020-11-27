@@ -51,6 +51,18 @@ class Address(models.Model):
         return self.location
 
 
+class Rating(models.Model):
+    name = models.CharField(max_length=50)
+    symbol = models.CharField(max_length=10, unique=True)
+    additional_description = models.TextField(null=True, blank=True)
+
+    class Meta:
+        verbose_name_plural = "Ratings"
+
+    def __str__(self):
+        return "{} {}".format(self.name, self.symbol)
+
+
 class DateModel(models.Model):
     """
     An abstract base class model that provides self-
