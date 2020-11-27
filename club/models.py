@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from phonenumber_field.modelfields import PhoneNumberField
-from common.models import Address, DateModel
+from common.models import Address, DateModel, Rating
 
 
 class Club(DateModel):
@@ -13,6 +13,7 @@ class Club(DateModel):
     price = models.CharField(
         max_length=10, null=True, blank=True
     )  # not actual price per se more like $$$ or $$
+    rating = models.ForeignKey(Rating, on_delete=models.PROTECT, null=True, blank=True)
 
     def __str__(self):
         return "{} {}".format(self.name, self.active)
