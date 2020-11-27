@@ -1,10 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import User
 from phonenumber_field.modelfields import PhoneNumberField
-from common.models import Address
+from common.models import Address, DateModel
 
 
-class Club(models.Model):
+class Club(DateModel):
     name = models.CharField(max_length=200)
     email = models.EmailField(blank=True, null=True)
     phone_number = PhoneNumberField()

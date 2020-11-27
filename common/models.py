@@ -49,3 +49,17 @@ class Address(models.Model):
 
     def __str__(self):
         return self.location
+
+
+class DateModel(models.Model):
+    """
+    An abstract base class model that provides self-
+    . fields.
+    updating ``created`` and ``modified``
+    """
+
+    date_last_modified = models.DateField(auto_now=True)
+    date_added = models.DateField(auto_now=True)
+
+    class Meta:
+        abstract = True
