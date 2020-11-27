@@ -41,6 +41,8 @@ class Address(models.Model):
     city = models.ForeignKey(City, on_delete=models.CASCADE)
     state = models.ForeignKey(State, on_delete=models.CASCADE)
     country = models.ForeignKey(Country, on_delete=models.CASCADE)
+    latitude = models.FloatField(null=True, blank=True)
+    longitude = models.FloatField(null=True, blank=True)
 
     class Meta:
         verbose_name_plural = "Addresses"

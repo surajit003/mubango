@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     "phonenumber_field",
     "account",
     "common",
+    "club",
 ]
 
 MIDDLEWARE = [
