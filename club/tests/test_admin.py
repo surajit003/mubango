@@ -14,6 +14,3 @@ class TestClubAdmin:
         club_admin = admin.ClubAdmin(models.Club, site)
         result = club_admin.get_address(obj)
         assert result == obj.address.location, "Should return the location value"
-
-        assert obj.pk == 1, "Should create a Club instance"
-        assert str(obj) == "{} {}".format(obj.name, obj.active)
