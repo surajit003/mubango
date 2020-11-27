@@ -10,9 +10,7 @@ class Club(DateModel):
     phone_number = PhoneNumberField()
     active = models.BooleanField(default=False)
     address = models.ForeignKey(Address, on_delete=models.PROTECT)
-    price = models.CharField(
-        max_length=10, null=True, blank=True
-    )  # not actual price per se more like $$$ or $$
+    price_type = models.CharField(max_length=10, null=True, blank=True)  # e.g $$$ or $$
     rating = models.ForeignKey(Rating, on_delete=models.PROTECT, null=True, blank=True)
 
     def __str__(self):
