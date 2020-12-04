@@ -57,12 +57,20 @@ class Guest(DateModel):
         return "{} {}".format(self.first_name, self.last_name)
 
 
+class MusicGenre(DateModel):
+    name = models.CharField(max_length=120, unique=True)
+
+    def __str__(self):
+        return self.name
+
+
 class Event(models.Model):
     name = models.CharField(max_length=200)
     description = models.TextField(null=True, blank=True)
     price = models.IntegerField()
     club = models.ForeignKey(Club, on_delete=models.CASCADE)
     guest = models.ManyToManyField(Guest, related_name="guest", blank=True, null=True)
+    genre = models.ManyToManyField(MusicGenre, related_name="music")
     priority_level = models.IntegerField(
         default=0
     )  # anyone creating the event can set priority

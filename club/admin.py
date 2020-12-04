@@ -50,3 +50,9 @@ class GuestAdmin(admin.ModelAdmin):
         "country",
     )
     search_fields = ("first_name",)
+
+
+@admin.register(models.MusicGenre)
+class MusicGenreAdmin(admin.ModelAdmin):
+    list_display = ("name",)
+    search_fields = ("name",)
