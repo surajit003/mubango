@@ -68,7 +68,7 @@ class Event(models.Model):
     name = models.CharField(max_length=200)
     description = models.TextField(null=True, blank=True)
     price = models.IntegerField()
-    guest = models.ManyToManyField(Guest, related_name="guest", blank=True, null=True)
+    guest = models.ManyToManyField(Guest, related_name="guest", blank=True)
     genre = models.ManyToManyField(MusicGenre, related_name="music")
     priority_level = models.IntegerField(
         default=0

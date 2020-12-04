@@ -37,12 +37,12 @@ class TestClub:
 
     def test_clubevent(self):
         obj = mixer.blend("club.ClubEvent")
-        assert obj.pk == 1, "Shoud create a ClubEvent instance"
+        assert obj.pk == 1, "Should create a ClubEvent instance"
         assert str(obj) == "{} {}".format(obj.club.name, obj.event.name)
 
     def test_independentevent(self):
         obj = mixer.blend("club.IndependentEvent")
-        assert obj.pk == 1, "Shoud create a IndependentEvent instance"
+        assert obj.pk == 1, "Should create a IndependentEvent instance"
         assert str(obj) == "{} {} {}".format(
             obj.event.name, obj.address.location, obj.address.country
         )
