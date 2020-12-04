@@ -40,3 +40,13 @@ class EventAdmin(admin.ModelAdmin):
         "to_be_held",
     )
     search_fields = ("club",)
+
+
+@admin.register(models.Guest)
+class GuestAdmin(admin.ModelAdmin):
+    list_display = (
+        "first_name",
+        "last_name",
+        "country",
+    )
+    search_fields = ("first_name",)
