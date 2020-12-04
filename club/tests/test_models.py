@@ -19,3 +19,7 @@ class TestClub:
         obj = mixer.blend("club.Trending")
         assert obj.pk == 1, "Should create a Trending instance"
         assert str(obj) == "{} {}".format(obj.club.name, obj.thumbs_up_count)
+
+    def test_event(self):
+        obj = mixer.blend("club.Event")
+        assert obj.pk == 1, "Should create an Event instance"
