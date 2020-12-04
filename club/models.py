@@ -73,7 +73,15 @@ class Event(models.Model):
     priority_level = models.IntegerField(
         default=0
     )  # anyone creating the event can set priority
-    to_be_held = models.DateTimeField(blank=True, null=True)
 
     def __str__(self):
         return "{} {}".format(self.name, self.price)
+
+
+class ClubEvent(DateModel):
+    club = models.ForeignKey(Club, on_delete=models.CASCADE)
+    event = models.ForeignKey(Event, on_delete=models.CASCADE)
+    to_be_held = models.DateTimeField(blank=True, null=True)
+
+    def __str__(self):
+        return "{} {}".format(self.club.name, self.event.name)

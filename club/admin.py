@@ -36,7 +36,6 @@ class VisitorCountAdmin(admin.ModelAdmin):
 class EventAdmin(admin.ModelAdmin):
     list_display = (
         "name",
-        "to_be_held",
         "price",
     )
     search_fields = ("club",)
@@ -56,3 +55,12 @@ class GuestAdmin(admin.ModelAdmin):
 class MusicGenreAdmin(admin.ModelAdmin):
     list_display = ("name",)
     search_fields = ("name",)
+
+
+@admin.register(models.ClubEvent)
+class ClubEventAdmin(admin.ModelAdmin):
+    list_display = (
+        "event__name",
+        "club__name",
+    )
+    search_fields = ("event__name",)
