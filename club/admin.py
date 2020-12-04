@@ -37,5 +37,6 @@ class EventAdmin(admin.ModelAdmin):
     list_display = (
         "club",
         "name",
+        "to_be_held",
     )
     search_fields = ("club",)
