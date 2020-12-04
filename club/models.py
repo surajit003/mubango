@@ -45,3 +45,16 @@ class Trending(DateModel):
 
     def __str__(self):
         return "{} {}".format(self.club.name, self.thumbs_up_count)
+
+
+class Event(models.Model):
+    name = models.CharField(max_length=200)
+    description = models.TextField(null=True, blank=True)
+    price = models.IntegerField()
+    club = models.ForeignKey(Club, on_delete=models.CASCADE)
+    priority_level = models.IntegerField(
+        default=0
+    )  # anyone creating the event can set priority
+
+    def __str__(self):
+        return "{} {}".format(self.name, self.club.name)
