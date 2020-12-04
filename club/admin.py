@@ -24,3 +24,9 @@ class ClubAdmin(admin.ModelAdmin):
 class VisitorCountAdmin(admin.ModelAdmin):
     list_display = ("club", "count")
     search_fields = ("club",)
+
+
+@admin.register(models.Trending)
+class VisitorCountAdmin(admin.ModelAdmin):
+    list_display = ("club", "thumbs_up_count")
+    search_fields = ("club",)
