@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django_countries.fields import CountryField
 from phonenumber_field.modelfields import PhoneNumberField
 from common.models import Address, DateModel, Rating
 
@@ -45,6 +46,15 @@ class Trending(DateModel):
 
     def __str__(self):
         return "{} {}".format(self.club.name, self.thumbs_up_count)
+
+
+class Guest(DateModel):
+    first_name = models.CharField(max_length=120)
+    last_name = models.CharField(max_length=120)
+    country = CountryField()
+
+    def __str__(self):
+        return "{} {}".format(self.first_name, self.last_name)
 
 
 class Event(models.Model):
