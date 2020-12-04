@@ -24,3 +24,8 @@ class TestClub:
         obj = mixer.blend("club.Event")
         assert obj.pk == 1, "Should create an Event instance"
         assert str(obj) == "{} {}".format(obj.name, obj.club.name)
+
+    def test_guest(self):
+        obj = mixer.blend("club.Guest")
+        assert obj.pk == 1, "Should create an Guest instance"
+        assert str(obj) == "{}".format(obj.name)
