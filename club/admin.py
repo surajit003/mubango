@@ -22,5 +22,5 @@ class ClubAdmin(admin.ModelAdmin):
 
 @admin.register(models.VisitorCount)
 class VisitorCountAdmin(admin.ModelAdmin):
-    list_display = ("club", "visitor", "count")
+    list_display = ("club", "count")
     search_fields = ("club",)
