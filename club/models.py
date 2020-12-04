@@ -31,3 +31,11 @@ class VisitorCount(DateModel):
 
     def __str__(self):
         return "{} {}".format(self.club.name, self.count)
+
+
+class Trending(DateModel):
+    club = models.ForeignKey(Club, on_delete=models.CASCADE)
+    thumbs_up_count = models.IntegerField(default=0)
+
+    def __str__(self):
+        return "{} {}".format(self.club.name, self.thumbs_up_count)
