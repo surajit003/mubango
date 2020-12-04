@@ -9,3 +9,8 @@ class TestClub:
         obj = mixer.blend("club.Club")
         assert obj.pk == 1, "Should create a Club instance"
         assert str(obj) == "{} {}".format(obj.name, obj.active)
+
+    def test_visitorcount(self):
+        obj = mixer.blend("club.VisitorCount")
+        assert obj.pk == 1, "Should create a VisitorCount instance"
+        assert str(obj) == "{} {}".format(obj.club.name, obj.count)
