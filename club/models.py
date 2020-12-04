@@ -29,6 +29,9 @@ class VisitorCount(DateModel):
     visitor = models.ManyToManyField(User)
     count = models.IntegerField(default=0)
 
+    class Meta:
+        verbose_name_plural = "Trending"
+
     def __str__(self):
         return "{} {}".format(self.club.name, self.count)
 
@@ -36,6 +39,9 @@ class VisitorCount(DateModel):
 class Trending(DateModel):
     club = models.ForeignKey(Club, on_delete=models.CASCADE)
     thumbs_up_count = models.IntegerField(default=0)
+
+    class Meta:
+        verbose_name_plural = "Trending"
 
     def __str__(self):
         return "{} {}".format(self.club.name, self.thumbs_up_count)
