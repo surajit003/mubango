@@ -62,6 +62,7 @@ class Event(models.Model):
     description = models.TextField(null=True, blank=True)
     price = models.IntegerField()
     club = models.ForeignKey(Club, on_delete=models.CASCADE)
+    guest = models.ManyToManyField(Guest, related_name="guest", blank=True, null=True)
     priority_level = models.IntegerField(
         default=0
     )  # anyone creating the event can set priority
