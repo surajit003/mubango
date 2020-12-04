@@ -68,7 +68,6 @@ class Event(models.Model):
     name = models.CharField(max_length=200)
     description = models.TextField(null=True, blank=True)
     price = models.IntegerField()
-    club = models.ForeignKey(Club, on_delete=models.CASCADE)
     guest = models.ManyToManyField(Guest, related_name="guest", blank=True, null=True)
     genre = models.ManyToManyField(MusicGenre, related_name="music")
     priority_level = models.IntegerField(
@@ -77,4 +76,4 @@ class Event(models.Model):
     to_be_held = models.DateTimeField(blank=True, null=True)
 
     def __str__(self):
-        return "{} {}".format(self.name, self.club.name)
+        return "{} {}".format(self.name, self.price)

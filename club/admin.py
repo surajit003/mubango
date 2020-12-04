@@ -35,9 +35,9 @@ class VisitorCountAdmin(admin.ModelAdmin):
 @admin.register(models.Event)
 class EventAdmin(admin.ModelAdmin):
     list_display = (
-        "club",
         "name",
         "to_be_held",
+        "price",
     )
     search_fields = ("club",)
 
