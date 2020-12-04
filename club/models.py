@@ -18,3 +18,16 @@ class Club(DateModel):
 
     class Meta:
         verbose_name_plural = "Clubs"
+
+
+class VisitorCount(DateModel):
+    """
+    can be used to keep track of users visiting clubs for a specific date
+    """
+
+    club = models.ForeignKey(Club, on_delete=models.CASCADE)
+    visitor = models.ManyToManyField(User)
+    count = models.IntegerField(default=0)
+
+    def __str__(self):
+        return "{} {}".format(self.club.name, self.count)
