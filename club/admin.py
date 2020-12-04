@@ -30,3 +30,12 @@ class VisitorCountAdmin(admin.ModelAdmin):
 class VisitorCountAdmin(admin.ModelAdmin):
     list_display = ("club", "thumbs_up_count")
     search_fields = ("club",)
+
+
+@admin.register(models.Event)
+class EventAdmin(admin.ModelAdmin):
+    list_display = (
+        "club",
+        "name",
+    )
+    search_fields = ("club",)
