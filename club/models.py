@@ -55,6 +55,7 @@ class Event(models.Model):
     priority_level = models.IntegerField(
         default=0
     )  # anyone creating the event can set priority
+    to_be_held = models.DateTimeField(blank=True, null=True)
 
     def __str__(self):
         return "{} {}".format(self.name, self.club.name)
