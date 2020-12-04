@@ -64,3 +64,16 @@ class ClubEventAdmin(admin.ModelAdmin):
         "club__name",
     )
     search_fields = ("event__name",)
+
+
+@admin.register(models.IndependentEvent)
+class IndependentEventAdmin(admin.ModelAdmin):
+    list_display = (
+        "event__name",
+        "location__address",
+        "location__country",
+    )
+    search_fields = (
+        "event__name",
+        "location__country",
+    )
