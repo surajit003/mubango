@@ -18,3 +18,9 @@ class ClubAdmin(admin.ModelAdmin):
         return obj.address.location
 
     get_address.short_description = "Address"
+
+
+@admin.register(models.VisitorCount)
+class VisitorCountAdmin(admin.ModelAdmin):
+    list_display = ("club", "visitor", "count")
+    search_fields = ("club",)
