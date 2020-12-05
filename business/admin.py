@@ -4,8 +4,8 @@ from . import models
 # Register your models here.
 
 
-@admin.register(models.Club)
-class ClubAdmin(admin.ModelAdmin):
+@admin.register(models.Business)
+class BusinessAdmin(admin.ModelAdmin):
     list_display = (
         "name",
         "active",
@@ -22,11 +22,11 @@ class ClubAdmin(admin.ModelAdmin):
 
 @admin.register(models.VisitorCount)
 class VisitorCountAdmin(admin.ModelAdmin):
-    list_display = ("club", "count")
-    search_fields = ("club",)
+    list_display = ("business", "count")
+    search_fields = ("business",)
 
 
 @admin.register(models.Trending)
-class VisitorCountAdmin(admin.ModelAdmin):
-    list_display = ("club", "thumbs_up_count")
-    search_fields = ("club",)
+class TrendingAdmin(admin.ModelAdmin):
+    list_display = ("business", "thumbs_up_count")
+    search_fields = ("business",)

@@ -9,8 +9,8 @@ pytestmark = pytest.mark.django_db
 
 class TestClubAdmin:
     def test_get_address(self):
-        obj = mixer.blend("club.Club")
+        obj = mixer.blend("business.Business")
         site = AdminSite()
-        club_admin = admin.ClubAdmin(models.Club, site)
+        club_admin = admin.BusinessAdmin(models.Business, site)
         result = club_admin.get_address(obj)
         assert result == obj.address.location, "Should return the location value"

@@ -1,6 +1,6 @@
 from django.db import models
 from common.models import MusicGenre, Guest, Address, Venue
-from club.models import Club
+from business.models import Business
 
 # Create your models here.
 class Event(models.Model):
@@ -15,25 +15,12 @@ class Event(models.Model):
         return "{} {}".format(self.name, self.genre)
 
 
-class ClubEvent(models.Model):
-    club = models.ForeignKey(Club, on_delete=models.CASCADE)
+class EventSetUp(models.Model):
+    business = models.ForeignKey(Business, on_delete=models.CASCADE)
     event = models.ForeignKey(Event, on_delete=models.CASCADE)
     guest = models.ManyToManyField(Guest, related_name="guest", blank=True)
     price = models.IntegerField()
     to_be_held = models.DateTimeField(blank=True, null=True)
 
     def __str__(self):
-        return "{} {}".format(self.club.name, self.event.name)
-
-
-class IndependentEvent(models.Model):
-    event = models.ForeignKey(Event, on_delete=models.CASCADE)
-    guest = models.ManyToManyField(Guest, related_name="independent_guest", blank=True)
-    venue = models.ForeignKey(Venue, on_delete=models.PROTECT)
-    price = models.IntegerField()
-    to_be_held = models.DateTimeField(blank=True, null=True)
-
-    def __str__(self):
-        return "{} {} {}".format(
-            self.event.name, self.venue.name, self.venue.address.country
-        )
+        return "{} {}".format(self.business.name, self.event.name)
