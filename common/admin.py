@@ -27,3 +27,19 @@ class AddressAdmin(admin.ModelAdmin):
         "state",
         "city",
     )
+
+
+@admin.register(models.Guest)
+class GuestAdmin(admin.ModelAdmin):
+    list_display = (
+        "first_name",
+        "last_name",
+        "country",
+    )
+    search_fields = ("first_name",)
+
+
+@admin.register(models.MusicGenre)
+class MusicGenreAdmin(admin.ModelAdmin):
+    list_display = ("name",)
+    search_fields = ("name",)
