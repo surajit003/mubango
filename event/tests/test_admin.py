@@ -13,11 +13,11 @@ class TestEventAdmin:
         site = AdminSite()
         event_setup_admin = admin.EventSetUpAdmin(models.EventSetUp, site)
         result = event_setup_admin.get_event(obj)
-        assert result == obj.event.name, "Should return the event value"
+        assert result == obj.event.name, "Should return the event name"
 
     def test_get_business_name(self):
         obj = mixer.blend("event.EventSetUp")
         site = AdminSite()
         event_setup_admin = admin.EventSetUpAdmin(models.EventSetUp, site)
         result = event_setup_admin.get_business(obj)
-        assert result == obj.business.name, "Should return the event value"
+        assert result == obj.business.name, "Should return the business name"
