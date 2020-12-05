@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     "business",
     "event",
     "offer",
+    "ad",
 ]
 
 MIDDLEWARE = [
