@@ -22,5 +22,8 @@ class EventSetUp(models.Model):
     price = models.IntegerField()
     to_be_held = models.DateTimeField(blank=True, null=True)
 
+    class Meta:
+        verbose_name_plural = "Event SetUp"
+
     def __str__(self):
         return "{} {}".format(self.business.name, self.event.name)
