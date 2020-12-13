@@ -5,7 +5,7 @@ from common.models import Address, DateModel
 
 
 class Profile(DateModel):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     verification_id = models.CharField(max_length=120, unique=True, db_index=True)
     birth_date = models.DateField(null=True, blank=True)
     points = models.IntegerField(default=0)
