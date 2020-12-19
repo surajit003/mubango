@@ -9,7 +9,7 @@ class OfferAdmin(admin.ModelAdmin):
     list_display = (
         "title",
         "code",
-        "is_active",
+        "active",
         "is_special",
         "get_business_name",
     )
