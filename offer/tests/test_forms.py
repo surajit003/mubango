@@ -7,7 +7,7 @@ pytestmark = pytest.mark.django_db
 
 
 class TestOfferForm:
-    def test_form(self):
+    def test_offer_form_clean(self):
         business = mixer.blend("business.Business")
         form = forms.OfferForm(
             data={
