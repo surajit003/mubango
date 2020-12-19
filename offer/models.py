@@ -1,7 +1,6 @@
 from django.db import models
 from business.models import Business
 from django.contrib.auth.models import User
-from django.db.models.signals import pre_save
 
 # Create your models here.
 
@@ -35,15 +34,3 @@ class UserOffer(models.Model):
     class Meta:
         verbose_name_plural = "UserOffer"
         unique_together = ("user", "offer")
-
-    def update_offer_limit(sender, instance, **kwargs):
-        if instance.offer.limit == 0:
-            raise Exception("Cant redeem offer")
-        else:
-            instance.offer.limit = instance.offer.limit - 1
-            instance.offer.save()
-
-
-pre_save.connect(
-    UserOffer.update_offer_limit, UserOffer, dispatch_uid="offer.useroffer"
-)
