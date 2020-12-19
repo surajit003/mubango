@@ -9,6 +9,7 @@ from .forms import OfferForm
 class OfferAdmin(admin.ModelAdmin):
     form = OfferForm
     list_display = (
+        "id",
         "title",
         "code",
         "active",
@@ -29,4 +30,8 @@ class OfferAdmin(admin.ModelAdmin):
 
 @admin.register(models.UserOffer)
 class UserOffer(admin.ModelAdmin):
-    list_display = ("offer",)
+    list_display = (
+        "id",
+        "offer",
+        "user",
+    )

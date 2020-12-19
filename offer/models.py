@@ -1,6 +1,7 @@
 from django.db import models
 from business.models import Business
 from django.contrib.auth.models import User
+from django.db.models.signals import pre_save
 
 # Create your models here.
 
@@ -17,7 +18,7 @@ class Offer(models.Model):
     limit = models.IntegerField(default=0)
 
     def __str__(self):
-        return "{} {}".format(self.title, self.business.name)
+        return "{}".format(self.title)
 
     class Meta:
         unique_together = ("business", "title")
@@ -26,10 +27,23 @@ class Offer(models.Model):
 
 class UserOffer(models.Model):
     offer = models.ForeignKey(Offer, on_delete=models.CASCADE)
-    user = models.ManyToManyField(User, related_name="users")
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.offer.title
 
     class Meta:
         verbose_name_plural = "UserOffer"
+        unique_together = ("user", "offer")
+
+    def update_offer_limit(sender, instance, **kwargs):
+        if instance.offer.limit == 0:
+            raise Exception("Cant redeem offer")
+        else:
+            instance.offer.limit = instance.offer.limit - 1
+            instance.offer.save()
+
+
+pre_save.connect(
+    UserOffer.update_offer_limit, UserOffer, dispatch_uid="offer.useroffer"
+)

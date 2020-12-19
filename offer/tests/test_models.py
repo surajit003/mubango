@@ -8,7 +8,7 @@ class TestOffer:
     def test_offer(self):
         obj = mixer.blend("offer.Offer")
         assert obj.pk == 1, "Should create a Offer instance"
-        assert str(obj) == "{} {}".format(obj.title, obj.business.name)
+        assert str(obj) == "{}".format(obj.title)
 
 
 class TestUserOffer:
