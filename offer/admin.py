@@ -25,3 +25,8 @@ class OfferAdmin(admin.ModelAdmin):
         return obj.business.name
 
     get_business_name.short_description = "Business"
+
+
+@admin.register(models.UserOffer)
+class UserOffer(admin.ModelAdmin):
+    list_display = ("offer",)

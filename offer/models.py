@@ -1,5 +1,6 @@
 from django.db import models
 from business.models import Business
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -21,3 +22,14 @@ class Offer(models.Model):
     class Meta:
         unique_together = ("business", "title")
         verbose_name_plural = "Offers"
+
+
+class UserOffer(models.Model):
+    offer = models.ForeignKey(Offer, on_delete=models.CASCADE)
+    user = models.ManyToManyField(User, related_name="users")
+
+    def __str__(self):
+        return self.offer.title
+
+    class Meta:
+        verbose_name_plural = "UserOffer"

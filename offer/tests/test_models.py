@@ -9,3 +9,9 @@ class TestOffer:
         obj = mixer.blend("offer.Offer")
         assert obj.pk == 1, "Should create a Offer instance"
         assert str(obj) == "{} {}".format(obj.title, obj.business.name)
+
+
+class TestUserOffer:
+    def test_user_offer(self):
+        obj = mixer.blend("offer.UserOffer")
+        assert obj.pk == 1, "Should create a UserOffer instance"
