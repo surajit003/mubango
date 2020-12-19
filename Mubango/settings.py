@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     "django_countries",
     "debug_toolbar",
     "phonenumber_field",
+    "address",
     "account",
     "common",
     "business",
@@ -151,3 +152,4 @@ DEBUG_TOOLBAR_CONFIG = {
     "SHOW_TOOLBAR_CALLBACK": lambda request: True,
 }
 X_FRAME_OPTIONS = "ALLOWALL"
+GOOGLE_API_KEY = config("GOOGLE_API_KEY")
