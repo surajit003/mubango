@@ -4,11 +4,6 @@ from . import models
 # Register your models here.
 
 
-@admin.register(models.Country)
-class CountryAdmin(admin.ModelAdmin):
-    list_display = ("country",)
-
-
 @admin.register(models.State)
 class StateAdmin(admin.ModelAdmin):
     list_display = ("name", "country")
@@ -23,7 +18,6 @@ class CityAdmin(admin.ModelAdmin):
 class AddressAdmin(admin.ModelAdmin):
     list_display = (
         "location",
-        "country",
         "state",
         "city",
     )

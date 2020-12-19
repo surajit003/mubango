@@ -5,11 +5,6 @@ pytestmark = pytest.mark.django_db
 
 
 class TestUserProfile:
-    def test_country(self):
-        obj = mixer.blend("common.Country")
-        assert obj.pk == 1, "Should create a Country instance"
-        assert str(obj) == obj.country.name
-
     def test_state(self):
         obj = mixer.blend("common.State")
         assert obj.pk == 1, "Should create a State instance"
