@@ -13,4 +13,4 @@ class TestClubAdmin:
         site = AdminSite()
         club_admin = admin.BusinessAdmin(models.Business, site)
         result = club_admin.get_address(obj)
-        assert result == obj.address.location.raw, "Should return the location value"
+        assert result == obj.address.raw, "Should return the location value"

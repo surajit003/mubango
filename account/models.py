@@ -1,7 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 from phonenumber_field.modelfields import PhoneNumberField
-from common.models import Address, DateModel
+from common.models import DateModel
+from address.models import AddressField
 
 
 class Profile(DateModel):
@@ -11,7 +12,7 @@ class Profile(DateModel):
     points = models.IntegerField(default=0)
     phone_number = PhoneNumberField()
     active = models.BooleanField(default=False)
-    address = models.ForeignKey(Address, on_delete=models.PROTECT)
+    address = AddressField(null=True, blank=True)
 
     def __str__(self):
         return "{} {}".format(self.user.username, self.active)

@@ -1,5 +1,5 @@
 from django.db import models
-from common.models import MusicGenre, Guest, Address, Venue
+from common.models import MusicGenre, Guest, Venue
 from business.models import Business
 
 # Create your models here.

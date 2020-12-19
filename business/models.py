@@ -1,7 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 from phonenumber_field.modelfields import PhoneNumberField
-from common.models import Address, DateModel, Rating, Guest
+from common.models import DateModel, Rating, Guest
+from address.models import AddressField
 
 
 class Business(DateModel):
@@ -15,7 +16,7 @@ class Business(DateModel):
     phone_number = PhoneNumberField()
     active = models.BooleanField(default=False)
     type = models.CharField(max_length=30, choices=category, default="other")
-    address = models.ForeignKey(Address, on_delete=models.CASCADE)
+    address = AddressField()
     price_type = models.CharField(max_length=10, null=True, blank=True)  # e.g $$$ or $$
     rating = models.ForeignKey(Rating, on_delete=models.PROTECT, null=True, blank=True)
 
@@ -23,7 +24,7 @@ class Business(DateModel):
         return "{} {}".format(self.name, self.active)
 
     class Meta:
-        verbose_name_plural = "Clubs"
+        verbose_name_plural = "Businesses"
 
 
 class VisitorCount(models.Model):

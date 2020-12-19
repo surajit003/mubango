@@ -27,20 +27,6 @@ class City(models.Model):
         verbose_name_plural = "Cities"
 
 
-class Address(models.Model):
-    location = AddressField()
-    city = models.ForeignKey(City, on_delete=models.CASCADE)
-    state = models.ForeignKey(State, on_delete=models.CASCADE)
-    latitude = models.FloatField(null=True, blank=True)
-    longitude = models.FloatField(null=True, blank=True)
-
-    class Meta:
-        verbose_name_plural = "Addresses"
-
-    def __str__(self):
-        return self.location.raw
-
-
 class Rating(models.Model):
     name = models.CharField(max_length=50)
     symbol = models.CharField(max_length=10, unique=True)
@@ -73,7 +59,7 @@ class Venue(models.Model):
     name = models.CharField(max_length=120)
     description = models.TextField(null=True, blank=True)
     capacity = models.IntegerField(null=True, blank=True)
-    address = models.ForeignKey(Address, on_delete=models.CASCADE)
+    address = AddressField()
 
     def __str__(self):
         return "{} {}".format(self.name, self.description)
