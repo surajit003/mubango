@@ -1,11 +1,13 @@
 from django.contrib import admin
 from . import models
+from .forms import OfferForm
 
 # Register your models here.
 
 
 @admin.register(models.Offer)
 class OfferAdmin(admin.ModelAdmin):
+    form = OfferForm
     list_display = (
         "title",
         "code",
