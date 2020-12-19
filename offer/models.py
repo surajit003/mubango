@@ -13,6 +13,7 @@ class Offer(models.Model):
     active = models.BooleanField(default=False)
     is_special = models.BooleanField(default=False)
     code = models.CharField(max_length=120, blank=True, null=True)
+    limit = models.IntegerField(default=0)
 
     def __str__(self):
         return "{} {}".format(self.title, self.business.name)
