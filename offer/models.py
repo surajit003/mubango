@@ -7,7 +7,7 @@ from business.models import Business
 class Offer(models.Model):
     title = models.CharField(max_length=120)
     description = models.TextField(null=True, blank=True)
-    business = models.ForeignKey(Business, on_delete=models.PROTECT)
+    business = models.ForeignKey(Business, on_delete=models.CASCADE)
     start_date = models.DateTimeField()
     end_date = models.DateTimeField(blank=True, null=True)
     active = models.BooleanField(default=False)
