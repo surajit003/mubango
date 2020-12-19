@@ -20,7 +20,13 @@ class AddressAdmin(admin.ModelAdmin):
         "location",
         "state",
         "city",
+        "get_country",
     )
+
+    def get_country(self, obj):
+        return obj.state.country.name
+
+    get_country.short_description = "Country"
 
 
 @admin.register(models.Guest)
