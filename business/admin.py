@@ -15,7 +15,7 @@ class BusinessAdmin(admin.ModelAdmin):
     search_fields = ("name",)
 
     def get_address(self, obj):
-        return obj.address.location
+        return obj.address.location.raw
 
     get_address.short_description = "Address"
 

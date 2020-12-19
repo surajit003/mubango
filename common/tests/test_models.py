@@ -18,7 +18,7 @@ class TestUserProfile:
     def test_address(self):
         obj = mixer.blend("common.Address")
         assert obj.pk == 1, "Should create an Address instance"
-        assert str(obj) == obj.location
+        assert str(obj) == obj.location.raw
 
     def test_rating(self):
         obj = mixer.blend("common.Rating")

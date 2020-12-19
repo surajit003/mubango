@@ -1,5 +1,6 @@
 from django.db import models
 from django_countries.fields import CountryField
+from address.models import AddressField
 
 
 class State(models.Model):
@@ -27,7 +28,7 @@ class City(models.Model):
 
 
 class Address(models.Model):
-    location = models.CharField(max_length=200)
+    location = AddressField()
     city = models.ForeignKey(City, on_delete=models.CASCADE)
     state = models.ForeignKey(State, on_delete=models.CASCADE)
     latitude = models.FloatField(null=True, blank=True)
@@ -37,7 +38,7 @@ class Address(models.Model):
         verbose_name_plural = "Addresses"
 
     def __str__(self):
-        return self.location
+        return self.location.raw
 
 
 class Rating(models.Model):

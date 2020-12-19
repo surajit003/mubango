@@ -15,7 +15,7 @@ class Business(DateModel):
     phone_number = PhoneNumberField()
     active = models.BooleanField(default=False)
     type = models.CharField(max_length=30, choices=category, default="other")
-    address = models.ForeignKey(Address, on_delete=models.PROTECT)
+    address = models.ForeignKey(Address, on_delete=models.CASCADE)
     price_type = models.CharField(max_length=10, null=True, blank=True)  # e.g $$$ or $$
     rating = models.ForeignKey(Rating, on_delete=models.PROTECT, null=True, blank=True)
 
