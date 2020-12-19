@@ -150,3 +150,4 @@ MEDIA_URL = os.path.join(BASE_DIR, "static/media/upload/")
 DEBUG_TOOLBAR_CONFIG = {
     "SHOW_TOOLBAR_CALLBACK": lambda request: True,
 }
+X_FRAME_OPTIONS = "ALLOWALL"
