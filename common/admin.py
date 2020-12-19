@@ -7,7 +7,6 @@ class GuestAdmin(admin.ModelAdmin):
     list_display = (
         "first_name",
         "last_name",
-        "country",
     )
     search_fields = ("first_name",)
 

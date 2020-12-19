@@ -3,30 +3,6 @@ from django_countries.fields import CountryField
 from address.models import AddressField
 
 
-class State(models.Model):
-    country = CountryField()
-    name = models.CharField(max_length=50, db_index=True, unique=True)
-
-    def __str__(self):
-        return self.name
-
-    class Meta:
-        unique_together = ("country", "name")
-        verbose_name_plural = "States"
-
-
-class City(models.Model):
-    state = models.ForeignKey(State, on_delete=models.CASCADE, db_index=True)
-    name = models.CharField(max_length=50, db_index=True, unique=True)
-
-    def __str__(self):
-        return self.name
-
-    class Meta:
-        unique_together = ("state", "name")
-        verbose_name_plural = "Cities"
-
-
 class Rating(models.Model):
     name = models.CharField(max_length=50)
     symbol = models.CharField(max_length=10, unique=True)
@@ -49,7 +25,6 @@ class MusicGenre(models.Model):
 class Guest(models.Model):
     first_name = models.CharField(max_length=120)
     last_name = models.CharField(max_length=120)
-    country = CountryField()
 
     def __str__(self):
         return "{} {}".format(self.first_name, self.last_name)
