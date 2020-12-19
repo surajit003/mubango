@@ -11,9 +11,15 @@ class OfferAdmin(admin.ModelAdmin):
         "code",
         "is_active",
         "is_special",
+        "get_business_name",
     )
     search_fields = (
         "title",
         "code",
         "business",
     )
+
+    def get_business_name(self, obj):
+        return obj.business.name
+
+    get_business_name.short_description = "Business"
