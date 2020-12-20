@@ -1,9 +1,6 @@
 import pytest
 from mixer.backend.django import mixer
-import mock
-from django.db.models.signals import pre_save
 from mock import patch
-from ..models import UserOffer
 
 pytestmark = pytest.mark.django_db
 
