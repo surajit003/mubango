@@ -6,6 +6,10 @@ from .models import UserOffer
 
 @receiver(pre_save, sender=UserOffer)
 def update_offer_limit(sender, instance, **kwargs):
+    validate_and_update_offer_limit(instance)
+
+
+def validate_and_update_offer_limit(instance):
     if instance.offer.limit == 0:
         raise Exception("Cant redeem offer")
     else:
