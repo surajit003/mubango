@@ -15,14 +15,7 @@ class OfferForm(forms.ModelForm):
         cleaned_data = self.cleaned_data
         code = cleaned_data.get("code")
         business = cleaned_data.get("business")
-        if "business" in self.changed_data:
-            print("etered")
-            offer_code = Offer.objects.filter(code=code, business=business).exists()
-            if offer_code:
-                raise forms.ValidationError(
-                    "A code exists for another offer for this business"
-                )
-        elif "code" in self.changed_data:
+        if any(data in ["business", "code"] for data in self.changed_data):
             offer_code = Offer.objects.filter(code=code, business=business).exists()
             if offer_code:
                 raise forms.ValidationError(
