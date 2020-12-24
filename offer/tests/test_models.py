@@ -1,6 +1,10 @@
 import pytest
 from mixer.backend.django import mixer
 from mock import patch
+from ..models import Offer
+from address.models import Address, Locality, State, Country
+import datetime
+import pytz
 
 pytestmark = pytest.mark.django_db
 
@@ -13,6 +17,11 @@ class TestOffer:
 
 
 class TestUserOffer:
+    def test_user_offer(self):
+        offer = mixer.blend("offer.Offer", limit=10)
+        obj = mixer.blend("offer.UserOffer", offer=offer)
+        assert str(obj) == "{}".format(obj.offer.title)
+
     def test_user_offer_for_valid_limit(self):
         offer = mixer.blend("offer.Offer", limit=10)
         obj = mixer.blend("offer.UserOffer", offer=offer)
@@ -30,3 +39,33 @@ class TestUserOffer:
         obj = mixer.blend("offer.UserOffer", offer=offer)
         assert mock_handler.call_count == 1  # standard django
         assert obj.pk == 1, "Should create a UserOffer instance"
+
+
+class TestOfferManager:
+    def test_offer_manager_get_queryset(self):
+        country = Country.objects.create(name="Kenya", code="KE")
+        state = State.objects.create(name="Nairobi", country=country)
+        locality = Locality.objects.create(name="USIU", state=state)
+        address = Address.objects.create(
+            street_number="USIU Road Thika road",
+            locality=locality,
+            raw="USIU road",
+            latitude="-1.2211537",
+            longitude="36.88339089999999",
+        )
+        dt = datetime.datetime(2013, 11, 20, 20, 8, 7, 127325, tzinfo=pytz.UTC)
+
+        business = mixer.blend("business.Business", address=address)
+        off = Offer.user_offer.create(
+            title="test", business=business, start_date=dt, active=True
+        )
+        assert off.id == 1
+
+        off = Offer.user_offer.top_five_offer_based_on_user_state("Nairobi")
+        assert off.count() == 1
+
+        user_location = [-1.0, 30.12]
+        off = Offer.user_offer.top_five_closest_offer_based_on_user_geolocation(
+            "Nairobi", user_location
+        )
+        assert len(off) == 1
