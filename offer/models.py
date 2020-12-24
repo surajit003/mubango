@@ -1,8 +1,38 @@
 from django.db import models
 from business.models import Business
 from django.contrib.auth.models import User
+from .utils import calculate_distance
 
 # Create your models here.
+class OfferManager(models.Manager):
+    def get_queryset(self):
+        return super(OfferManager, self).get_queryset().filter(active=True)
+
+    def top_five_offer_based_on_user_state(self, state):
+        return self.get_queryset().filter(
+            business__address__locality__state__name__icontains=state
+        )
+
+    def top_five_closest_offer_based_on_user_geolocation(self, state, coordinates):
+        qs = self.top_five_offer_based_on_user_state(state)
+        distance_user_offer = {}
+        if qs.exists():
+            for q in qs:
+                # calculate distance
+                offer_location_coordinate = [
+                    q.business.address.latitude,
+                    q.business.address.longitude,
+                ]
+                distance_user_offer[q.id] = calculate_distance(
+                    coordinates, offer_location_coordinate
+                )
+            distance_user_offer = dict(
+                sorted(
+                    distance_user_offer.items(),
+                    key=lambda distance_user_offer: distance_user_offer[1],
+                )
+            )
+        return list(distance_user_offer.items())[:5]
 
 
 class Offer(models.Model):
@@ -15,6 +45,9 @@ class Offer(models.Model):
     is_special = models.BooleanField(default=False)
     code = models.CharField(max_length=120, blank=True, null=True)
     limit = models.IntegerField(default=0)
+
+    objects = models.Manager()  # The default manager.
+    user_offer = OfferManager()  # The useroffer manager.
 
     def __str__(self):
         return "{}".format(self.title)
