@@ -14,6 +14,15 @@ class Rating(models.Model):
         return "{} {}".format(self.name, self.symbol)
 
 
+class ReviewAttribute(models.Model):
+    name = models.CharField(max_length=100)
+    description = models.TextField(null=True, blank=True)
+    rating = models.ForeignKey(Rating, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return "{} {}".format(self.name, self.rating)
+
+
 class MusicGenre(models.Model):
     name = models.CharField(max_length=120, unique=True)
 

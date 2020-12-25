@@ -5,6 +5,11 @@ pytestmark = pytest.mark.django_db
 
 
 class TestUserProfile:
+    def test_reviewattribute(self):
+        obj = mixer.blend("common.ReviewAttribute")
+        assert obj.pk == 1, "Should create a Rating Attribute instance"
+        assert str(obj) == "{}".format(obj.name)
+
     def test_rating(self):
         obj = mixer.blend("common.Rating")
         assert obj.pk == 1, "Should create a Rating instance"
