@@ -8,17 +8,6 @@ class EventAdmin(admin.ModelAdmin):
     search_fields = ("business",)
 
 
-@admin.register(models.EventOrganizer)
-class EventSetUpAdmin(admin.ModelAdmin):
-    list_display = ("get_event",)
-    search_fields = ("event__name",)
-
-    def get_event(self, obj):
-        return obj.event.name
-
-    get_event.short_description = "Event"
-
-
 @admin.register(models.EventUser)
 class EventUserAdmin(admin.ModelAdmin):
     list_display = (

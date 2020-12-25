@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     "account",
     "common",
     "business",
-    "event",
+    "event.apps.EventConfig",
     "offer.apps.OfferConfig",
     "ad",
 ]

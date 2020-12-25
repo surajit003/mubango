@@ -3,8 +3,37 @@ from django.contrib.auth.models import User
 from common.models import MusicGenre, Guest, Venue
 from business.models import Business
 from address.models import AddressField
+import datetime  # important if using timezones
 
 # Create your models here.
+class EventManager(models.Manager):
+    def get_queryset(self):
+        return super(EventManager, self).get_queryset().filter(active=True)
+
+    def upcoming_events(self, state):
+        # includes special and non special events
+        return (
+            self.get_queryset()
+            .filter(
+                location__locality__state__name__icontains=state,
+                to_be_held_on__date__gte=datetime.date.today(),
+            )
+            .order_by("to_be_held_on")
+        )
+
+    def upcoming_special_events(self, state):
+        # includes special events only
+        return (
+            self.get_queryset()
+            .filter(
+                location__locality__state__name__icontains=state,
+                to_be_held_on__date__gte=datetime.date.today(),
+                is_special=True,
+            )
+            .order_by("to_be_held_on")
+        )
+
+
 class Event(models.Model):
     name = models.CharField(max_length=200)
     description = models.TextField(null=True, blank=True)
@@ -17,21 +46,14 @@ class Event(models.Model):
     active = models.BooleanField(default=False)
     is_special = models.BooleanField(default=False)
     num_of_tickets = models.IntegerField(default=0)
+    business = models.ManyToManyField(Business, related_name="business")
+    guest = models.ManyToManyField(Guest, related_name="guest", blank=True)
+
+    objects = models.Manager()  # The default manager.
+    event_manager = EventManager()  # The useroffer manager.
 
     def __str__(self):
         return "{} {}".format(self.name, self.genre)
-
-
-class EventOrganizer(models.Model):
-    business = models.ManyToManyField(Business, related_name="business")
-    event = models.ForeignKey(Event, on_delete=models.CASCADE)
-    guest = models.ManyToManyField(Guest, related_name="guest", blank=True)
-
-    class Meta:
-        verbose_name_plural = "Event SetUp"
-
-    def __str__(self):
-        return "{} {}".format(self.business.name, self.event.name)
 
 
 class EventUser(models.Model):
