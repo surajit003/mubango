@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     "event.apps.EventConfig",
     "offer.apps.OfferConfig",
     "ad",
+    "review",
 ]
 
 MIDDLEWARE = [
