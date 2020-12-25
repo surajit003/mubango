@@ -57,7 +57,11 @@ class TestOfferManager:
 
         business = mixer.blend("business.Business", address=address)
         off = Offer.user_offer.create(
-            title="test", business=business, start_date=dt, active=True
+            title="test",
+            business=business,
+            start_date=dt,
+            active=True,
+            location=address,
         )
         assert off.id == 1
 
