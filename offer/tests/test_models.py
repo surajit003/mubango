@@ -2,7 +2,7 @@ import pytest
 from mixer.backend.django import mixer
 from mock import patch
 from ..models import Offer
-from address.models import Address, Locality, State, Country
+from common.utils import generate_country_data_for_testing
 import datetime
 import pytz
 
@@ -43,16 +43,7 @@ class TestUserOffer:
 
 class TestOfferManager:
     def test_offer_manager_get_queryset(self):
-        country = Country.objects.create(name="Kenya", code="KE")
-        state = State.objects.create(name="Nairobi", country=country)
-        locality = Locality.objects.create(name="USIU", state=state)
-        address = Address.objects.create(
-            street_number="USIU Road Thika road",
-            locality=locality,
-            raw="USIU road",
-            latitude="-1.2211537",
-            longitude="36.88339089999999",
-        )
+        address = generate_country_data_for_testing()
         dt = datetime.datetime(2013, 11, 20, 20, 8, 7, 127325, tzinfo=pytz.UTC)
 
         business = mixer.blend("business.Business", address=address)

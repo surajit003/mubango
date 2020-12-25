@@ -1,8 +1,8 @@
 import pytest
 from mixer.backend.django import mixer
-from address.models import Address, Locality, State, Country
 from ..models import Event
 import datetime
+from common.utils import generate_country_data_for_testing
 
 pytestmark = pytest.mark.django_db
 
@@ -27,16 +27,7 @@ class TestEvent:
 
 class TestEventManager:
     def test_event_manager_get_queryset(self):
-        country = Country.objects.create(name="Kenya", code="KE")
-        state = State.objects.create(name="Nairobi", country=country)
-        locality = Locality.objects.create(name="USIU", state=state)
-        address = Address.objects.create(
-            street_number="USIU Road Thika road",
-            locality=locality,
-            raw="USIU road",
-            latitude="-1.2211537",
-            longitude="36.88339089999999",
-        )
+        address = generate_country_data_for_testing()
         dt = datetime.date.today()
 
         business = mixer.blend("business.Business", address=address)
