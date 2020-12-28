@@ -24,21 +24,3 @@ class VenueAdmin(admin.ModelAdmin):
         "description",
     )
     search_fields = ("name",)
-
-
-@admin.register(models.Rating)
-class RatingAdmin(admin.ModelAdmin):
-    list_display = (
-        "name",
-        "symbol",
-    )
-    search_fields = ("name",)
-
-
-@admin.register(models.ReviewAttribute)
-class ReviewAttributeAdmin(admin.ModelAdmin):
-    list_display = (
-        "name",
-        "rating",
-    )
-    search_fields = ("name",)

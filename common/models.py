@@ -2,27 +2,6 @@ from django.db import models
 from address.models import AddressField
 
 
-class Rating(models.Model):
-    name = models.CharField(max_length=50)
-    symbol = models.CharField(max_length=10, unique=True)
-    additional_description = models.TextField(null=True, blank=True)
-
-    class Meta:
-        verbose_name_plural = "Ratings"
-
-    def __str__(self):
-        return "{} {}".format(self.name, self.symbol)
-
-
-class ReviewAttribute(models.Model):
-    name = models.CharField(max_length=100)
-    description = models.TextField(null=True, blank=True)
-    rating = models.ForeignKey(Rating, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return "{} {}".format(self.name, self.rating)
-
-
 class MusicGenre(models.Model):
     name = models.CharField(max_length=120, unique=True)
 

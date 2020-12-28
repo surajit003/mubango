@@ -1,8 +1,42 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.validators import MaxValueValidator, MinValueValidator
 from phonenumber_field.modelfields import PhoneNumberField
-from common.models import DateModel, Rating, Guest
+from common.models import DateModel, Guest
 from address.models import AddressField
+
+
+class Service(models.Model):
+    name = models.CharField(max_length=80)
+
+    def __str__(self):
+        return self.name
+
+
+class BusinessManager(models.Manager):
+    def get_queryset(self):
+        return super(BusinessManager, self).get_queryset().filter(active=True)
+
+    def top_rated_club(self, state):
+        # top rated clubs
+        return self.get_queryset().filter(
+            address__locality__state__name__icontains=state, type="club", rating__gte=4
+        )
+
+    def closest_clubs(self, state):
+        # closest clubs
+        return self.get_queryset().filter(
+            address__locality__state__name__icontains=state,
+            type="club",
+        )
+
+    def currently_hot_clubs(self, state):
+        # currently hot clubs
+        return self.get_queryset().filter(
+            address__locality__state__name__icontains=state,
+            type="club",
+            currently_hot=True,
+        )
 
 
 class Business(DateModel):
@@ -18,13 +52,30 @@ class Business(DateModel):
     type = models.CharField(max_length=30, choices=category, default="other")
     address = AddressField()
     price_type = models.CharField(max_length=10, null=True, blank=True)  # e.g $$$ or $$
-    rating = models.ForeignKey(Rating, on_delete=models.PROTECT, null=True, blank=True)
+    rating = models.IntegerField(
+        default=1, validators=[MaxValueValidator(5), MinValueValidator(1)]
+    )
+    currently_hot = models.BooleanField(default=False)
 
     def __str__(self):
         return "{} {}".format(self.name, self.active)
 
     class Meta:
         verbose_name_plural = "Businesses"
+
+    objects = models.Manager()  # The default manager.
+    business_manager = BusinessManager()  # The useroffer manager.
+
+
+class BusinessServiceRating(models.Model):
+    service = models.ForeignKey(Service, on_delete=models.CASCADE)
+    rating = models.IntegerField(
+        default=1, validators=[MaxValueValidator(5), MinValueValidator(1)]
+    )
+    business = models.ForeignKey(Business, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return "{} {}".format(self.service.name, self.rating)
 
 
 class VisitorCount(models.Model):
@@ -42,14 +93,3 @@ class VisitorCount(models.Model):
 
     def __str__(self):
         return "{} {}".format(self.business.name, self.count)
-
-
-class Trending(DateModel):
-    business = models.ForeignKey(Business, on_delete=models.CASCADE)
-    thumbs_up_count = models.IntegerField(default=0)
-
-    class Meta:
-        verbose_name_plural = "Trending"
-
-    def __str__(self):
-        return "{} {}".format(self.business.name, self.thumbs_up_count)
