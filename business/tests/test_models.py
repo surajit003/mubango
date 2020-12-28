@@ -1,7 +1,6 @@
 import pytest
 from mixer.backend.django import mixer
 from common.utils import generate_country_data_for_testing
-import datetime
 from ..models import Business
 
 pytestmark = pytest.mark.django_db
