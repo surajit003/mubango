@@ -56,15 +56,14 @@ class Business(DateModel):
         default=1, validators=[MaxValueValidator(5), MinValueValidator(1)]
     )
     currently_hot = models.BooleanField(default=False)
+    objects = models.Manager()  # The default manager.
+    business_manager = BusinessManager()  # The useroffer manager.
 
     def __str__(self):
         return "{} {}".format(self.name, self.active)
 
     class Meta:
         verbose_name_plural = "Businesses"
-
-    objects = models.Manager()  # The default manager.
-    business_manager = BusinessManager()  # The useroffer manager.
 
 
 class BusinessServiceRating(models.Model):
@@ -73,9 +72,10 @@ class BusinessServiceRating(models.Model):
         default=1, validators=[MaxValueValidator(5), MinValueValidator(1)]
     )
     business = models.ForeignKey(Business, on_delete=models.CASCADE)
+    active = models.BooleanField(default=True)
 
     def __str__(self):
-        return "{} {}".format(self.service.name, self.rating)
+        return "{} {} {}".format(self.service.name, self.business.name, self.rating)
 
 
 class VisitorCount(models.Model):
