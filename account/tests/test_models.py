@@ -28,7 +28,6 @@ class TestUserProfile:
 
     def test_months_on_mubango(self):
         user = mixer.blend(User)
-        print("us", user.pk)
         profile = Profile.objects.get(user=user)
         profile.verification_id = "29"
         profile.save()
