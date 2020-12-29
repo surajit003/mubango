@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from phonenumber_field.modelfields import PhoneNumberField
 from common.models import DateModel
 from address.models import AddressField
+import datetime
 
 
 class Profile(DateModel):
@@ -19,6 +20,18 @@ class Profile(DateModel):
 
     class Meta:
         verbose_name_plural = "Profiles"
+
+    def months_on_mubango(self):
+        date_joined = self.user.date_joined.replace(tzinfo=None)
+        now = datetime.datetime.now()
+        relative_delta = abs(now - date_joined)
+        if hasattr(relative_delta, "days"):
+            remaining_days = relative_delta.days
+            months = int(round(remaining_days / 30))
+            if months < 1:
+                return "{}:{}".format("days", remaining_days)
+            else:
+                return "{}:{}".format("months", months)
 
 
 class Follower(models.Model):
