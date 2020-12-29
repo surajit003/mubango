@@ -1,7 +1,7 @@
 import pytest
 from mixer.backend.django import mixer
 from ..models import Event
-import datetime
+from django.utils import timezone
 from common.utils import generate_country_data_for_testing
 
 pytestmark = pytest.mark.django_db
@@ -28,7 +28,7 @@ class TestEvent:
 class TestEventManager:
     def test_event_manager_get_queryset(self):
         address = generate_country_data_for_testing()
-        dt = datetime.date.today()
+        dt = timezone.now()
 
         business = mixer.blend("business.Business", address=address)
         event = Event.event_manager.create(

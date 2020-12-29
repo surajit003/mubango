@@ -4,6 +4,7 @@ from mixer.backend.django import mixer
 from django.contrib.auth.models import User
 from account.models import Profile
 from datetime import datetime
+import pytz
 
 pytestmark = pytest.mark.django_db
 
@@ -33,7 +34,9 @@ class TestUserProfile:
         profile.save()
         assert profile.months_on_mubango() == "{}:{}".format("days", 0)
 
-        user = mixer.blend(User, date_joined=datetime(year=2020, month=3, day=1))
+        user = mixer.blend(
+            User, date_joined=datetime(year=2020, month=3, day=1, tzinfo=pytz.UTC)
+        )
         profile = Profile.objects.get(user=user)
         profile.verification_id = "90"
         profile.save()
