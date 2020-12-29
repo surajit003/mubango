@@ -1,6 +1,6 @@
 from django.db import models
 from business.models import Business
-from common.models import ReviewAttribute, DateModel
+from common.models import DateModel
 from django.contrib.auth.models import User
 
 
@@ -15,7 +15,7 @@ class Review(DateModel):
     experience = models.CharField(
         max_length=20, choices=level_of_experience, default="neutral"
     )
-    rating = models.ForeignKey(ReviewAttribute, on_delete=models.CASCADE)
+    rating = models.IntegerField(default=1)
     images = models.ImageField(null=True, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
