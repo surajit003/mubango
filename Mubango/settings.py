@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     "debug_toolbar",
     "phonenumber_field",
     "address",
-    "account",
+    "account.apps.AccountConfig",
     "common",
     "business",
     "event.apps.EventConfig",
