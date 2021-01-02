@@ -7,8 +7,8 @@ import datetime
 
 
 class Profile(DateModel):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
-    verification_id = models.CharField(max_length=120, unique=True, db_index=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    verification_id = models.CharField(max_length=120, null=True, blank=True)
     birth_date = models.DateField(null=True, blank=True)
     points = models.IntegerField(default=0)
     phone_number = PhoneNumberField()
