@@ -27,13 +27,16 @@ main = [
     url(r"^login/", views.login, name="login"),
     url(r"^logout/", auth_views.LogoutView.as_view(), name="logout"),
     url(r"^account/", include("account.urls")),
+    url(r"", include("core.urls")),
     url(r"^social-auth/", include("social_django.urls", namespace="social")),
     url(r"^admin/", admin.site.urls),
     url(r"^__debug__/", include(debug_toolbar.urls)),
 ]
 
-urlpatterns = [url(r"^mb/", include(main))] + static(
-    settings.STATIC_URL, document_root=settings.STATIC_ROOT
+urlpatterns = (
+    [url(r"^mb/", include(main))]
+    + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 )
 
 admin.site.site_header = "Mubango Admin"
