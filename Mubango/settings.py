@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     "offer.apps.OfferConfig",
     "ad",
     "review",
+    "core",
 ]
 
 MIDDLEWARE = [
@@ -201,7 +202,10 @@ SOCIAL_AUTH_LINKEDIN_OAUTH2_KEY = config("SOCIAL_AUTH_LINKEDIN_OAUTH2_KEY")  # C
 SOCIAL_AUTH_LINKEDIN_OAUTH2_SECRET = config(
     "SOCIAL_AUTH_LINKEDIN_OAUTH2_SECRET"
 )  # Client Secret
-SOCIAL_AUTH_LINKEDIN_OAUTH2_SCOPE = ["r_basicprofile", "r_emailaddress"]
+SOCIAL_AUTH_LINKEDIN_OAUTH2_SCOPE = ["r_emailaddress", "r_liteprofile"]
+SOCIAL_AUTH_FIELD_SELECTORS = [
+    "email-address",
+]
 SOCIAL_AUTH_LINKEDIN_OAUTH2_FIELD_SELECTORS = [
     "email-address",
     "formatted-name",
