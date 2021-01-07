@@ -62,6 +62,17 @@ class Business(DateModel):
     def __str__(self):
         return "{} {}".format(self.name, self.active)
 
+    def as_dict(self):
+        return {
+            "name": self.name,
+            "location": self.address.raw,
+            "rating": self.rating,
+            "price_type": self.price_type,
+            "phone_number": "{}-{}".format(
+                self.phone_number.country_code, self.phone_number.national_number
+            ),
+        }
+
     class Meta:
         verbose_name_plural = "Businesses"
 
