@@ -1,0 +1,44 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>{% block head_title %}{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="CreativeLayers">
+    {% block extra_head %}
+    {% endblock %}
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap-grid.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/icons.css' %}">
+    <link rel="stylesheet" href="{% static 'css/animate.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/responsive.css' %}"/>
+</head>
+
+{% include "core/navbar.html" %}
+
+<body class="full-height" id="scrollup">
+<div class="page-loading">
+    <img src="{% static 'images/loader.gif' %}" alt=""/>
+    <span>Skip Loader</span>
+</div>
+
+<div class="theme-layout">
+
+{#    {% include 'core/navbar.html' %}#}
+    {% block content %}
+    {% endblock content %}
+
+    {% block extra_body %}
+    {% endblock %}
+
+    {% include "core/footer.html" %}
+    {% include "core/scripts.html" %}
+
+    {% block extra_scripts %}
+    {% endblock extra_scripts %}
+</div>
+</body>
+</html>
