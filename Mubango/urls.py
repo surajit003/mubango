@@ -27,6 +27,8 @@ main = [
     url(r"^login/", views.login, name="login"),
     url(r"^logout/", auth_views.LogoutView.as_view(), name="logout"),
     url(r"^account/", include("account.urls")),
+    url(r"^business/", include("business.urls")),
+    url(r"^event/", include("event.urls")),
     url(r"", include("core.urls")),
     url(r"^social-auth/", include("social_django.urls", namespace="social")),
     url(r"^admin/", admin.site.urls),
