@@ -26,9 +26,7 @@ django-generic-aggregation==0.4.0
 django-google-maps==0.12.2
 django-model-utils==4.1.1
 django-phonenumber-field==5.0.0
-django-ratings==0.3.7
-django-simple-ratings==0.3.3
-django-star-ratings==0.9.1
+django-simple-search==1.0.2
 Faker==0.9.1
 filelock==3.0.12
 identify==1.5.9
