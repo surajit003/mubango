@@ -4,8 +4,13 @@ from . import views
 app_name = "business"
 urlpatterns = [
     url(
-        r"^search/(?P<city>[\w-]+)/$",
-        views.search_for_business,
-        name="search_business",
+        r"^search-all/(?P<state>[\w-]+)/$",
+        views.get_all_business,
+        name="get_all_business",
+    ),
+    url(
+        r"^search-single/(?P<name>[\w|\W]+)/(?P<state>[\w-]+)/$",
+        views.search_for_a_specific_business,
+        name="search_for_a_specific_business",
     ),
 ]

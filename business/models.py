@@ -4,6 +4,7 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 from phonenumber_field.modelfields import PhoneNumberField
 from common.models import DateModel, Guest
 from address.models import AddressField
+from simple_search import search_filter
 
 
 class Service(models.Model):
@@ -16,6 +17,16 @@ class Service(models.Model):
 class BusinessManager(models.Manager):
     def get_queryset(self):
         return super(BusinessManager, self).get_queryset().filter(active=True)
+
+    def get_specific_business(self, name, state):
+        query = name
+        search_fields = ["name"]
+        f = search_filter(search_fields, query)
+        qs = self.get_queryset().filter(f)
+        result = qs.filter(
+            address__locality__state__name__icontains=state,
+        )
+        return result
 
     def top_rated_club(self, state):
         # top rated clubs
