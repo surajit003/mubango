@@ -56,7 +56,7 @@ class Business(DateModel):
         ("organization", "Organization"),
         ("other", "Other"),
     ]
-    name = models.CharField(max_length=200)
+    name = models.CharField(max_length=200, db_index=True)
     email = models.EmailField(blank=True, null=True)
     phone_number = PhoneNumberField()
     active = models.BooleanField(default=False)

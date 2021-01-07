@@ -49,7 +49,7 @@ class EventManager(models.Manager):
 
 
 class Event(models.Model):
-    name = models.CharField(max_length=200)
+    name = models.CharField(max_length=200, db_index=True)
     description = models.TextField(null=True, blank=True)
     genre = models.ManyToManyField(MusicGenre, related_name="music", blank=True)
     priority_level = models.IntegerField(
