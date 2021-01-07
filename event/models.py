@@ -4,6 +4,8 @@ from common.models import MusicGenre, Guest, Venue
 from business.models import Business
 from address.models import AddressField
 import datetime  # important if using timezones
+from simple_search import search_filter
+
 
 # Create your models here.
 class EventManager(models.Manager):
@@ -20,6 +22,18 @@ class EventManager(models.Manager):
             )
             .order_by("to_be_held_on")
         )
+
+    def get_specific_event(self, name, state):
+        # includes special and non special events
+        query = name
+        search_fields = ["name"]
+        f = search_filter(search_fields, query)
+        qs = self.get_queryset().filter(f).order_by("to_be_held_on")
+        result = qs.filter(
+            location__locality__state__name__icontains=state,
+            to_be_held_on__date__gte=datetime.date.today(),
+        )
+        return result
 
     def upcoming_special_events(self, state):
         # includes special events only
@@ -54,6 +68,16 @@ class Event(models.Model):
 
     def __str__(self):
         return "{} {}".format(self.name, self.genre)
+
+    def as_dict(self):
+        return {
+            "name": self.name,
+            "description": self.description,
+            "location": self.location.raw,
+            "to_be_held_on": self.to_be_held_on.strftime("%Y-%m-%d %H:%M:%S"),
+            "num_of_tickets": self.num_of_tickets,
+            "business": [obj.as_dict() for obj in self.business.all()],
+        }
 
 
 class EventUser(models.Model):
