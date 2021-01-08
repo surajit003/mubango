@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.core.validators import MaxValueValidator, MinValueValidator
+from django.urls import reverse
 from phonenumber_field.modelfields import PhoneNumberField
 from common.models import DateModel, Guest, Social, OpeningTime
 from address.models import AddressField
@@ -116,6 +117,16 @@ class Business(DateModel):
 
     def get_address(self):
         return self.address.raw
+
+    def get_absolute_url(self):
+        return reverse("business:club_detail", args=[str(self.slug)])
+
+    def get_thumbnail(self):
+        business_image = BusinessImage.objects.get(
+            business=self.id, img_category="thumbnail"
+        )
+        thumbnail = business_image.image.url
+        return thumbnail
 
     class Meta:
         verbose_name_plural = "Businesses"

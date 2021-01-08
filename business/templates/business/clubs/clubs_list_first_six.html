@@ -12,9 +12,9 @@
                             {% for obj in clubs_featured %}
                                 <div class="col-lg-4">
                                     <div class="category">
-                                        <img src="http://placehold.it/389x270" alt=""/>
+                                        <img src="{{ obj.get_thumbnail }}" alt=""/>
                                         <div class="cattitle">
-                                            <h3><a href="#" title="">{{ obj.name }}</a></h3>
+                                            <h3><a href="{{ obj.get_absolute_url }}" title="">{{ obj.name }}</a></h3>
                                             <span>{{ obj.rating }}</span>
                                         </div>
                                         <i class="flaticon-hotel color3"></i>
