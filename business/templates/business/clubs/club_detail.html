@@ -1,0 +1,167 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+
+    <section>
+        <div class="block no-padding">
+            <div class="container fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="sl-slider" id="makeslider">
+                            {% for img in slideshow %}
+                                <div class="slg-box"><img src="{{ img.image.url }}" alt=""/></div>
+                            {% endfor %}
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="block no-padding gray">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="slhead">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="sltitle">
+                                        <h1>{{ object.name|capfirst }}</h1>
+                                        <ul class="listmetas">
+                                            <li><span class="rated">{{ object.rating }}</span>{{ object.rating }}
+                                                Ratings
+                                            </li>
+                                            <li><a href="#" title=""><i
+                                                    class="flaticon-chef"></i> {{ object.type|capfirst }}</a></li>
+                                            <li>
+                                                <div class="currency"><i>{{ object.price_type }}</i></div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="slbtnsspans">
+                                        <span><i class="flaticon-pin"></i>{{ object.get_address }}</span>
+                                        <span><i class="flaticon-phone-call"></i>{{ object.get_phone_number }}</span>
+                                        <div class="slbtns">
+                                            <div class="sharelisting">
+                                                <a href="#" title=""><i class="flaticon-share"></i>Share</a>
+                                                <div class="sharebtns">
+                                                    {% for social in business_social %}
+                                                        <a href="{{ social.url }}" title=""><i
+                                                                class="fa fa-{{ social.social.icon }}"></i></a>
+                                                    {% endfor %}
+                                                </div>
+                                            </div>
+                                            <a href="#" title=""><i class="flaticon-heart"></i>Bookmark</a>
+                                            <a href="#" title=""><i class="flaticon-note"></i>Add review</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="block">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 column">
+                        <div class="bbox">
+                            <h3>Description</h3>
+                            <div class="ldesc">
+                                <p>{{ object.description }}</p>
+                            </div>
+                        </div>
+                        <div class="bbox">
+                            <h3>Amenities</h3>
+                            <div class="amenties">
+                                {% for amenities in club_amenities %}
+                                    <span><i
+                                            class="flaticon-{{ amenities.service.icon }}"></i>{{ amenities.service.name }}</span>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="bbox">
+                            <h3>Gallery</h3>
+                            <ul class="gallerylistin">
+                                {% for img in gallery %}
+                                    <li><img src="{{ img.image.url }}" alt=""/></li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        <div class="bbox">
+                            <div id="disqus_thread"></div>
+                        </div>
+
+                    </div>
+                    <div class="col-lg-4 column">
+                        <div class="openclosetiming">
+                            <h3>Hours of Operations</h3>
+                             {% for opening_times in object.openning_times.all %}
+                            <span>{{ opening_times.get_weekday_display }} <i>{{opening_times.from_hour}} - {{opening_times.to_hour}}</i></span>
+                            {% endfor %}
+                        </div>
+                        <div class="blocation">
+                            <h3>Location <a href="#" title="">Get Direction</a></h3>
+                            <div class="contact-map">
+                                <div id="map_div">&nbsp;</div>
+                            </div>
+                            <span>{{ object.get_address }}</span>
+                            <span>{{ object.get_phone_number }}</span>
+                            <span>{{ object.email }}</span>
+                            <div class="wsocial">
+                                {% for social in business_social %}
+                                    <a href="{{ social.url }}" title=""><i
+                                            class="fa fa-{{ social.social.icon }}"></i></a>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="cbusiness">
+                            <h3>Contact business</h3>
+                            <form>
+                                <label>Your Name *</label>
+                                <input type="text" placeholder="Ali TUF..."/>
+                                <label>Your Email Address*</label>
+                                <input type="text" placeholder="demo@demo.com"/>
+                                <label>Your Message</label>
+                                <textarea placeholder="demo@demo.com"></textarea>
+                                <button type="submit">Send Message</button>
+                            </form>
+                        </div>
+                        <div class="cad">
+                            <div class="ad"><img src="http://placehold.it/360x220" alt=""/></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<script type="text/javascript">
+    /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+
+   var disqus_config = function () {
+        this.page.url = '{{ request.build_absolute_uri }}.html'
+        console.log(this.page.url);
+        this.page.identifier = '{{ request.build_absolute_uri }}.html'
+        this.page.title = '{{ object.name }}' + '_title';
+    };
+
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://mubango-disqus-com.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+{% endblock content %}

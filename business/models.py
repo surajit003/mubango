@@ -2,13 +2,15 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.core.validators import MaxValueValidator, MinValueValidator
 from phonenumber_field.modelfields import PhoneNumberField
-from common.models import DateModel, Guest
+from common.models import DateModel, Guest, Social, OpeningTime
 from address.models import AddressField
 from simple_search import search_filter
+from django_resized import ResizedImageField
 
 
 class Service(models.Model):
     name = models.CharField(max_length=80)
+    icon = models.CharField(max_length=20)
 
     def __str__(self):
         return self.name
@@ -34,11 +36,25 @@ class BusinessManager(models.Manager):
             address__locality__state__name__icontains=state, type="club", rating__gte=4
         )
 
+    def six_closest_clubs(self, state):
+        return (
+            self.get_queryset()
+            .filter(
+                address__locality__state__name__icontains=state,
+                type="club",
+                featured=True,
+            )
+            .order_by("date_last_modified")[:6]
+        )
+
     def closest_clubs(self, state):
-        # closest clubs
-        return self.get_queryset().filter(
-            address__locality__state__name__icontains=state,
-            type="club",
+        return (
+            self.get_queryset()
+            .filter(
+                address__locality__state__name__icontains=state,
+                type="club",
+            )
+            .order_by("date_last_modified")
         )
 
     def currently_hot_clubs(self, state):
@@ -47,6 +63,7 @@ class BusinessManager(models.Manager):
             address__locality__state__name__icontains=state,
             type="club",
             currently_hot=True,
+            featured=True,
         )
 
 
@@ -57,6 +74,12 @@ class Business(DateModel):
         ("other", "Other"),
     ]
     name = models.CharField(max_length=200, db_index=True)
+    description = models.TextField(blank=True, null=True)
+    slug = models.SlugField(
+        max_length=255,
+        help_text="Unique value for product page URL, created from name.",
+        unique=True,
+    )
     email = models.EmailField(blank=True, null=True)
     phone_number = PhoneNumberField()
     active = models.BooleanField(default=False)
@@ -67,6 +90,8 @@ class Business(DateModel):
         default=1, validators=[MaxValueValidator(5), MinValueValidator(1)]
     )
     currently_hot = models.BooleanField(default=False)
+    featured = models.BooleanField(default=False)
+    openning_times = models.ManyToManyField(OpeningTime)
     objects = models.Manager()  # The default manager.
     business_manager = BusinessManager()  # The useroffer manager.
 
@@ -83,6 +108,14 @@ class Business(DateModel):
                 self.phone_number.country_code, self.phone_number.national_number
             ),
         }
+
+    def get_phone_number(self):
+        return "{}-{}".format(
+            self.phone_number.country_code, self.phone_number.national_number
+        )
+
+    def get_address(self):
+        return self.address.raw
 
     class Meta:
         verbose_name_plural = "Businesses"
@@ -115,3 +148,32 @@ class VisitorCount(models.Model):
 
     def __str__(self):
         return "{} {}".format(self.business.name, self.count)
+
+
+class BusinessImage(DateModel):
+    category = [
+        ("thumbnail", "thumbnail"),
+        ("other", "other"),
+        ("top_slideshow", "slideshow"),
+    ]
+    business = models.ForeignKey(
+        Business, related_name="images", on_delete=models.CASCADE
+    )
+    image = ResizedImageField(size=[480, 350], quality=75)
+    img_category = models.CharField(max_length=20, choices=category, default="other")
+
+    def __str__(self):
+        return "{} {}".format(self.business.name, self.img_category)
+
+    class Meta:
+        db_table = "business_images"
+
+
+class BusinessSocial(models.Model):
+    business = models.ForeignKey(Business, on_delete=models.CASCADE)
+    social = models.ForeignKey(Social, on_delete=models.CASCADE)
+    url = models.URLField()
+    active = models.BooleanField(default=False)
+
+    def __str__(self):
+        return "{} {}".format(self.business.name, self.social.name)

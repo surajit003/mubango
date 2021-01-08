@@ -26,12 +26,15 @@ class Profile(DateModel):
         now = datetime.datetime.now()
         relative_delta = abs(now - date_joined)
         if hasattr(relative_delta, "days"):
-            remaining_days = relative_delta.days
+            remaining_days = int(relative_delta.days)
             months = int(round(remaining_days / 30))
             if months < 1:
                 return "{}:{}".format("days", remaining_days)
             else:
                 return "{}:{}".format("months", months)
+
+    def get_state(self):
+        return self.address.locality.state.name
 
 
 class Follower(models.Model):

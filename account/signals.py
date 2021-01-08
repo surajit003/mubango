@@ -11,4 +11,4 @@ def profile(sender, instance, created, **kwargs):
 
 
 def create_profile(instance):
-    Profile.objects.create(user=instance)
+    Profile.objects.get_or_create(user=instance)

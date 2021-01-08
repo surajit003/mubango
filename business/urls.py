@@ -13,4 +13,14 @@ urlpatterns = [
         views.search_for_a_specific_business,
         name="search_for_a_specific_business",
     ),
+    url(
+        r"^all/(?P<state>[\w-]+)/$",
+        views.ClubListView.as_view(),
+        name="get_all_clubs",
+    ),
+    url(
+        r"^(?P<slug>[\w-]+)$",
+        views.ClubDetailView.as_view(),
+        name="club_detail",
+    ),
 ]

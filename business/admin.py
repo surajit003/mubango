@@ -2,6 +2,10 @@ from django.contrib import admin
 from . import models
 
 # Register your models here.
+class ProductImagesInline(admin.StackedInline):
+    model = models.BusinessImage
+
+
 @admin.register(models.Service)
 class ServiceAdmin(admin.ModelAdmin):
     list_display = ("name",)
@@ -24,8 +28,12 @@ class BusinessAdmin(admin.ModelAdmin):
         "active",
         "rating",
         "get_address",
+        "featured",
+        "currently_hot",
     )
     search_fields = ("name",)
+    prepopulated_fields = {"slug": ("name",)}
+    inlines = [ProductImagesInline]
 
     def get_address(self, obj):
         return obj.address.raw
@@ -37,3 +45,8 @@ class BusinessAdmin(admin.ModelAdmin):
 class VisitorCountAdmin(admin.ModelAdmin):
     list_display = ("business", "count")
     search_fields = ("business",)
+
+
+@admin.register(models.BusinessSocial)
+class BusinessSocialAdmin(admin.ModelAdmin):
+    list_display = ("business", "social", "url", "active")
