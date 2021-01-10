@@ -19,7 +19,7 @@ urlpatterns = [
         name="get_all_clubs",
     ),
     url(
-        r"^(?P<slug>[\w-]+)$",
+        r"^(?P<slug>[\w-]+)/$",
         views.ClubDetailView.as_view(),
         name="club_detail",
     ),

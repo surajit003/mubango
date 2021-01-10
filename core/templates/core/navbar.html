@@ -39,7 +39,7 @@
 					</ul>
 				</li>
 				<li class="menu-item-has-children">
-					<a href="#" title="">Events</a>
+					<a href="{% url 'event:get_all_events' state=user_state %}" title="">Events</a>
 					<ul>
 						<li><a href="listing-single1.html" title="">Listing Details 1</a></li>
 						<li><a href="listing-single2.html" title="">Listing Details 2</a></li>
@@ -120,7 +120,7 @@
 						</ul>
 					</li>
 					<li class="menu-item-has-children">
-						<a href="#" title="">Events</a>
+					<a href="{% url 'event:get_all_events' state=user_state %}" title="">Events</a>
 						<ul>
 							<li><a href="listing-single1.html" title="">Listing Details 1</a></li>
 							<li><a href="listing-single2.html" title="">Listing Details 2</a></li>
