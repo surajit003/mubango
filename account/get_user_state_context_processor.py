@@ -6,4 +6,4 @@ def get_user_state(request):
         profile = Profile.objects.get(user=request.user)
         return {"user_state": profile.get_state()}
     else:
-        return {}
+        return {"user_state": "Nairobi"}  # default location
