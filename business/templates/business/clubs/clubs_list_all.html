@@ -28,12 +28,13 @@
                     <div class="col-lg-12">
                         <div class="fcsec">
                             <div class="row">
-                                {% for obj in object_list %}
+                                {% for obj in club_list %}
                                     <div class="col-lg-3 col-md-4 col-sm-6">
                                         <div class="fc s2">
-                                            <img src="http://placehold.it/463x290" alt=""/>
+                                            {% with default_image=STATIC_URL|add:"/mb/static/images/list_default.png" %}
+                                            <img src="{{ obj.get_thumbnail|default:default_image }}" alt=""/>
                                             <a href="{{ obj.get_absolute_url }}" title="">{{ obj.name }} <i class="flaticon-wine-glass"></i></a>
-                                            <i class="flaticon-wine-glass"></i>
+                                             {% endwith %}
                                         </div>
                                     </div><!-- Featured Category -->
 

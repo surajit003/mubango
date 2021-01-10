@@ -111,7 +111,7 @@ class Event(models.Model):
         return self.location.as_dict()["longitude"]
 
     def get_thumbnail(self):
-        event_image = EventImage.objects.get(business=self.id, img_category="thumbnail")
+        event_image = EventImage.objects.get(event=self.id, img_category="thumbnail")
         thumbnail = event_image.image.url
         return thumbnail
 

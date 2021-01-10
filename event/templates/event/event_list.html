@@ -31,9 +31,10 @@
                                 {% for obj in event_list %}
                                     <div class="col-lg-3 col-md-4 col-sm-6">
                                         <div class="fc s2">
-                                            <img src="{{ obj.get_absolute_url }}" alt=""/>
+                                           {% with default_image=STATIC_URL|add:"/mb/static/images/list_default.png" %}
+                                            <img src="{{ obj.get_thumbnail|default:default_image }}" alt=""/>
                                             <a href="{{ obj.get_absolute_url }}" title="">{{ obj.name }} <i class="flaticon-wine-glass"></i></a>
-                                            <i class="flaticon-wine-glass"></i>
+                                             {% endwith %}
                                         </div>
                                     </div><!-- Featured Category -->
 
