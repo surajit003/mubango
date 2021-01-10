@@ -121,7 +121,6 @@
                     {% if object.guest.count %}
                      <div class="openclosetiming">
                             <h3>Featured Guests</h3>
-
                             {% for guest in object.guest.all %}
                                 <span style="font-size: 20px">{{ guest.first_name }}{{ guest.last_name }}</span>
                             {% endfor %}
