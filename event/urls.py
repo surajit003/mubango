@@ -1,7 +1,7 @@
 from django.conf.urls import url
 from . import views
 
-app_name = "Event"
+app_name = "event"
 urlpatterns = [
     url(
         r"^search-single/(?P<name>[\w|\W]+)/(?P<state>[\w-]+)/$",
@@ -14,8 +14,13 @@ urlpatterns = [
         name="get_all_events",
     ),
     url(
-        r"^(?P<slug>[\w-]+)$",
+        r"^(?P<slug>[\w-]+)/$",
         views.EventDetailView.as_view(),
-        name="club_detail",
+        name="event_detail",
+    ),
+    url(
+        r"^all/(?P<state>[\w|\W]+)/$",
+        views.EventListView.as_view(),
+        name="get_all_events",
     ),
 ]

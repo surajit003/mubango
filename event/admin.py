@@ -2,6 +2,14 @@ from django.contrib import admin
 from . import models
 
 # Register your models here.
+class EventImagesInline(admin.StackedInline):
+    model = models.EventImage
+
+
+class EventServiceInline(admin.StackedInline):
+    model = models.EventServiceRating
+
+
 @admin.register(models.Event)
 class EventAdmin(admin.ModelAdmin):
     list_display = (
@@ -11,6 +19,7 @@ class EventAdmin(admin.ModelAdmin):
     )
     search_fields = ("business",)
     prepopulated_fields = {"slug": ("name",)}
+    inlines = [EventImagesInline, EventServiceInline]
 
 
 @admin.register(models.EventUser)
@@ -28,3 +37,8 @@ class EventUserAdmin(admin.ModelAdmin):
         return obj.visitor.username
 
     get_event.short_description = "Event"
+
+
+@admin.register(models.EventSocial)
+class EventSocialAdmin(admin.ModelAdmin):
+    list_display = ("event", "social", "url", "active")

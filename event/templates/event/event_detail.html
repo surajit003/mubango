@@ -7,64 +7,11 @@
             <div class="container fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <div class="sl-slider s2 light" id="makesliderfull">
-                            <div class="slg-box"><img src="http://placehold.it/1920x600" alt=""/></div>
-                            <div class="slg-box"><img src="http://placehold.it/1920x600" alt=""/></div>
-                            <div class="slg-box"><img src="http://placehold.it/1920x600" alt=""/></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+                        <div class="sl-slider" id="makeslider">
+                            {% for img in slideshow %}
+                                <div class="slg-box"><img src="{{ img.image.url }}" alt=""/></div>
+                            {% endfor %}
 
-    <section>
-        <div class="block no-padding">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="slhead overlape">
-                            <div class="row">
-                                <div class="col-lg-5">
-                                    <div class="sltitle light">
-                                        <h1>Park Lane Hotel</h1>
-                                        <span>Delicious, luxury food for you</span>
-                                        <div class="slbtnsspans">
-                                            <span><i class="flaticon-pin"></i> 2726 Shinn Street, New York</span>
-                                            <span><i class="flaticon-phone-call"></i> + 44 20 456 823</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-7">
-                                    <div class="slbtnsspans light">
-                                        <ul class="listmetas">
-                                            <li><span class="rated">3.5</span>3 Ratings</li>
-                                            <li><a href="#" title=""><i class="flaticon-chef"></i> Restaurant</a></li>
-                                            <li>
-                                                <div class="currency"><i>$$$</i>$$</div>
-                                            </li>
-                                        </ul>
-                                        <div class="slbtns">
-                                            <div class="sharelisting">
-                                                <a href="#" title=""><i class="flaticon-share"></i>Share</a>
-                                                <div class="sharebtns">
-                                                    <a href="#" title=""><i class="fa fa-facebook"></i></a>
-                                                    <a href="#" title=""><i class="fa fa-twitter"></i></a>
-                                                    <a href="#" title=""><i class="fa fa-instagram"></i></a>
-                                                    <a href="#" title=""><i class="fa fa-pinterest"></i></a>
-                                                    <a href="#" title=""><i class="fa fa-dribbble"></i></a>
-                                                    <a href="#" title=""><i class="fa fa-google"></i></a>
-                                                </div>
-                                            </div>
-                                            <a href="#" title=""><i class="flaticon-heart"></i>Bookmark</a>
-                                            <a href="#" title=""><i class="flaticon-note"></i>Add review</a>
-                                            <div class="watchvideo">
-                                                <a href="#" title=""><img src="images/play2.png" alt=""/>Watch Video</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -77,14 +24,53 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
-                        <div class="listingnav">
-                            <a href="#" title="">Description</a>
-                            <a href="#" title="">Location</a>
-                            <a href="#" title="">Gallery</a>
-                            <a href="#" title="">Review</a>
-                        </div>
-                        <div class="hprices">
-                            <span><del>$999.00</del>$348.00</span>
+                        <div class="slhead">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="sltitle">
+                                        <h1>{{ object.name|capfirst }}</h1>
+                                        <ul class="listmetas">
+                                            {% for genre in object.genre.all %}
+                                                <li><a href="#" title=""><i
+                                                        class="flaticon-chef"></i> {{ genre|capfirst }}</a></li>
+                                            {% endfor %}
+                                        </ul>
+                                        <ul class="listmetas">
+                                            <li>
+                                                <span>Tickets Available:<i>{{ object.num_of_tickets }}</i></span>
+                                            </li>
+                                            {% if object.get_price %}
+                                                <li>
+                                                    <div class="currency">
+                                                        <span>Ticket Price:<del>Ksh{{ object.old_price }}</del>Ksh{{ object.new_price }}</span>
+                                                        {% else %}
+                                                        <span>Ksh{{ object.old_price }}</span></div>
+                                                </li>
+
+                                            {% endif %}
+
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="slbtnsspans">
+                                        <span><i class="flaticon-pin"></i>{{ object.get_address }}</span>
+                                        <span><i class="flaticon-phone-call"></i>{{ object.get_phone_number }}</span>
+                                        <div class="slbtns">
+                                            <div class="sharelisting">
+                                                <a href="#" title=""><i class="flaticon-share"></i>Share</a>
+                                                <div class="sharebtns">
+                                                    {% for social in event_social %}
+                                                        <a href="{{ social.url }}" title=""><i
+                                                                class="fa fa-{{ social.social.icon }}"></i></a>
+                                                    {% endfor %}
+                                                </div>
+                                            </div>
+                                            {#                                            <a onclick="add_review()" title=""><i class="flaticon-note"></i>Add review</a>#}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -98,209 +84,109 @@
                 <div class="row">
                     <div class="col-lg-8 column">
                         <div class="bbox">
-                            <h3>Gallery</h3>
-                            <ul id="resgallery">
-                                <li><img src="http://placehold.it/688x370" alt=""/></li>
-                                <li><img src="http://placehold.it/688x370" alt=""/></li>
-                                <li><img src="http://placehold.it/688x370" alt=""/></li>
-                                <li><img src="http://placehold.it/688x370" alt=""/></li>
-                                <li><img src="http://placehold.it/688x370" alt=""/></li>
-                                <li><img src="http://placehold.it/688x370" alt=""/></li>
-                            </ul>
-                            <ul id="resthumb">
-                                <li><img src="http://placehold.it/160x115" alt=""/></li>
-                                <li><img src="http://placehold.it/160x115" alt=""/></li>
-                                <li><img src="http://placehold.it/160x115" alt=""/></li>
-                                <li><img src="http://placehold.it/160x115" alt=""/></li>
-                                <li><img src="http://placehold.it/160x115" alt=""/></li>
-                                <li><img src="http://placehold.it/160x115" alt=""/></li>
-                            </ul>
-                        </div>
-                        <div class="bbox">
                             <h3>Description</h3>
                             <div class="ldesc">
-                                <p>Ut euismod ultricies sollicitudin. Curabitur sed dapibus nulla. Nulla eget iaculis
-                                    lectus. Mauris ac maximus neque. Nam in mauris quis libero sodales eleifend. Morbi
-                                    varius, nulla sit amet rutrum elementum, est elit finibus tellus, ut tristique elit
-                                    risus at metus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in
-                                    pulvinar neque. Nulla finibus lobortis pulvinar. Donec a consectetur nulla. Nulla
-                                    posuere sapien vitae lectus suscipit, et pulvinar nisi tincidunt. Aliquam erat
-                                    volutpat. Curabitur convallis fringilla diam sed aliquam. Sed tempor iaculis massa
-                                    faucibus feugiat. In fermentum facilisis massa, a consequat purus viverra. Eleifend.
-                                    Morbi varius, nulla sit amet rutrum elementum, est elit finibus tellus, ut tristique
-                                    elit risus at metus. Lorem ipsum dolor sit amet,</p>
+                                <p>{{ object.description }}</p>
                             </div>
                         </div>
                         <div class="bbox">
                             <h3>Amenities</h3>
                             <div class="amenties">
-                                <span><i class="flaticon-credit-card"></i>Accepts Credit Cards</span>
-                                <span><i class="flaticon-wifi"></i>Wireless Internet</span>
-                                <span><i class="flaticon-parking"></i>Parking street</span>
-                                <span><i class="flaticon-smoking"></i>Smoking Allowed</span>
-                                <span><i class="flaticon-bicycle"></i>Bike Parking</span>
-                                <span><i class="flaticon-handicapped"></i>Wheelchair Accesible</span>
-                                <span><i class="flaticon-booked"></i>Reservations</span>
-                                <span><i class="flaticon-coupon"></i>Coupons</span>
-                                <span><i class="flaticon-map"></i>Outdoor Seating</span>
+                                {% for amenities in event_amenities %}
+                                    <span><i
+                                            class="flaticon-{{ amenities.service.icon }}"></i>{{ amenities.service.name }}</span>
+                                {% endfor %}
                             </div>
+                        </div>
+                        <div class="bbox" id="disqus">
+                            <div id="disqus_thread"></div>
+
                         </div>
                         <div class="bbox">
-                            <h3>2 Reviews for Burger House</h3>
-                            <div class="reviewssec">
-                                <div class="reviewthumb"><img src="http://placehold.it/60x60" alt=""/></div>
-                                <div class="reviewinfo">
-                                    <h3>Ali TUFAN</h3>
-                                    <span>December 12, 2017 at 8:18 am</span>
-                                    <ul class="listmetas justrate">
-                                        <li><span class="rated">3.5</span>3 Ratings</li>
-                                    </ul>
-                                    <p>We had the tasting menu here and it was one of the nicest meals I’ve ever had.
-                                        The of the food service and surroundings it was marvellous.</p>
-                                    <div class="wasreview">
-                                        <span>Was This Review ...?</span>
-                                        <div class="wasreviewbtn">
-                                            <a href="#" title="" class="c1"><i class="flaticon-thumb-up"></i>Interesting
-                                                85</a>
-                                            <a href="#" title="" class="c2"><i class="flaticon-smile"></i>Lol 45</a>
-                                            <a href="#" title="" class="c3"><i class="flaticon-heart"></i>Love 87</a>
-                                        </div>
-                                    </div>
-                                    <div class="reviewaction">
-                                        <a href="#" title=""><i class="flaticon-back"></i> Reply</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="reviewssec">
-                                <div class="reviewthumb"><img src="http://placehold.it/60x60" alt=""/></div>
-                                <div class="reviewinfo">
-                                    <h3>Ali TUFAN </h3>
-                                    <span>December 12, 2017 at 8:18 am</span>
-                                    <ul class="listmetas justrate">
-                                        <li><span class="rated">3.5</span>3 Ratings</li>
-                                    </ul>
-                                    <p>We had the tasting menu here and it was one of the nicest meals I’ve ever had.
-                                        The of the food service and surroundings it was marvellous.</p>
-                                    <div class="rgallery">
-                                        <a href="#" title=""><img src="http://placehold.it/180x115" alt=""/></a>
-                                        <a href="#" title=""><img src="http://placehold.it/180x115" alt=""/></a>
-                                        <a href="#" title=""><img src="http://placehold.it/180x115" alt=""/></a>
-                                    </div>
-                                    <div class="wasreview">
-                                        <span>Was This Review ...?</span>
-                                        <div class="wasreviewbtn">
-                                            <a href="#" title="" class="c1"><i class="flaticon-thumb-up"></i>Interesting
-                                                85</a>
-                                            <a href="#" title="" class="c2"><i class="flaticon-smile"></i>Lol 45</a>
-                                            <a href="#" title="" class="c3"><i class="flaticon-heart"></i>Love 87</a>
-                                        </div>
-                                    </div>
-                                    <div class="reviewaction">
-                                        <a href="#" title=""><i class="flaticon-back"></i> Reply</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="listingcomment">
-                            <div class="leavecomment">
-                                <h3>Rate us and Write a Review</h3>
-                                <div class="upimg">
-                                    <span>Upload images</span>
-                                    <a href="#" title=""><img src="images/cloud.png" alt=""/></a>
-                                    <input type="file"/>
-                                </div>
-                                <div class="urrating">
-                                    <span>Your Rating for this listing</span>
-                                    <strong>Very Good</strong>
-                                    <b>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                    </b>
-
-                                </div>
-                                <form>
-                                    <input placeholder="your@mail.com" type="Email">
-                                    <input placeholder="Title" type="text">
-                                    <textarea placeholder="Review"></textarea>
-                                    <input value="Submit Review" type="submit">
-                                </form>
-                            </div>
+                            <h3>Gallery</h3>
+                            <ul class="gallerylistin">
+                                {% for img in gallery %}
+                                    <li><img src="{{ img.image.url }}" alt=""/></li>
+                                {% endfor %}
+                            </ul>
                         </div>
                     </div>
                     <div class="col-lg-4 column">
-                        <div class="rbooking">
-                            <h3>Booking</h3>
-                            <form>
-                                <div class="rfield"><label>Check In</label><input type="text" id="docalendar"/><i
-                                        class="flaticon-check"></i></div>
-                                <div class="rfield"><label>Check Out</label><input type="text" id="docalendar2"/><i
-                                        class="flaticon-check"></i></div>
-                                <div class="rfield">
-                                    <label>Persons</label>
-                                    <select class="cdropshere">
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
-                                    </select>
-                                </div>
-                                <div class="rfield">
-                                    <label>Type</label>
-                                    <select class="cdropshere">
-                                        <option>Standard Suit</option>
-                                        <option>Premium Suit</option>
-                                        <option>General Suit</option>
-                                        <option>Swiming Pool</option>
-                                    </select>
-                                </div>
-                            </form>
+                        <div class="openclosetiming">
+                            <h3>Organizers</h3>
+                            {% for organizer in object.business.all %}
+                                <span style="font-size: 20px">{{ organizer.name }}</span>
+                            {% endfor %}
+                        </div>
+
+                        <div class="openclosetiming">
+                            <h3>Date</h3>
+                                <span>{{ object.get_date}}</span>
                         </div>
                         <div class="blocation">
                             <h3>Location <a href="#" title="">Get Direction</a></h3>
                             <div class="contact-map">
-                                <div id="map_div">&nbsp;</div>
+                                <div id="map">&nbsp;</div>
                             </div>
-                            <span>Collins Street West, Victoria 8007, Australia.</span>
-                            <span>+1 246-345-0695</span>
-                            <span>info@example.com</span>
+                            <span>{{ object.get_address }}</span>
+                            <span>{{ object.get_phone_number }}</span>
+                            <span>{{ object.email }}</span>
                             <div class="wsocial">
-                                <a href="#" title=""><i class="fa fa-facebook"></i></a>
-                                <a href="#" title=""><i class="fa fa-twitter"></i></a>
-                                <a href="#" title=""><i class="fa fa-linkedin"></i></a>
-                                <a href="#" title=""><i class="fa fa-pinterest"></i></a>
-                                <a href="#" title=""><i class="fa fa-google"></i></a>
-                                <a href="#" title=""><i class="fa fa-dribbble"></i></a>
+                                {% for social in business_social %}
+                                    <a href="{{ social.url }}" title=""><i
+                                            class="fa fa-{{ social.social.icon }}"></i></a>
+                                {% endfor %}
                             </div>
                         </div>
-                        <div class="openclosetiming">
-                            <h3>Closed <span>09:00 AM - 05:00 PM</span></h3>
-                            <span>Monday <i>2:00 pm - 11:45 pm</i></span>
-                            <span>Tuesday <i>2:00 pm - 11:45 pm</i></span>
-                            <span>Wednesday <i>2:00 pm - 11:45 pm</i></span>
-                            <span>Thursday <i>2:00 pm - 11:45 pm</i></span>
-                            <span>Friday <i>2:00 pm - 11:45 pm</i></span>
-                            <span>Saturday <i>2:00 pm - 11:45 pm</i></span>
-                            <span>Sunday <i>2:00 pm - 11:45 pm</i></span>
+                        <div class="cbusiness">
+                            <h3>Contact Organizer</h3>
+                            <form>
+                                <label>Your Name *</label>
+                                <input type="text" placeholder="Ali TUF..."/>
+                                <label>Your Email Address*</label>
+                                <input type="text" placeholder="demo@demo.com"/>
+                                <label>Your Message</label>
+                                <textarea placeholder="demo@demo.com"></textarea>
+                                <button type="submit">Send Message</button>
+                            </form>
                         </div>
-                        <div class="ourroomsec">
-                            <h3>Our Rooms</h3>
-                            <div class="room">
-                                <a href="#" title=""><img src="http://placehold.it/360x220"
-                                                          alt=""/><span>Classic Rooms</span><i>$189</i></a>
-                            </div>
-                            <div class="room">
-                                <a href="#" title=""><img src="http://placehold.it/360x220" alt=""/><span>Unique Bedrooms</span><i>$189</i></a>
-                            </div>
-                            <div class="room">
-                                <a href="#" title=""><img src="http://placehold.it/360x220" alt=""/><span>Executive Rooms</span><i>$189</i></a>
-                            </div>
+                        <div class="cad">
+                            <div class="ad"><img src="http://placehold.it/360x220" alt=""/></div>
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
+    <script type="text/javascript">
+        var disqus_config = function () {
+            this.page.url = '{{ request.build_absolute_uri }}.html'
+            console.log('kkdkd', this.page.url);
+            this.page.identifier = '{{ request.build_absolute_uri }}.html'
+            this.page.title = '{{ object.name }}' + '_title';
+        };
+
+        (function () { // DON'T EDIT BELOW THIS LINE
+            var d = document, s = d.createElement('script');
+            s.src = 'https://mubango-disqus-com.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+
+        function initMap() {
+            console.log('called')
+            const address = {lat: {{ object.get_latitude }}, lng: {{ object.get_longitude }}};
+            // The map, centered at Uluru
+            const map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 4,
+                center: address,
+            });
+            // The marker, positioned at Uluru
+            const marker = new google.maps.Marker({
+                position: address,
+                map: map,
+            });
+        }
+    </script>
 {% endblock content %}
