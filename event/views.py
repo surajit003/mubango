@@ -1,4 +1,5 @@
 from django.shortcuts import HttpResponse
+from django.views.generic import DetailView
 from .models import Event
 import json
 
@@ -22,3 +23,8 @@ def get_all_events_in_a_state(request, state):
         return HttpResponse(
             json.dumps({"data": response}), content_type="application/json"
         )
+
+
+class EventDetailView(DetailView):
+    model = Event
+    template_name = "event/event_detail.html"

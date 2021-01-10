@@ -4,8 +4,13 @@ from . import models
 # Register your models here.
 @admin.register(models.Event)
 class EventAdmin(admin.ModelAdmin):
-    list_display = ("name",)
+    list_display = (
+        "name",
+        "active",
+        "featured",
+    )
     search_fields = ("business",)
+    prepopulated_fields = {"slug": ("name",)}
 
 
 @admin.register(models.EventUser)

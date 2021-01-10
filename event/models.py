@@ -50,6 +50,11 @@ class EventManager(models.Manager):
 
 class Event(models.Model):
     name = models.CharField(max_length=200, db_index=True)
+    slug = models.SlugField(
+        max_length=255,
+        help_text="Unique value for product page URL, created from name.",
+        unique=True,
+    )
     description = models.TextField(null=True, blank=True)
     genre = models.ManyToManyField(MusicGenre, related_name="music", blank=True)
     priority_level = models.IntegerField(
@@ -62,6 +67,7 @@ class Event(models.Model):
     num_of_tickets = models.IntegerField(default=0)
     business = models.ManyToManyField(Business, related_name="business")
     guest = models.ManyToManyField(Guest, related_name="guest", blank=True)
+    featured = models.BooleanField(default=False)
 
     objects = models.Manager()  # The default manager.
     event_manager = EventManager()  # The useroffer manager.

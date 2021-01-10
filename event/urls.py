@@ -13,4 +13,9 @@ urlpatterns = [
         views.get_all_events_in_a_state,
         name="get_all_events",
     ),
+    url(
+        r"^(?P<slug>[\w-]+)$",
+        views.EventDetailView.as_view(),
+        name="club_detail",
+    ),
 ]
