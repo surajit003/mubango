@@ -17,7 +17,6 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/responsive.css' %}"/>
 </head>
 
-{% include "core/navbar.html" %}
 
 <body class="full-height" id="scrollup">
 <div class="page-loading">
@@ -27,12 +26,13 @@
 
 <div class="theme-layout">
 
-{#    {% include 'core/navbar.html' %}#}
+    {% include 'core/navbar.html' %}
     {% block content %}
     {% endblock content %}
 
     {% block extra_body %}
     {% endblock %}
+    {% include 'account/account.html' %}
 
     {% include "core/footer.html" %}
     {% include "core/scripts.html" %}

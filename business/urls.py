@@ -14,7 +14,7 @@ urlpatterns = [
         name="search_for_a_specific_business",
     ),
     url(
-        r"^all/(?P<state>[\w-]+)/$",
+        r"^all/(?P<state>[\w|\W]+)/$",
         views.ClubListView.as_view(),
         name="get_all_clubs",
     ),

@@ -10,9 +10,13 @@
                     <div class="catsec">
                         <div class="row" id="masonry">
                             {% for obj in clubs_featured %}
+
                                 <div class="col-lg-4">
                                     <div class="category">
-                                        <img src="{{ obj.get_thumbnail }}" alt=""/>
+                                        {% with default_image=STATIC_URL|add:"/mb/static/images/default.png" %}
+                                            <img src="{{ obj.get_thumbnail|default:default_image }}" alt=""/>
+                                        {% endwith %}
+
                                         <div class="cattitle">
                                             <h3><a href="{{ obj.get_absolute_url }}" title="">{{ obj.name }}</a></h3>
                                             <span>{{ obj.rating }}</span>

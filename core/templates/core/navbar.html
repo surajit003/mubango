@@ -1,6 +1,7 @@
+{% load static %}
 <div class="responsiveheader">
 		<div class="rheader">
-			<span><img src="images/ricon.png" alt="" /></span>
+			<span><img src="{% static 'images/ricon.png' %}" alt="" /></span>
 			<div class="logo">
 				<a href="#" title=""><img src="http://placehold.it/164x37" alt="" /></a>
 			</div>
@@ -12,11 +13,11 @@
 			<span class="closeresmenu"><i>x</i>Close</span>
 			<div class="logo"><a href="#" title=""><img src="http://placehold.it/175x40" alt="" /></a></div>
 			<div class="extras">
-				<a href="add-listing.html" title=""><img src="images/icon1.png" alt="" /> Add Listing</a>
+				<a href="add-listing.html" title=""><img src="{% static 'images/icon1.png' %}" alt="" /> Add Listing</a>
 			</div>
 			<ul>
 				<li class="menu-item-has-children">
-					<a href="#" title="">Home</a>
+					<a href="{% url 'core:home' %}" title="">Home</a>
 					<ul>
 						<li><a href="index.html" title="">Home 1</a></li>
 						<li><a href="index2.html" title="">Home 2</a></li>
@@ -26,7 +27,7 @@
 					</ul>
 				</li>
 				<li class="menu-item-has-children">
-					<a href="#" title="">Listings</a>
+					<a href="{% url 'business:get_all_clubs' state=user_state%}" title="">Clubs</a>
 					<ul>
 						<li><a href="add-listing.html" title="">Add Listing</a></li>
 						<li><a href="listing-category.html" title="">Listing Category</a></li>
@@ -91,13 +92,13 @@
 			<a href="#" title=""><img src="http://placehold.it/164x37" alt="" /></a>
 		</div>
 		<div class="extras">
-			<a href="add-listing.html" title=""><img src="images/icon1.png" alt="" /> Add Listing</a>
+			<a href="add-listing.html" title=""><img src="{% static 'images/ricon.png' %}" alt="" /> Add Listing</a>
 			<span class="accountbtn"><i class="flaticon-avatar"></i></span>
 		</div>
 		<nav>
 				<ul>
 					<li class="menu-item-has-children">
-						<a href="#" title="">Home</a>
+						<a href="{% url 'core:home' %}" title="">Home</a>
 						<ul>
 							<li><a href="index.html" title="">Home 1</a></li>
 							<li><a href="index2.html" title="">Home 2</a></li>
@@ -107,7 +108,7 @@
 						</ul>
 					</li>
 					<li class="menu-item-has-children">
-						<a href="#" title="">Listings</a>
+					<a href="{% url 'business:get_all_clubs' state=user_state%}" title="">Clubs</a>
 						<ul>
 							<li><a href="add-listing.html" title="">Add Listing</a></li>
 							<li><a href="listing-category.html" title="">Listing Category</a></li>

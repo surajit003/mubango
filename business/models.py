@@ -128,6 +128,12 @@ class Business(DateModel):
         thumbnail = business_image.image.url
         return thumbnail
 
+    def get_latitude(self):
+        return self.address.as_dict()["latitude"]
+
+    def get_longitude(self):
+        return self.address.as_dict()["longitude"]
+
     class Meta:
         verbose_name_plural = "Businesses"
 

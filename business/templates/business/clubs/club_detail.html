@@ -1,5 +1,5 @@
 {% extends 'core/base.html' %}
-
+{% load static %}
 {% block content %}
 
     <section>
@@ -55,8 +55,7 @@
                                                     {% endfor %}
                                                 </div>
                                             </div>
-                                            <a href="#" title=""><i class="flaticon-heart"></i>Bookmark</a>
-                                            <a href="#" title=""><i class="flaticon-note"></i>Add review</a>
+{#                                            <a onclick="add_review()" title=""><i class="flaticon-note"></i>Add review</a>#}
                                         </div>
                                     </div>
                                 </div>
@@ -88,6 +87,10 @@
                                 {% endfor %}
                             </div>
                         </div>
+                    <div class="bbox" id="disqus">
+                        <div id="disqus_thread"></div>
+
+                    </div>
                         <div class="bbox">
                             <h3>Gallery</h3>
                             <ul class="gallerylistin">
@@ -96,22 +99,18 @@
                                 {% endfor %}
                             </ul>
                         </div>
-                        <div class="bbox">
-                            <div id="disqus_thread"></div>
-                        </div>
-
                     </div>
                     <div class="col-lg-4 column">
                         <div class="openclosetiming">
                             <h3>Hours of Operations</h3>
-                             {% for opening_times in object.openning_times.all %}
-                            <span>{{ opening_times.get_weekday_display }} <i>{{opening_times.from_hour}} - {{opening_times.to_hour}}</i></span>
+                            {% for opening_times in object.openning_times.all %}
+                                <span>{{ opening_times.get_weekday_display }} <i>{{ opening_times.from_hour }} - {{ opening_times.to_hour }}</i></span>
                             {% endfor %}
                         </div>
                         <div class="blocation">
                             <h3>Location <a href="#" title="">Get Direction</a></h3>
                             <div class="contact-map">
-                                <div id="map_div">&nbsp;</div>
+                                <div id="map">&nbsp;</div>
                             </div>
                             <span>{{ object.get_address }}</span>
                             <span>{{ object.get_phone_number }}</span>
@@ -140,28 +139,38 @@
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
+    <script type="text/javascript">
+    var disqus_config = function () {
+                this.page.url = '{{ request.build_absolute_uri }}.html'
+                console.log('kkdkd',this.page.url);
+                this.page.identifier = '{{ request.build_absolute_uri }}.html'
+                this.page.title = '{{ object.name }}' + '_title';
+            };
 
-<script type="text/javascript">
-    /**
-    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+            (function () { // DON'T EDIT BELOW THIS LINE
+                var d = document, s = d.createElement('script');
+                s.src = 'https://mubango-disqus-com.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
 
-   var disqus_config = function () {
-        this.page.url = '{{ request.build_absolute_uri }}.html'
-        console.log(this.page.url);
-        this.page.identifier = '{{ request.build_absolute_uri }}.html'
-        this.page.title = '{{ object.name }}' + '_title';
-    };
-
-    (function() { // DON'T EDIT BELOW THIS LINE
-    var d = document, s = d.createElement('script');
-    s.src = 'https://mubango-disqus-com.disqus.com/embed.js';
-    s.setAttribute('data-timestamp', +new Date());
-    (d.head || d.body).appendChild(s);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        function initMap() {
+            console.log('called')
+            const address = {lat: {{ object.get_latitude }}, lng: {{ object.get_longitude }}};
+            // The map, centered at Uluru
+            const map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 4,
+                center: address,
+            });
+            // The marker, positioned at Uluru
+            const marker = new google.maps.Marker({
+                position: address,
+                map: map,
+            });
+        }
+    </script>
 {% endblock content %}
