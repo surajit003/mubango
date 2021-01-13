@@ -9,7 +9,8 @@
     <meta name="author" content="CreativeLayers">
     {% block extra_head %}
     {% endblock %}
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap-grid.css' %}"/>
     <link rel="stylesheet" href="{% static 'css/icons.css' %}">
     <link rel="stylesheet" href="{% static 'css/animate.min.css' %}">
@@ -27,12 +28,25 @@
 <div class="theme-layout">
 
     {% include 'core/navbar.html' %}
+    <div class="mt-5 pt-4">
+    {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+          {{ message }}
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        {% endfor %}
+    {% endif %}
+    </div>
+
     {% block content %}
     {% endblock content %}
 
     {% block extra_body %}
     {% endblock %}
-    {% include 'account/account.html' %}
+    {% include 'registration/account.html' %}
 
     {% include "core/footer.html" %}
     {% include "core/scripts.html" %}

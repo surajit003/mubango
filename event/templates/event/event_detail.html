@@ -55,6 +55,9 @@
                                 <div class="col-lg-6">
                                     <div class="slbtnsspans">
                                         <span><i class="flaticon-pin"></i>{{ object.get_address }}</span>
+                                        <input type="hidden" id="addr_latitude" value="{{ object.get_latitude }}"/>
+                                        <input type="hidden" id="addr_longtitude" value="{{ object.get_longitude }}"/>
+
                                         <span><i class="flaticon-phone-call"></i>{{ object.get_phone_number }}</span>
                                         <div class="slbtns">
                                             <div class="sharelisting">
@@ -118,18 +121,18 @@
                                 <span style="font-size: 20px">{{ organizer.name }}</span>
                             {% endfor %}
                         </div>
-                    {% if object.guest.count %}
-                     <div class="openclosetiming">
-                            <h3>Featured Guests</h3>
-                            {% for guest in object.guest.all %}
-                                <span style="font-size: 20px">{{ guest.first_name }}{{ guest.last_name }}</span>
-                            {% endfor %}
-                        </div>
-                    {% endif %}
+                        {% if object.guest.count %}
+                            <div class="openclosetiming">
+                                <h3>Featured Guests</h3>
+                                {% for guest in object.guest.all %}
+                                    <span style="font-size: 20px">{{ guest.first_name }}{{ guest.last_name }}</span>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
 
                         <div class="openclosetiming">
                             <h3>Date</h3>
-                                <span>{{ object.get_date}}</span>
+                            <span>{{ object.get_date }}</span>
                         </div>
                         <div class="blocation">
                             <h3>Location <a href="#" title="">Get Direction</a></h3>
@@ -167,6 +170,8 @@
             </div>
         </div>
     </section>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCC0wYfBETVlXyjOqv0WtV6kTvQ-LUi3yU&callback=initMap&callback=initMap"></script>
+
     <script type="text/javascript">
         var disqus_config = function () {
             this.page.url = '{{ request.build_absolute_uri }}.html'
@@ -182,19 +187,6 @@
             (d.head || d.body).appendChild(s);
         })();
 
-        function initMap() {
-            console.log('called')
-            const address = {lat: {{ object.get_latitude }}, lng: {{ object.get_longitude }}};
-            // The map, centered at Uluru
-            const map = new google.maps.Map(document.getElementById("map"), {
-                zoom: 4,
-                center: address,
-            });
-            // The marker, positioned at Uluru
-            const marker = new google.maps.Marker({
-                position: address,
-                map: map,
-            });
-        }
+
     </script>
 {% endblock content %}

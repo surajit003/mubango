@@ -20,11 +20,9 @@ from django.conf import settings
 from django.conf.urls.static import static
 import debug_toolbar
 from django.contrib.auth import views as auth_views
-from account import views
 
 app_name = "mubango"
 main = [
-    url(r"^login/", views.login, name="login"),
     url(r"^logout/", auth_views.LogoutView.as_view(), name="logout"),
     url(r"^account/", include("account.urls")),
     url(r"^business/", include("business.urls")),

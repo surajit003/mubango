@@ -227,3 +227,18 @@ SOCIAL_AUTH_GOOGLE_OAUTH_SCOPE = [
     "https://www.googleapis.com/auth/userinfo.profile",
     "https://www.googleapis.com/auth/userinfo.email",
 ]
+RABBITMQ_BROKER_URL = config("BROKER_URL")
+RABBITMQ_USERNAME = config("BROKER_USERNAME")
+RABBITMQ_PASSWORD = config("BROKER_PASSWORD")
+RABBITMQ_PORT = config("BROKER_PORT", default="5672")
+RABBITMQ_VHOST = config("BROKER_VHOST", default="pbp_main")
+CELERY_RESULT_BACKEND = config("CELERY_RESULT_BACKEND")
+CELERY_BROKER_URL = (
+    f"pyamqp://{RABBITMQ_USERNAME}:{RABBITMQ_PASSWORD}@"
+    f"{RABBITMQ_BROKER_URL}/{RABBITMQ_VHOST}"
+)
+
+BROKER_URL = (
+    f"pyamqp://{RABBITMQ_USERNAME}:{RABBITMQ_PASSWORD}@"
+    f"{RABBITMQ_BROKER_URL}/{RABBITMQ_VHOST}"
+)
