@@ -4,7 +4,10 @@ from . import models
 # Register your models here.
 @admin.register(models.Profile)
 class ProfileAdmin(admin.ModelAdmin):
-    list_display = ("user",)
+    list_display = (
+        "user",
+        "phone_number",
+    )
 
 
 @admin.register(models.Follower)
