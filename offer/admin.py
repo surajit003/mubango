@@ -5,6 +5,10 @@ from .forms import OfferForm
 # Register your models here.
 
 
+class OfferImageInline(admin.StackedInline):
+    model = models.OfferImage
+
+
 @admin.register(models.Offer)
 class OfferAdmin(admin.ModelAdmin):
     form = OfferForm
@@ -16,11 +20,13 @@ class OfferAdmin(admin.ModelAdmin):
         "is_special",
         "get_business_name",
     )
+    prepopulated_fields = {"slug": ("title",)}
     search_fields = (
         "title",
         "code",
         "business",
     )
+    inlines = [OfferImageInline]
 
     def get_business_name(self, obj):
         return obj.business.name
@@ -35,3 +41,8 @@ class UserOffer(admin.ModelAdmin):
         "offer",
         "user",
     )
+
+
+@admin.register(models.OfferSocial)
+class OfferSocialAdmin(admin.ModelAdmin):
+    list_display = ("offer", "social", "url", "active")

@@ -37,6 +37,9 @@ class EventDetailView(DetailView):
         context["gallery"] = EventImage.objects.filter(
             event__slug=self.kwargs.get("slug"), img_category="other"
         )
+        context["slideshow"] = EventImage.objects.filter(
+            event__slug=self.kwargs.get("slug"), img_category="top_slideshow"
+        )
         context["event_amenities"] = EventServiceRating.objects.filter(
             event__slug=self.kwargs.get("slug")
         ).select_related("service")
@@ -53,3 +56,13 @@ class EventListView(ListView):
         event_list = Event.event_manager.upcoming_events(self.kwargs.get("state"))
         context["event_list"] = event_list
         return context
+
+
+class EventListByRegion(ListView):
+    model = Event
+    template_name = "event/event_search_by_region.html"
+    paginate_by = 16
+
+    def get_queryset(self):
+        qs = Event.event_manager.upcoming_events(self.kwargs.get("region"))
+        return qs

@@ -4,275 +4,308 @@
     Home
 {% endblock head_title %}
 {% block content %}
-<section>
-		<div class="block no-padding">
-			<div class="layer blackish">
-				<div data-velocity="-.1" style="background: url(http://placehold.it/1920x850) repeat scroll 50% 422.28px transparent;" class="no-parallax parallax scrolly-invisible"></div><!-- PARALLAX BACKGROUND IMAGE -->
-				<div class="container">
-					<div class="row justify-content-center">
-						<div class="col-lg-8">
-							<div class="listingsf">
-								<h3>Explore This City</h3>
-								<p>Let's uncover the best places to eat, drink, and shop nearest to you.</p>
-								<div class="listingform">
-									<form>
-										<div class="fieldform line">
-											<div id="myDropdown"></div>
-										</div>
-										<div class="fieldform">
-											<div id="myDropdowns" class="s2"></div>
-											<i class="flaticon-pin"></i>
-										</div>
-										<div class="fieldbtn">
-											<button type="submit">Search <i class="flaticon-magnifying-glass"></i></button>
-										</div>
-									</form>
-								</div>
-								<div class="formcat">
-									<span>Popular Searches</span>
-									<a href="#" title="">Food & Drink</a>
-									<a href="#" title="">Hotel & Hostel</a>
-									<a href="#" title="">Shop & Store</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
+    <section>
+        <div class="block no-padding">
+            <div class="layer blackish">
+                <div data-velocity="-.1"
+                     style="background: url(http://placehold.it/1920x850) repeat scroll 50% 422.28px transparent;"
+                     class="no-parallax parallax scrolly-invisible"></div><!-- PARALLAX BACKGROUND IMAGE -->
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8">
+                            <div class="listingsf">
+                                <h3>Explore This City</h3>
+                                <p>Let's uncover the best places to eat, drink, and shop nearest to you.</p>
+                                <div class="listingform">
+                                    <form>
+                                        <div class="fieldform line">
+                                            <div id="myDropdown"></div>
+                                        </div>
+                                        <div id="region" class="fieldform">
+                                            <div id="myDropdowns" class="s2"></div>
+                                        </div>
+                                        <div class="fieldbtn">
+                                            <button type="submit" id="search">Search <i class="flaticon-magnifying-glass"></i>
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="formcat">
+                                    <span>Popular Searches</span>
+                                    <a href="#" title="">Food & Drink</a>
+                                    <a href="#" title="">Hotel & Hostel</a>
+                                    <a href="#" title="">Shop & Store</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    {% block main_body %}
+        {% include 'business/clubs/clubs_list_first_six.html' %}
 
-    {% include 'business/clubs/clubs_list_first_six.html' %}
+        {% include 'business/clubs/clubs_currently_hot.html' %}
+        <section>
+            <div class="block no-padding">
+                <div class="container fluid">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="singleline"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    {% include 'business/clubs/clubs_currently_hot.html' %}
-	<section>
-		<div class="block no-padding">
-			<div class="container fluid">
-				<div class="row">
-					<div class="col-lg-12"><div class="singleline"></div></div>
-				</div>
-			</div>
-		</div>
-	</section>
+        <section>
+            <div class="block">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="heading">
+                                <h2>See How It Works</h2>
+                                <span>Discover & connect with great local businesses</span>
+                            </div><!-- Heading -->
+                            <div class="howworksec">
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <div class="howwork">
+                                            <i class="flaticon-check"></i>
+                                            <h3>Choose What To Do</h3>
+                                            <p>Aliquam lorem ante, dapibus in, viverra quis, feugiat Phasellus viverra
+                                                nulla ut metus varius laoreet.</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="howwork">
+                                            <i class="flaticon-map"></i>
+                                            <h3>Find What You Want</h3>
+                                            <p>Aliquam lorem ante, dapibus in, viverra quis, feugiat Phasellus viverra
+                                                nulla ut metus varius laoreet.</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="howwork">
+                                            <i class="flaticon-planet-earth"></i>
+                                            <h3>Amazing Places</h3>
+                                            <p>Aliquam lorem ante, dapibus in, viverra quis, feugiat Phasellus viverra
+                                                nulla ut metus varius laoreet.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-	<section>
-		<div class="block">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-12">
-						<div class="heading">
-							<h2>See How It Works</h2>
-							<span>Discover & connect with great local businesses</span>
-						</div><!-- Heading -->
-						<div class="howworksec">
-							<div class="row">
-								<div class="col-lg-4">
-									<div class="howwork">
-										<i class="flaticon-check"></i>
-										<h3>Choose What To Do</h3>
-										<p>Aliquam lorem ante, dapibus in, viverra quis, feugiat Phasellus viverra nulla ut metus varius laoreet.</p>
-									</div>
-								</div>
-								<div class="col-lg-4">
-									<div class="howwork">
-										<i class="flaticon-map"></i>
-										<h3>Find What You Want</h3>
-										<p>Aliquam lorem ante, dapibus in, viverra quis, feugiat Phasellus viverra nulla ut metus varius laoreet.</p>
-									</div>
-								</div>
-								<div class="col-lg-4">
-									<div class="howwork">
-										<i class="flaticon-planet-earth"></i>
-										<h3>Amazing Places</h3>
-										<p>Aliquam lorem ante, dapibus in, viverra quis, feugiat Phasellus viverra nulla ut metus varius laoreet.</p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
+        <section>
+            <div class="block less-bottom">
+                <div class="container fluid">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="heading">
+                                <h2>Happening Cities</h2>
+                                <span>Cities you must explore this summer</span>
+                            </div><!-- Heading -->
+                            <ul class="citieslists">
+                                <li>
+                                    <div class="cities">
+                                        <a href="#" title=""><img src="http://placehold.it/292x430" alt=""/></a>
+                                        <div class="cities-title"><h3><a href="#" title="">Hong Kong</a></h3><span>7 listings</span>
+                                        </div>
+                                    </div><!-- Cities -->
+                                    <div class="cities">
+                                        <a href="#" title=""><img src="http://placehold.it/292x430" alt=""/></a>
+                                        <div class="cities-title"><h3><a href="#" title="">China</a></h3><span>7 listings</span>
+                                        </div>
+                                    </div><!-- Cities -->
+                                    <div class="cities">
+                                        <a href="#" title=""><img src="http://placehold.it/292x430" alt=""/></a>
+                                        <div class="cities-title"><h3><a href="#" title="">Malaysia</a></h3><span>7 listings</span>
+                                        </div>
+                                    </div><!-- Cities -->
+                                    <div class="cities">
+                                        <a href="#" title=""><img src="http://placehold.it/292x430" alt=""/></a>
+                                        <div class="cities-title"><h3><a href="#" title="">Singapur</a></h3><span>7 listings</span>
+                                        </div>
+                                    </div><!-- Cities -->
+                                </li>
+                                <li>
+                                    <div class="cities">
+                                        <a href="#" title=""><img src="http://placehold.it/292x430" alt=""/></a>
+                                        <div class="cities-title"><h3><a href="#" title="">Pakistan</a></h3><span>7 listings</span>
+                                        </div>
+                                    </div><!-- Cities -->
+                                    <div class="cities">
+                                        <a href="#" title=""><img src="http://placehold.it/292x430" alt=""/></a>
+                                        <div class="cities-title"><h3><a href="#" title="">Turkey</a></h3><span>7 listings</span>
+                                        </div>
+                                    </div><!-- Cities -->
+                                    <div class="cities">
+                                        <a href="#" title=""><img src="http://placehold.it/292x430" alt=""/></a>
+                                        <div class="cities-title"><h3><a href="#" title="">Japan</a></h3><span>7 listings</span>
+                                        </div>
+                                    </div><!-- Cities -->
+                                    <div class="cities">
+                                        <a href="#" title=""><img src="http://placehold.it/292x430" alt=""/></a>
+                                        <div class="cities-title"><h3><a href="#" title="">Australia</a></h3><span>7 listings</span>
+                                        </div>
+                                    </div><!-- Cities -->
+                                </li>
+                                <li>
+                                    <div class="cities">
+                                        <a href="#" title=""><img src="http://placehold.it/292x430" alt=""/></a>
+                                        <div class="cities-title"><h3><a href="#" title="">Pakistan</a></h3><span>7 listings</span>
+                                        </div>
+                                    </div><!-- Cities -->
+                                    <div class="cities">
+                                        <a href="#" title=""><img src="http://placehold.it/292x430" alt=""/></a>
+                                        <div class="cities-title"><h3><a href="#" title="">Turkey</a></h3><span>7 listings</span>
+                                        </div>
+                                    </div><!-- Cities -->
+                                    <div class="cities">
+                                        <a href="#" title=""><img src="http://placehold.it/292x430" alt=""/></a>
+                                        <div class="cities-title"><h3><a href="#" title="">Japan</a></h3><span>7 listings</span>
+                                        </div>
+                                    </div><!-- Cities -->
+                                    <div class="cities">
+                                        <a href="#" title=""><img src="http://placehold.it/292x430" alt=""/></a>
+                                        <div class="cities-title"><h3><a href="#" title="">Australia</a></h3><span>7 listings</span>
+                                        </div>
+                                    </div><!-- Cities -->
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-	<section>
-		<div class="block less-bottom">
-			<div class="container fluid">
-				<div class="row">
-					<div class="col-lg-12">
-						<div class="heading">
-							<h2>Happening Cities</h2>
-							<span>Cities you must explore this summer</span>
-						</div><!-- Heading -->
-						<ul class="citieslists">
-							<li>
-								<div class="cities">
-									<a href="#" title=""><img src="http://placehold.it/292x430" alt="" /></a>
-									<div class="cities-title"><h3><a href="#" title="">Hong Kong</a></h3><span>7 listings</span></div>
-								</div><!-- Cities -->
-								<div class="cities">
-									<a href="#" title=""><img src="http://placehold.it/292x430" alt="" /></a>
-									<div class="cities-title"><h3><a href="#" title="">China</a></h3><span>7 listings</span></div>
-								</div><!-- Cities -->
-								<div class="cities">
-									<a href="#" title=""><img src="http://placehold.it/292x430" alt="" /></a>
-									<div class="cities-title"><h3><a href="#" title="">Malaysia</a></h3><span>7 listings</span></div>
-								</div><!-- Cities -->
-								<div class="cities">
-									<a href="#" title=""><img src="http://placehold.it/292x430" alt="" /></a>
-									<div class="cities-title"><h3><a href="#" title="">Singapur</a></h3><span>7 listings</span></div>
-								</div><!-- Cities -->
-							</li>
-							<li>
-								<div class="cities">
-									<a href="#" title=""><img src="http://placehold.it/292x430" alt="" /></a>
-									<div class="cities-title"><h3><a href="#" title="">Pakistan</a></h3><span>7 listings</span></div>
-								</div><!-- Cities -->
-								<div class="cities">
-									<a href="#" title=""><img src="http://placehold.it/292x430" alt="" /></a>
-									<div class="cities-title"><h3><a href="#" title="">Turkey</a></h3><span>7 listings</span></div>
-								</div><!-- Cities -->
-								<div class="cities">
-									<a href="#" title=""><img src="http://placehold.it/292x430" alt="" /></a>
-									<div class="cities-title"><h3><a href="#" title="">Japan</a></h3><span>7 listings</span></div>
-								</div><!-- Cities -->
-								<div class="cities">
-									<a href="#" title=""><img src="http://placehold.it/292x430" alt="" /></a>
-									<div class="cities-title"><h3><a href="#" title="">Australia</a></h3><span>7 listings</span></div>
-								</div><!-- Cities -->
-							</li>
-							<li>
-								<div class="cities">
-									<a href="#" title=""><img src="http://placehold.it/292x430" alt="" /></a>
-									<div class="cities-title"><h3><a href="#" title="">Pakistan</a></h3><span>7 listings</span></div>
-								</div><!-- Cities -->
-								<div class="cities">
-									<a href="#" title=""><img src="http://placehold.it/292x430" alt="" /></a>
-									<div class="cities-title"><h3><a href="#" title="">Turkey</a></h3><span>7 listings</span></div>
-								</div><!-- Cities -->
-								<div class="cities">
-									<a href="#" title=""><img src="http://placehold.it/292x430" alt="" /></a>
-									<div class="cities-title"><h3><a href="#" title="">Japan</a></h3><span>7 listings</span></div>
-								</div><!-- Cities -->
-								<div class="cities">
-									<a href="#" title=""><img src="http://placehold.it/292x430" alt="" /></a>
-									<div class="cities-title"><h3><a href="#" title="">Australia</a></h3><span>7 listings</span></div>
-								</div><!-- Cities -->
-							</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
+        <section>
+            <div class="block gray">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-6">
+                            <div class="heading">
+                                <h2>People Talking About us</h2>
+                                <span>Our biggest clients</span>
+                            </div><!-- Heading -->
+                            <div class="testimonialsec">
+                                <ul class="tes-for">
+                                    <li>
+                                        <p>Customization is very easy with this theme. Clean and quality design and full
+                                            support for any kind of request! Great theme!</p>
+                                        <h3>Ali TUFAN</h3>
+                                        <span>Client</span>
+                                    </li>
+                                    <li>
+                                        <p>Customization is very easy with this theme. Clean and quality design and full
+                                            support for any kind of request! Great theme!</p>
+                                        <h3>BRANZA BIKEL</h3>
+                                        <span>Client</span>
+                                    </li>
+                                    <li>
+                                        <p>Customization is very easy with this theme. Clean and quality design and full
+                                            support for any kind of request! Great theme!</p>
+                                        <h3>NIKOLIE DOE</h3>
+                                        <span>Client</span>
+                                    </li>
+                                    <li>
+                                        <p>Customization is very easy with this theme. Clean and quality design and full
+                                            support for any kind of request! Great theme!</p>
+                                        <h3>JOHN DOE</h3>
+                                        <span>Client</span>
+                                    </li>
+                                    <li>
+                                        <p>Customization is very easy with this theme. Clean and quality design and full
+                                            support for any kind of request! Great theme!</p>
+                                        <h3>JONATHAN DOE</h3>
+                                        <span>Client</span>
+                                    </li>
+                                </ul>
+                                <ul class="tes-nav">
+                                    <li>
+                                        <img src="http://placehold.it/80x80" alt=""/>
+                                    </li>
+                                    <li>
+                                        <img src="http://placehold.it/80x80" alt=""/>
+                                    </li>
+                                    <li>
+                                        <img src="http://placehold.it/80x80" alt=""/>
+                                    </li>
+                                    <li>
+                                        <img src="http://placehold.it/80x80" alt=""/>
+                                    </li>
+                                    <li>
+                                        <img src="http://placehold.it/80x80" alt=""/>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-	<section>
-		<div class="block gray">
-			<div class="container">
-				<div class="row justify-content-center">
-					<div class="col-lg-6">
-						<div class="heading">
-							<h2>People Talking About us</h2>
-							<span>Our biggest clients</span>
-						</div><!-- Heading -->
-						<div class="testimonialsec">
-							<ul class="tes-for">
-								<li>
-									<p>Customization is very easy with this theme. Clean and quality design and full support for any kind of request! Great theme!</p>
-									<h3>Ali TUFAN</h3>
-									<span>Client</span>
-								</li>
-								<li>
-									<p>Customization is very easy with this theme. Clean and quality design and full support for any kind of request! Great theme!</p>
-									<h3>BRANZA BIKEL</h3>
-									<span>Client</span>
-								</li>
-								<li>
-									<p>Customization is very easy with this theme. Clean and quality design and full support for any kind of request! Great theme!</p>
-									<h3>NIKOLIE DOE</h3>
-									<span>Client</span>
-								</li>
-								<li>
-									<p>Customization is very easy with this theme. Clean and quality design and full support for any kind of request! Great theme!</p>
-									<h3>JOHN DOE</h3>
-									<span>Client</span>
-								</li>
-								<li>
-									<p>Customization is very easy with this theme. Clean and quality design and full support for any kind of request! Great theme!</p>
-									<h3>JONATHAN DOE</h3>
-									<span>Client</span>
-								</li>
-							</ul>
-							<ul class="tes-nav">
-								<li>
-									<img src="http://placehold.it/80x80" alt="" />
-								</li>
-								<li>
-									<img src="http://placehold.it/80x80" alt="" />
-								</li>
-								<li>
-									<img src="http://placehold.it/80x80" alt="" />
-								</li>
-								<li>
-									<img src="http://placehold.it/80x80" alt="" />
-								</li>
-								<li>
-									<img src="http://placehold.it/80x80" alt="" />
-								</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-
-	<section>
-		<div class="block">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-12">
-						<div class="heading">
-							<h2>News & Tips</h2>
-							<span>Checkout latest news and articles from our blog</span>
-						</div><!-- Heading -->
-						<div class="blogsec">
-							<div class="row">
-								<div class="col-lg-4">
-									<div class="blogpost">
-										<a href="#" title=""><img src="http://placehold.it/360x400" alt="" /></a>
-										<div class="blogtitle">
-											<span>January 18, 2018</span>
-											<h3><a href="#" title="">Making Coffee, since 1845. Coffee For All</a></h3>
-										</div>
-										<div class="postcat"><a href="#" title="">Lifestyle</a>,<a href="#" title="">News</a></div>
-									</div><!-- Blogpost -->
-								</div>
-								<div class="col-lg-4">
-									<div class="blogpost">
-										<a href="#" title=""><img src="http://placehold.it/360x400" alt="" /></a>
-										<div class="blogtitle">
-											<span>February 25, 2018</span>
-											<h3><a href="#" title="">The Best Music For Your Entertainment</a></h3>
-										</div>
-										<div class="postcat"><a href="#" title="">Lifestyle</a>,<a href="#" title="">News</a></div>
-									</div><!-- Blogpost -->
-								</div>
-								<div class="col-lg-4">
-									<div class="blogpost">
-										<a href="#" title=""><img src="http://placehold.it/360x400" alt="" /></a>
-										<div class="blogtitle">
-											<span>March 18, 2018</span>
-											<h3><a href="#" title="">How to Wear a Headscarf Like a Gucci Muse</a></h3>
-										</div>
-										<div class="postcat"><a href="#" title="">Lifestyle</a>,<a href="#" title="">News</a></div>
-									</div><!-- Blogpost -->
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
+        <section>
+            <div class="block">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="heading">
+                                <h2>News & Tips</h2>
+                                <span>Checkout latest news and articles from our blog</span>
+                            </div><!-- Heading -->
+                            <div class="blogsec">
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <div class="blogpost">
+                                            <a href="#" title=""><img src="http://placehold.it/360x400" alt=""/></a>
+                                            <div class="blogtitle">
+                                                <span>January 18, 2018</span>
+                                                <h3><a href="#" title="">Making Coffee, since 1845. Coffee For All</a>
+                                                </h3>
+                                            </div>
+                                            <div class="postcat"><a href="#" title="">Lifestyle</a>,<a href="#"
+                                                                                                       title="">News</a>
+                                            </div>
+                                        </div><!-- Blogpost -->
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="blogpost">
+                                            <a href="#" title=""><img src="http://placehold.it/360x400" alt=""/></a>
+                                            <div class="blogtitle">
+                                                <span>February 25, 2018</span>
+                                                <h3><a href="#" title="">The Best Music For Your Entertainment</a></h3>
+                                            </div>
+                                            <div class="postcat"><a href="#" title="">Lifestyle</a>,<a href="#"
+                                                                                                       title="">News</a>
+                                            </div>
+                                        </div><!-- Blogpost -->
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="blogpost">
+                                            <a href="#" title=""><img src="http://placehold.it/360x400" alt=""/></a>
+                                            <div class="blogtitle">
+                                                <span>March 18, 2018</span>
+                                                <h3><a href="#" title="">How to Wear a Headscarf Like a Gucci Muse</a>
+                                                </h3>
+                                            </div>
+                                            <div class="postcat"><a href="#" title="">Lifestyle</a>,<a href="#"
+                                                                                                       title="">News</a>
+                                            </div>
+                                        </div><!-- Blogpost -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    {% endblock main_body %}
 {% endblock content %}

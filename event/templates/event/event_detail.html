@@ -118,7 +118,7 @@
                         <div class="openclosetiming">
                             <h3>Organizers</h3>
                             {% for organizer in object.business.all %}
-                                <span style="font-size: 20px">{{ organizer.name }}</span>
+                                <span style="font-size: 20px">{{ organizer.name|capfirst }}</span>
                             {% endfor %}
                         </div>
                         {% if object.guest.count %}

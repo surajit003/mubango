@@ -37,6 +37,7 @@ class TestUserOffer:
     def test_signals_with_mock(self, mock_handler):
         offer = mixer.blend("offer.Offer", limit=0)
         obj = mixer.blend("offer.UserOffer", offer=offer)
+
         assert mock_handler.call_count == 1  # standard django
         assert obj.pk == 1, "Should create a UserOffer instance"
 

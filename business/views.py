@@ -63,3 +63,13 @@ class ClubDetailView(DetailView):
         context["club_amenities"] = amenities
         context["gallery"] = gallery
         return context
+
+
+class ClubListByRegion(ListView):
+    model = Business
+    template_name = "business/clubs/club_search_by_region.html"
+    paginate_by = 16
+
+    def get_queryset(self):
+        qs = Business.business_manager.closest_clubs(self.kwargs.get("region"))
+        return qs

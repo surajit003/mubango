@@ -23,4 +23,9 @@ urlpatterns = [
         views.EventListView.as_view(),
         name="get_all_events",
     ),
+    url(
+        r"^list-by-region/(?P<region>[\w|\W]+)/$",
+        views.EventListByRegion.as_view(),
+        name="get_events_region",
+    ),
 ]

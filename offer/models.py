@@ -1,8 +1,13 @@
 from django.db import models
+from django_resized import ResizedImageField
+
 from business.models import Business
 from django.contrib.auth.models import User
+
+from common.models import DateModel, Social
 from .utils import calculate_distance
 from address.models import AddressField
+from django.urls import reverse
 
 # Create your models here.
 class OfferManager(models.Manager):
@@ -37,6 +42,11 @@ class OfferManager(models.Manager):
 
 class Offer(models.Model):
     title = models.CharField(max_length=120)
+    slug = models.SlugField(
+        max_length=255,
+        help_text="Unique value for product page URL, created from name.",
+        unique=True,
+    )
     description = models.TextField(null=True, blank=True)
     location = AddressField()
     business = models.ForeignKey(Business, on_delete=models.CASCADE)
@@ -48,10 +58,20 @@ class Offer(models.Model):
     limit = models.IntegerField(default=0)
 
     objects = models.Manager()  # The default manager.
-    user_offer = OfferManager()  # The useroffer manager.
+    offer_manager = OfferManager()  # The useroffer manager.
 
     def __str__(self):
         return "{}".format(self.title)
+
+    def get_absolute_url(self):
+        return reverse("offer:offer_detail", args=[str(self.slug)])
+
+    def get_thumbnail(self):
+        offer_image = OfferImage.objects.get(
+            offer__id=self.id, img_category="thumbnail"
+        )
+        thumbnail = offer_image.image.url
+        return thumbnail
 
     class Meta:
         unique_together = ("business", "title")
@@ -68,3 +88,30 @@ class UserOffer(models.Model):
     class Meta:
         verbose_name_plural = "UserOffer"
         unique_together = ("user", "offer")
+
+
+class OfferImage(DateModel):
+    category = [
+        ("thumbnail", "thumbnail"),
+        ("other", "other"),
+        ("top_slideshow", "slideshow"),
+    ]
+    offer = models.ForeignKey(Offer, on_delete=models.CASCADE)
+    image = ResizedImageField(size=[480, 350], quality=75)
+    img_category = models.CharField(max_length=20, choices=category, default="other")
+
+    def __str__(self):
+        return "{} {}".format(self.offer.title, self.img_category)
+
+    class Meta:
+        db_table = "offer_images"
+
+
+class OfferSocial(models.Model):
+    offer = models.ForeignKey(Offer, on_delete=models.CASCADE)
+    social = models.ForeignKey(Social, on_delete=models.CASCADE)
+    url = models.URLField()
+    active = models.BooleanField(default=False)
+
+    def __str__(self):
+        return "{} {}".format(self.offer.title, self.social.name)

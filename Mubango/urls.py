@@ -27,6 +27,7 @@ main = [
     url(r"^account/", include("account.urls")),
     url(r"^business/", include("business.urls")),
     url(r"^event/", include("event.urls")),
+    url(r"^offer/", include("offer.urls")),
     url(r"", include("core.urls")),
     url(r"^social-auth/", include("social_django.urls", namespace="social")),
     url(r"^admin/", admin.site.urls),

@@ -19,6 +19,11 @@ urlpatterns = [
         name="get_all_clubs",
     ),
     url(
+        r"^list-by-region/(?P<region>[\w|\W]+)/$",
+        views.ClubListByRegion.as_view(),
+        name="get_clubs_region",
+    ),
+    url(
         r"^(?P<slug>[\w-]+)/$",
         views.ClubDetailView.as_view(),
         name="club_detail",
