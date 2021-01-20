@@ -8,6 +8,7 @@ class ProfileAdmin(admin.ModelAdmin):
         "user",
         "phone_number",
     )
+    prepopulated_fields = {"slug": ("profile_id",)}
 
 
 @admin.register(models.Follower)

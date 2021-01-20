@@ -1,0 +1,202 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block content %}
+    <section>
+        <div class="block remove-bottom double-gap-top">
+            <div class="layer blackish">
+                <div data-velocity="-.1"
+                     style="background: url(http://placehold.it/1920x850) repeat scroll 50% 422.28px transparent;"
+                     class="no-parallax parallax scrolly-invisible"></div><!-- PARALLAX BACKGROUND IMAGE -->
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="iamusersec">
+                                <div class="iamuser">
+                                    <div class="userimg"><img src="{{ object.image.url }}" alt=""/>
+                                    </div>
+                                    <div class="userinfos">
+                                        <h3>Ali TUFAN</h3>
+                                        <span>Submission</span>
+                                    </div>
+                                </div>
+                                <div class="iamuserstats">
+                                    <span><i class="flaticon-avatar"></i>Followers 15</span>
+                                    <span><i class="flaticon-avatar"></i>Following 25</span>
+                                    <a href="#" title=""><i class="flaticon-eraser"></i>Edit Profile</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="menubarsec">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <a href="#" title=""><i class="flaticon-credit-card"></i>Dashboard</a>
+                        <a href="#" title=""><i class="flaticon-avatar"></i>Profile</a>
+                        <a href="#" title=""><i class="flaticon-coupon"></i>My Listings (1) </a>
+                        <a href="#" title=""><i class="flaticon-note"></i>Notifications (0) </a>
+                        <a href="#" title=""><i class="flaticon-heart"></i>Favorites (5)</a>
+                        <a href="#" title=""><i class="flaticon-thumb-up"></i>Reviews</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="block gray">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-10">
+                        <div class="dashboradsec">
+                            <h3>Profile</h3>
+                            <div class="profileimageaction">
+                                <div class="row">
+                                    <div class="col-lg-5">
+                                        <div class="changeimg">
+                                            <h3>Change Avatar</h3>
+                                            <div class="uploadimage">
+                                                <img src="http://placehold.it/140x140" alt=""/>
+                                                <a href="#" title="">Cancel</a>
+                                            </div>
+                                            <div class="jstinput"><a href="#" title=""
+                                                                     class="browsephoto">Browse</a><input type="file"/>
+                                            </div>
+                                            <p>Max file size is 1MB, Minimum dimension: <br>270x210 And Suitable</p>
+                                        </div>
+                                    </div>
+{% comment %}
+                                    <div class="col-lg-7">
+                                        <div class="changeimg">
+                                            <h3>Change Background</h3>
+                                            <div class="uploadimage">
+                                                <img src="http://placehold.it/493x140" alt=""/>
+                                                <a href="#" title="">Cancel</a>
+                                            </div>
+                                            <div class="jstinput"><a href="#" title=""
+                                                                     class="browsephoto">Browse</a><input type="file"/>
+                                            </div>
+                                            <p>Max file size is 1MB, Minimum dimension: 1920x400 And Suitable <br>files
+                                                are .jpg & .png</p>
+                                        </div>
+                                    </div>
+{% endcomment %}
+                                </div>
+                            </div>
+                            <div class="pbox">
+                                <div class="addlistingform">
+                                    <form>
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <div class="fieldformy">
+                                                    <span>First Name</span>
+                                                    <input type="text" value="{{ object.user.first_name }}">
+                                                </div>
+                                                <div class="fieldformy">
+                                                    <span>Address</span>
+                                                    <input type="text" value="{{ object.get_address }}">
+                                                </div>
+                                                <div class="fieldformy">
+                                                    <span>Phone</span>
+                                                    <input type="text" value="{{ object.phone_number }}">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="fieldformy">
+                                                    <span>Last Name</span>
+                                                    <input type="text" value="{{ object.user.last_name }}">
+                                                </div>
+                                                <div class="fieldformy">
+                                                    <span>Email </span>
+                                                    <input type="text" value="{{ object.user.email }}">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <div class="formaction">
+                                                    <a href="#" title="" class="updatebtn">Update</a>
+                                                    <a href="#" title="" class="cancelbtn">Cancel</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="pbox">
+                                <h3>Change Password</h3>
+                                <div class="addlistingform">
+                                    <form>
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="fieldformy">
+                                                    <span>Current</span>
+                                                    <input type="text" value="Ali">
+                                                </div>
+                                                <div class="fieldformy">
+                                                    <span>New Password</span>
+                                                    <input type="password">
+                                                </div>
+                                                <div class="fieldformy">
+                                                    <span>Confirm New Password</span>
+                                                    <input type="password">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <div class="formaction">
+                                                    <a href="#" title="" class="updatebtn">Update</a>
+                                                    <a href="#" title="" class="cancelbtn">Cancel</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="pbox">
+                                <h3>Social Networks</h3>
+                                <div class="addlistingform">
+                                    <form>
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <div class="fieldformy">
+                                                    <span>Facebook</span>
+                                                    <input type="text">
+                                                    <i class="fa fa-facebook"></i>
+                                                </div>
+                                                <div class="fieldformy">
+                                                    <span>Twitter</span>
+                                                    <input type="text">
+                                                    <i class="fa fa-twitter"></i>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="fieldformy">
+                                                    <span>Linkedin</span>
+                                                    <input type="text">
+                                                    <i class="fa fa-linkedin"></i>
+                                                </div>
+                                                <div class="fieldformy">
+                                                    <span>Google Plus</span>
+                                                    <input type="text">
+                                                    <i class="fa fa-google"></i>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <div class="formaction">
+                                                    <a href="#" title="" class="updatebtn">Update</a>
+                                                    <a href="#" title="" class="cancelbtn">Cancel</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock content %}

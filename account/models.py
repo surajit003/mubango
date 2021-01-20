@@ -1,13 +1,17 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django_resized import ResizedImageField
 from phonenumber_field.modelfields import PhoneNumberField
 from common.models import DateModel
 from address.models import Address
 import datetime
+import uuid
 
 
 class Profile(DateModel):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    profile_id = models.UUIDField(default=uuid.uuid4(), primary_key=True)
+    slug = models.SlugField(max_length=255, unique=True, blank=True)
     verification_id = models.CharField(max_length=120, null=True, blank=True)
     birth_date = models.DateField(null=True, blank=True)
     points = models.IntegerField(default=0)
@@ -16,9 +20,13 @@ class Profile(DateModel):
     address = models.ForeignKey(
         Address, null=True, blank=True, on_delete=models.CASCADE
     )
+    image = ResizedImageField(size=[480, 350], quality=75, null=True, blank=True)
 
     def __str__(self):
         return "{} {}".format(self.user.username, self.active)
+
+    def get_address(self):
+        return self.address.raw
 
     class Meta:
         verbose_name_plural = "Profiles"
@@ -40,6 +48,12 @@ class Profile(DateModel):
             return self.address.locality.state.name
         else:
             return "Nairobi"
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = self.profile_id
+            self.save()
+        super(Profile, self).save(*args, **kwargs)
 
 
 class Follower(models.Model):

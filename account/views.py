@@ -1,4 +1,6 @@
 from django.contrib.auth import authenticate, login
+from django.views.generic import DetailView
+
 from .models import Profile
 from django.shortcuts import render
 from django.contrib.auth.models import User
@@ -86,3 +88,8 @@ def signupview(request):
                 },
                 safe=False,
             )
+
+
+class ProfileDetail(DetailView):
+    model = Profile
+    template_name = "account/profile.html"

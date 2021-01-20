@@ -1,4 +1,6 @@
 from django.conf.urls import url
+from django.contrib.auth.decorators import login_required
+
 from . import views
 
 app_name = "account"
@@ -16,4 +18,10 @@ urlpatterns = [
         name="validate_phone",
     ),
     url(r"^ajax/validate_email/$", views.validate_email, name="validate_email"),
+    url(r"^ajax/validate_email/$", views.validate_email, name="validate_email"),
+    url(
+        r"^profile/(?P<slug>[0-9a-f-]+)/$",
+        login_required(views.ProfileDetail.as_view()),
+        name="profile_detail",
+    ),
 ]

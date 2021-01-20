@@ -406,7 +406,9 @@
                                 <label>Email</label>
                                 <input type="text" value="{{ user.email }}" placeholder="email"/>
                             </div>
-                            <a href="account.html">Click to View More</a>
+                            {% for profile in user.profile_set.all %}
+                            <a href="{% url 'account:profile_detail' profile.slug %}">Click to View More</a>
+                            {% endfor %}
                         </form>
                         {% if not user.is_authenticated %}
                             <div class="extraconnect">
