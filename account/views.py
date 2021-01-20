@@ -2,7 +2,7 @@ from django.contrib.auth import authenticate, login
 from django.views.generic import DetailView
 
 from .models import Profile
-from django.shortcuts import render
+from django.shortcuts import render, redirect, reverse
 from django.contrib.auth.models import User
 from django.http.response import JsonResponse
 from .tasks import update_profile
@@ -93,3 +93,19 @@ def signupview(request):
 class ProfileDetail(DetailView):
     model = Profile
     template_name = "account/profile.html"
+
+
+def UpdateProfile(request, slug):
+    if request.method == "POST" and request.is_ajax():
+        first_name = request.POST.get("first_name")
+        last_name = request.POST.get("last_name")
+        email = request.POST.get("email")
+        phone = request.POST.get("phone_number")
+        profile = Profile.objects.get(profile_id=slug)
+        profile.user.first_name = first_name
+        profile.user.last_name = last_name
+        profile.user.email = email
+        profile.phone_number = phone
+        profile.user.save()
+        profile.save()
+        return redirect(reverse("account:profile_detail", args=[str(slug)]))

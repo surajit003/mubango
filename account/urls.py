@@ -24,4 +24,9 @@ urlpatterns = [
         login_required(views.ProfileDetail.as_view()),
         name="profile_detail",
     ),
+    url(
+        r"^profile/(?P<slug>[0-9a-f-]+)/update/$",
+        login_required(views.UpdateProfile),
+        name="profile_update",
+    ),
 ]

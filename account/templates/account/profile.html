@@ -15,14 +15,8 @@
                                     <div class="userimg"><img src="{{ object.image.url }}" alt=""/>
                                     </div>
                                     <div class="userinfos">
-                                        <h3>Ali TUFAN</h3>
-                                        <span>Submission</span>
+                                        <h3>{{ user.first_name }} {{ user.last_name }}</h3>
                                     </div>
-                                </div>
-                                <div class="iamuserstats">
-                                    <span><i class="flaticon-avatar"></i>Followers 15</span>
-                                    <span><i class="flaticon-avatar"></i>Following 25</span>
-                                    <a href="#" title=""><i class="flaticon-eraser"></i>Edit Profile</a>
                                 </div>
                             </div>
                         </div>
@@ -34,11 +28,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
-                        <a href="#" title=""><i class="flaticon-credit-card"></i>Dashboard</a>
-                        <a href="#" title=""><i class="flaticon-avatar"></i>Profile</a>
-                        <a href="#" title=""><i class="flaticon-coupon"></i>My Listings (1) </a>
-                        <a href="#" title=""><i class="flaticon-note"></i>Notifications (0) </a>
-                        <a href="#" title=""><i class="flaticon-heart"></i>Favorites (5)</a>
+                        <a href="#" title=""><i class="flaticon-heart"></i>Favorites</a>
                         <a href="#" title=""><i class="flaticon-thumb-up"></i>Reviews</a>
                     </div>
                 </div>
@@ -59,7 +49,7 @@
                                         <div class="changeimg">
                                             <h3>Change Avatar</h3>
                                             <div class="uploadimage">
-                                                <img src="http://placehold.it/140x140" alt=""/>
+                                                <img src="{{ object.image.url }}" alt=""/>
                                                 <a href="#" title="">Cancel</a>
                                             </div>
                                             <div class="jstinput"><a href="#" title=""
@@ -68,55 +58,41 @@
                                             <p>Max file size is 1MB, Minimum dimension: <br>270x210 And Suitable</p>
                                         </div>
                                     </div>
-{% comment %}
-                                    <div class="col-lg-7">
-                                        <div class="changeimg">
-                                            <h3>Change Background</h3>
-                                            <div class="uploadimage">
-                                                <img src="http://placehold.it/493x140" alt=""/>
-                                                <a href="#" title="">Cancel</a>
-                                            </div>
-                                            <div class="jstinput"><a href="#" title=""
-                                                                     class="browsephoto">Browse</a><input type="file"/>
-                                            </div>
-                                            <p>Max file size is 1MB, Minimum dimension: 1920x400 And Suitable <br>files
-                                                are .jpg & .png</p>
-                                        </div>
-                                    </div>
-{% endcomment %}
                                 </div>
                             </div>
                             <div class="pbox">
                                 <div class="addlistingform">
-                                    <form>
+                                    <form method="POST">
+                                        {% csrf_token %}
                                         <div class="row">
                                             <div class="col-lg-6">
                                                 <div class="fieldformy">
                                                     <span>First Name</span>
-                                                    <input type="text" value="{{ object.user.first_name }}">
+                                                    <input type="hidden" value="{{ object.profile_id }}" id="profile_id">
+                                                    <input name="profile_first_name" id="profile_first_name" type="text" value="{{ object.user.first_name }}">
                                                 </div>
                                                 <div class="fieldformy">
                                                     <span>Address</span>
-                                                    <input type="text" value="{{ object.get_address }}">
+                                                    <input id="profile_address" type="text" value="{{ object.get_address }}">
                                                 </div>
                                                 <div class="fieldformy">
                                                     <span>Phone</span>
-                                                    <input type="text" value="{{ object.phone_number }}">
+                                                    <input id="profile_phone" type="text" value="{{ object.phone_number }}">
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">
                                                 <div class="fieldformy">
                                                     <span>Last Name</span>
-                                                    <input type="text" value="{{ object.user.last_name }}">
+                                                    <input id="profile_last_name" type="text" value="{{ object.user.last_name }}">
                                                 </div>
                                                 <div class="fieldformy">
                                                     <span>Email </span>
-                                                    <input type="text" value="{{ object.user.email }}">
+                                                    <input id="profile_email" type="text" value="{{ object.user.email }}">
                                                 </div>
                                             </div>
                                             <div class="col-lg-12">
                                                 <div class="formaction">
-                                                    <a href="#" title="" class="updatebtn">Update</a>
+                                                    <button id="update_profile" title="" class="updatebtn">Update</button>
                                                     <a href="#" title="" class="cancelbtn">Cancel</a>
                                                 </div>
                                             </div>
@@ -132,7 +108,7 @@
                                             <div class="col-lg-12">
                                                 <div class="fieldformy">
                                                     <span>Current</span>
-                                                    <input type="text" value="Ali">
+                                                    <input type="text">
                                                 </div>
                                                 <div class="fieldformy">
                                                     <span>New Password</span>
@@ -153,45 +129,7 @@
                                     </form>
                                 </div>
                             </div>
-                            <div class="pbox">
-                                <h3>Social Networks</h3>
-                                <div class="addlistingform">
-                                    <form>
-                                        <div class="row">
-                                            <div class="col-lg-6">
-                                                <div class="fieldformy">
-                                                    <span>Facebook</span>
-                                                    <input type="text">
-                                                    <i class="fa fa-facebook"></i>
-                                                </div>
-                                                <div class="fieldformy">
-                                                    <span>Twitter</span>
-                                                    <input type="text">
-                                                    <i class="fa fa-twitter"></i>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <div class="fieldformy">
-                                                    <span>Linkedin</span>
-                                                    <input type="text">
-                                                    <i class="fa fa-linkedin"></i>
-                                                </div>
-                                                <div class="fieldformy">
-                                                    <span>Google Plus</span>
-                                                    <input type="text">
-                                                    <i class="fa fa-google"></i>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-12">
-                                                <div class="formaction">
-                                                    <a href="#" title="" class="updatebtn">Update</a>
-                                                    <a href="#" title="" class="cancelbtn">Cancel</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
+
                         </div>
                     </div>
                 </div>
