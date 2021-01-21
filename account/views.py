@@ -28,17 +28,17 @@ def validate_email(request):
     return JsonResponse(data)
 
 
-def home(request):
+def Home(request):
     return render(request, "account/home.html")
 
 
-def logoutview(request):
+def LogoutView(request):
     if "logout" in request.GET:
         logout(request)
         return redirect("core:home")
 
 
-def loginview(request):
+def LoginView(request):
     if request.method == "POST" and request.is_ajax():
         username = request.POST["username"]
         password = request.POST["password"]
@@ -56,7 +56,7 @@ def loginview(request):
             )
 
 
-def signupview(request):
+def SignupView(request):
     if request.method == "POST" and request.is_ajax():
         username = request.POST["username"]
         password = request.POST["password"]

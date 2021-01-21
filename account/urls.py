@@ -6,10 +6,10 @@ from . import views
 app_name = "account"
 
 urlpatterns = [
-    url(r"^home", views.home, name="home"),
-    url(r"^login", views.loginview, name="login"),
-    url(r"^logout", views.logoutview, name="logout"),
-    url(r"^signup", views.signupview, name="signup"),
+    url(r"^home", views.Home, name="home"),
+    url(r"^login", views.LoginView, name="login"),
+    url(r"^logout", views.LogoutView, name="logout"),
+    url(r"^signup", views.SignupView, name="signup"),
     url(
         r"^ajax/validate_username/$", views.validate_username, name="validate_username"
     ),

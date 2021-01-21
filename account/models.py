@@ -49,12 +49,6 @@ class Profile(DateModel):
         else:
             return "Nairobi"
 
-    def save(self, *args, **kwargs):
-        if not self.slug:
-            self.slug = self.profile_id
-            self.save()
-        super(Profile, self).save(*args, **kwargs)
-
 
 class Follower(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="user")
