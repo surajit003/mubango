@@ -1,4 +1,4 @@
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.views.generic import DetailView
 
 from .models import Profile
@@ -30,6 +30,12 @@ def validate_email(request):
 
 def home(request):
     return render(request, "account/home.html")
+
+
+def logoutview(request):
+    if "logout" in request.GET:
+        logout(request)
+        return redirect("core:home")
 
 
 def loginview(request):
@@ -108,4 +114,21 @@ def UpdateProfile(request, slug):
         profile.phone_number = phone
         profile.user.save()
         profile.save()
-        return redirect(reverse("account:profile_detail", args=[str(slug)]))
+        data = {"status": 204, "response": "Profile Updated Successfully"}
+        return JsonResponse(data, safe=False)
+
+
+def UpdatePassword(request, slug):
+    if request.method == "POST" and request.is_ajax():
+        current_password = request.POST.get("current_password")
+        new_password = request.POST.get("new_password")
+        profile = Profile.objects.get(profile_id=slug)
+        valid = profile.user.check_password(current_password)
+        if valid:
+            profile.user.set_password(new_password)
+            profile.user.save()
+            data = {"status": 204, "response": "Password Update Successfull"}
+            return JsonResponse(data, safe=False)
+        else:
+            data = {"status": 200, "response": "Password Update Unsuccessfull"}
+            return JsonResponse(data, safe=False)
