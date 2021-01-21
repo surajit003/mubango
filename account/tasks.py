@@ -9,7 +9,6 @@ def update_profile(user_id, phone_number, address, country, u_state):
     user = User.objects.get(id=user_id)
     profile, _ = Profile.objects.get_or_create(user=user)
     profile.phone_number = phone_number
-    profile.slug = profile.profile_id
     try:
         country = Country.objects.get(name__icontains=country)
     except Country.DoesNotExist:
