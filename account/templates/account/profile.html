@@ -62,12 +62,23 @@
                             </div>
                             <div class="pbox">
                                 <div class="addlistingform">
-                                    <form method="POST">
+                                    <form method="POST" enctype="multipart/form-data">
                                         {% csrf_token %}
                                         <div class="row">
-                                            <div class="col-lg-6">
-                                                <p id="profile_response" style="color: green"></p>
+                                            <div class="col-md-4">
+                                                <div class="uploadimage fieldformy">
+                                                    <img  src="{{ object.image.url }}" alt=""/>
+                                                    <a href="#" title=""></a>
 
+                                                    <div class="jstinput"><a href="#" title=""
+                                                                             class="browsephoto">Browse</a>
+                                                        <input id="profile_image"  type="file"/>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <p id="profile_response" style="color: green"></p>
                                                 <div class="fieldformy">
                                                     <span>First Name</span>
                                                     <input type="hidden" value="{{ object.profile_id }}"
@@ -86,7 +97,7 @@
                                                            value="{{ object.phone_number }}">
                                                 </div>
                                             </div>
-                                            <div class="col-lg-6">
+                                            <div class="col-lg-4">
                                                 <div class="fieldformy">
                                                     <span>Last Name</span>
                                                     <input id="profile_last_name" type="text"

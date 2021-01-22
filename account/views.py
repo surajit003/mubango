@@ -107,11 +107,14 @@ def UpdateProfile(request, slug):
         last_name = request.POST.get("last_name")
         email = request.POST.get("email")
         phone = request.POST.get("phone_number")
+        image = request.FILES.get("image")
+        print("image", image)
         profile = Profile.objects.get(profile_id=slug)
         profile.user.first_name = first_name
         profile.user.last_name = last_name
         profile.user.email = email
         profile.phone_number = phone
+        profile.image = image
         profile.user.save()
         profile.save()
         data = {"status": 204, "response": "Profile Updated Successfully"}

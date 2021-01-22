@@ -51,7 +51,9 @@ class Profile(DateModel):
 
 
 class Follower(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="user")
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name="user", db_index=True
+    )
     follower = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="follower"
     )
