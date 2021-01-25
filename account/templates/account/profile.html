@@ -12,7 +12,10 @@
                         <div class="col-lg-12">
                             <div class="iamusersec">
                                 <div class="iamuser">
-                                    <div class="userimg"><img src="{{ object.image.url }}" alt=""/>
+                                    <div class="userimg">
+                                        {% with default_image=STATIC_URL|add:"/mb/static/images/default.png" %}
+                                            <img src="{{ object.get_image|default:default_image }}" alt=""/>
+                                        {% endwith %}
                                     </div>
                                     <div class="userinfos">
                                         <h3>{{ user.first_name }} {{ user.last_name }}</h3>
@@ -27,8 +30,9 @@
         <div class="menubarsec">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-12">
-                        <a href="#" title=""><i class="flaticon-heart"></i>Favorites</a>
+                    <div class="col-lg-3"></div>
+                    <div class="col-lg-9">
+                        <a href="#" title=""><i class="flaticon-heart">{{ object.get_follower_count }}</i>Followers</a>
                         <a href="#" title=""><i class="flaticon-thumb-up"></i>Reviews</a>
                     </div>
                 </div>
@@ -43,23 +47,6 @@
                     <div class="col-lg-10">
                         <div class="dashboradsec">
                             <h3>Profile</h3>
-                            <div class="profileimageaction">
-                                <div class="row">
-                                    <div class="col-lg-5">
-                                        <div class="changeimg">
-                                            <h3>Change Avatar</h3>
-                                            <div class="uploadimage">
-                                                <img src="{{ object.image.url }}" alt=""/>
-                                                <a href="#" title="">Cancel</a>
-                                            </div>
-                                            <div class="jstinput"><a href="#" title=""
-                                                                     class="browsephoto">Browse</a><input type="file"/>
-                                            </div>
-                                            <p>Max file size is 1MB, Minimum dimension: <br>270x210 And Suitable</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                             <div class="pbox">
                                 <div class="addlistingform">
                                     <form method="POST" enctype="multipart/form-data">
@@ -67,12 +54,14 @@
                                         <div class="row">
                                             <div class="col-md-4">
                                                 <div class="uploadimage fieldformy">
-                                                    <img  src="{{ object.image.url }}" alt=""/>
+                                                    {% with default_image=STATIC_URL|add:"/mb/static/images/default.png" %}
+                                                        <img src="{{ object.get_image|default:default_image }}" alt=""/>
+                                                    {% endwith %}
                                                     <a href="#" title=""></a>
 
                                                     <div class="jstinput"><a href="#" title=""
                                                                              class="browsephoto">Browse</a>
-                                                        <input id="profile_image"  type="file"/>
+                                                        <input id="profile_image" type="file"/>
                                                     </div>
                                                 </div>
 
@@ -109,14 +98,15 @@
                                                            value="{{ object.user.email }}">
                                                 </div>
                                             </div>
-                                            <div class="col-lg-12">
-                                                <div class="formaction">
-                                                    <button id="update_profile" title="" class="updatebtn">Update
-                                                    </button>
-                                                    <a href="#" title="" class="cancelbtn">Cancel</a>
-                                                </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-6"></div>
+                                            <div class="col-lg-6">
+                                                <button id="update_profile" title="" class="updatebtn">Update
+                                                </button>
                                             </div>
                                         </div>
+
                                     </form>
                                 </div>
                             </div>

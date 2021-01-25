@@ -26,7 +26,12 @@ class Profile(DateModel):
         return "{} {}".format(self.user.username, self.active)
 
     def get_address(self):
-        return self.address.raw
+        if self.address:
+            return self.address.raw
+
+    def get_image(self):
+        if self.image:
+            return self.image.url
 
     class Meta:
         verbose_name_plural = "Profiles"
@@ -49,6 +54,9 @@ class Profile(DateModel):
         else:
             return "Nairobi"
 
+    def get_follower_count(self):
+        return self.user.user.all().count()
+
 
 class Follower(models.Model):
     user = models.ForeignKey(
@@ -65,3 +73,4 @@ class Follower(models.Model):
 
     class Meta:
         verbose_name_plural = "Followers"
+        unique_together = ("user", "follower")
