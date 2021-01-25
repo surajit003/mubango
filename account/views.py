@@ -133,5 +133,5 @@ def UpdatePassword(request, slug):
             data = {"status": 204, "response": "Password Update Successfull"}
             return JsonResponse(data, safe=False)
         else:
-            data = {"status": 200, "response": "Password Update Unsuccessfull"}
+            data = {"status": 200, "response": "Current Password is Incorrect"}
             return JsonResponse(data, safe=False)

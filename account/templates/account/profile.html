@@ -78,7 +78,7 @@
                                                 <div class="fieldformy">
                                                     <span>Address</span>
                                                     <input id="profile_address" type="text"
-                                                           value="{{ object.get_address }}">
+                                                           value="{{ object.get_address|default:'' }}">
                                                 </div>
                                                 <div class="fieldformy">
                                                     <span>Phone</span>
