@@ -50,18 +50,11 @@ class ClubDetailView(DetailView):
         amenities = BusinessServiceRating.objects.filter(
             business__slug=self.kwargs.get("slug")
         ).select_related("service")
-        gallery = BusinessImage.objects.filter(
-            business__slug=self.kwargs.get("slug"), img_category="other"
-        )
-        slideshow = BusinessImage.objects.filter(
-            business__slug=self.kwargs.get("slug"), img_category="top_slideshow"
-        )
+
         context["business_social"] = BusinessSocial.objects.filter(
             business__slug=self.kwargs.get("slug"), active=True
         )
-        context["slideshow"] = slideshow
         context["club_amenities"] = amenities
-        context["gallery"] = gallery
         return context
 
 

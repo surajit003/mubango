@@ -122,11 +122,21 @@ class Business(DateModel):
         return reverse("business:club_detail", args=[str(self.slug)])
 
     def get_thumbnail(self):
-        business_image = BusinessImage.objects.get(
-            business=self.id, img_category="thumbnail"
-        )
-        thumbnail = business_image.image.url
-        return thumbnail
+        business_image = self.images.all().filter(img_category="thumbnail")
+        if business_image:
+            thumbnail = business_image[0].image.url
+            return thumbnail
+
+    def get_gallery(self):
+        business_image = self.images.all().filter(img_category="other")
+        return business_image
+
+    def get_social(self):
+        return self.social.all()
+
+    def get_slideshow(self):
+        business_image = self.images.all().filter(img_category="slideshow")
+        return business_image
 
     def get_latitude(self):
         return self.address.as_dict()["latitude"]
@@ -187,7 +197,9 @@ class BusinessImage(DateModel):
 
 
 class BusinessSocial(models.Model):
-    business = models.ForeignKey(Business, on_delete=models.CASCADE)
+    business = models.ForeignKey(
+        Business, related_name="social", on_delete=models.CASCADE
+    )
     social = models.ForeignKey(Social, on_delete=models.CASCADE)
     url = models.URLField()
     active = models.BooleanField(default=False)
