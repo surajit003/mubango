@@ -33,9 +33,8 @@ def Home(request):
 
 
 def LogoutView(request):
-    if "logout" in request.GET:
-        logout(request)
-        return redirect("core:home")
+    logout(request)
+    return redirect("core:home")
 
 
 def LoginView(request):
@@ -108,7 +107,6 @@ def UpdateProfile(request, slug):
         email = request.POST.get("email")
         phone = request.POST.get("phone_number")
         image = request.FILES.get("image")
-        print("image", image)
         profile = Profile.objects.get(profile_id=slug)
         profile.user.first_name = first_name
         profile.user.last_name = last_name

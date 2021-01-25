@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from business.models import Business
 from account.models import Profile
-from account.get_user_state_context_processor import get_user_state
+from account.context_processor import get_user_state_and_profile_id
 
 
 # Create your views here.
@@ -27,7 +27,7 @@ def Index(request):
                 },
             )
         else:
-            state = get_user_state(request)
+            state = get_user_state_and_profile_id(request)
             clubs_featured = Business.business_manager.six_closest_clubs(
                 state["user_state"]
             )

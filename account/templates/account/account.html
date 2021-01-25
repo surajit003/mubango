@@ -409,7 +409,7 @@
                             {% for profile in user.profile_set.all %}
                             <a href="{% url 'account:profile_detail' profile.slug %}">Click to View More</a>
                             {% endfor %}
-                            <button href="{% url 'account:logout' %}">Logout</button>
+                           <button><a class="" href="{% url 'account:logout' %}">Logout</a></button>
 
                         </form>
                         {% if not user.is_authenticated %}

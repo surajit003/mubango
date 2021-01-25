@@ -82,7 +82,7 @@ TEMPLATES = [
                 "django.contrib.messages.context_processors.messages",
                 "social_django.context_processors.backends",  # <--
                 "social_django.context_processors.login_redirect",  # <--
-                "account.get_user_state_context_processor.get_user_state",
+                "account.context_processor.get_user_state_and_profile_id",
             ],
         },
     },
@@ -185,7 +185,7 @@ SOCIAL_AUTH_URL_NAMESPACE = "social"
 LOGIN_URL = "login"
 LOGIN_REDIRECT_URL = "/mb/account/home"
 LOGOUT_URL = "logout"
-LOGOUT_REDIRECT_URL = "login"
+LOGOUT_REDIRECT_URL = "/mb/home/"
 SOCIAL_AUTH_FACEBOOK_KEY = config("SOCIAL_AUTH_FACEBOOK_KEY")
 SOCIAL_AUTH_FACEBOOK_SECRET = config("SOCIAL_AUTH_FACEBOOK_SECRET")
 SOCIAL_AUTH_FACEBOOK_SCOPE = ["email", "user_link"]  # add this

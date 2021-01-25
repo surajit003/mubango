@@ -59,30 +59,20 @@
 						<li><a href="user-review.html" title="">User Review</a></li>
 					</ul>
 				</li>
-			{% comment %}	<li class="menu-item-has-children">
-					<a href="#" title="">Pages</a>
-					<ul>
-						<li><a href="blog1.html" title="">Blog 1</a></li>
-						<li><a href="blog2.html" title="">Blog 2</a></li>
-						<li><a href="blog-single.html" title="">Blog Details</a></li>
-						<li><a href="pricing.html" title="">Pricing</a></li>
-						<li><a href="404.html" title="">404 Error</a></li>
-						<li><a href="contact.html" title="">Contact Us</a></li>
-						<li><a href="services.html" title="">Our Services</a></li>
-						<li><a href="terms.html" title="">Our Terms</a></li>
-						<li><a href="testimonials.html" title="">Testimonials</a></li>
-					</ul>
-				</li>
-				<li class="menu-item-has-children">
-					<a href="#" title="">Shop</a>
-					<ul>
-						<li><a href="shop-list.html" title="">Shop Lists</a></li>
-						<li><a href="shop-detail.html" title="">Shop Details</a></li>
-						<li><a href="cart.html" title="">Shop Cart</a></li>
-						<li><a href="checkout.html" title="">Checkout</a></li>
-						<li><a href="shop-order.html" title="">Shop Order</a></li>
-					</ul>
-				</li>{% endcomment %}
+                {% if user.is_authenticated %}
+                <li class="menu-item-has-children">
+						<a href="#" title="">Account</a>
+						<ul>
+							<li><a href="{% url 'account:profile_detail' profile_id %}" title="">User Dashboard</a></li>
+							<li><a href="user-favourite.html" title="">User Favourites</a></li>
+							<li><a href="user-my-listings.html" title="">User Listing</a></li>
+							<li><a href="user-notification.html" title="">User Notifications</a></li>
+							<li><a href="user-profile.html" title="">User Profile</a></li>
+							<li><a href="user-review.html" title="">User Review</a></li>
+						</ul>
+					</li>
+                {% endif %}
+
 			</ul>
 		</div>
 	</div><!-- Responsive header -->
@@ -140,6 +130,18 @@
 							<li><a href="user-review.html" title="">User Review</a></li>
 						</ul>
 					</li>
+                    {% if user.is_authenticated %}
+                <li class="menu-item-has-children">
+						<a href="#" title="">Account</a>
+						<ul>
+							<li><a href="{% url 'account:profile_detail' profile_id %}" title="">Profile</a></li>
+							<li><a href="user-favourite.html" title="">User Favourites</a></li>
+							<li><a href="user-my-listings.html" title="">User Listing</a></li>
+							<li><a href="user-notification.html" title="">User Notifications</a></li>
+							<li><a href="user-review.html" title="">User Review</a></li>
+						</ul>
+					</li>
+                {% endif %}
 
 				</ul>
 			</nav>
