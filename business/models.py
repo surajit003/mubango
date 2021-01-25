@@ -128,15 +128,13 @@ class Business(DateModel):
             return thumbnail
 
     def get_gallery(self):
-        business_image = self.images.all().filter(img_category="other")
-        return business_image
+        return self.images.all().filter(img_category="other")
 
     def get_social(self):
         return self.social.all()
 
     def get_slideshow(self):
-        business_image = self.images.all().filter(img_category="slideshow")
-        return business_image
+        return self.images.all().filter(img_category="slideshow")
 
     def get_latitude(self):
         return self.address.as_dict()["latitude"]
