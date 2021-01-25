@@ -23,7 +23,8 @@
                             </div>
                             <div class="accountformfield">
                                 <label>Username *</label>
-                                <input type="text" name="login_username" id="login_username" placeholder="Username" required/>
+                                <input type="text" name="login_username" id="login_username" placeholder="Username"
+                                       required/>
                                 <p id="error_login_username" style="color: red"></p>
 
                             </div>
@@ -52,18 +53,18 @@
                     <div class="accountform" id="two" style="display: none;">
                         <form class="loginform">
                             {% csrf_token %}
-                               <div id="register_status" style="color:green">
+                            <div id="register_status" style="color:green">
 
                             </div>
                             <div class="accountformfield">
                                 <label>First Name *</label>
-                                <input type="text" id="signup_first_name" placeholder="First Name" required />
+                                <input type="text" id="signup_first_name" placeholder="First Name" required/>
                                 <p id="signup_error_first_name" style="color: red"></p>
 
                             </div>
                             <div class="accountformfield">
                                 <label>Last Name *</label>
-                                <input type="text" id="signup_last_name" placeholder="Last Name" required />
+                                <input type="text" id="signup_last_name" placeholder="Last Name" required/>
                                 <p id="signup_error_last_name" style="color: red"></p>
 
                             </div>
@@ -89,12 +90,12 @@
                                 <p id="error_address" style="color: red"></p>
 
                             </div>
-                             <div class="accountformfield">
+                            <div class="accountformfield">
                                 <label>Phonenumber *</label>
                                 <input type="text" id="signup_phonenumber" placeholder="PhoneNumber" required/>
-                                 <p id="error_phonenumber" style="color: red"></p>
+                                <p id="error_phonenumber" style="color: red"></p>
 
-                             </div>
+                            </div>
                             <div class="accountformfield">
                                 <label>Select Country: *</label>
                                 <select class="form-control" id="country" name="country">
@@ -406,10 +407,19 @@
                                 <label>Email</label>
                                 <input type="text" value="{{ user.email }}" placeholder="email"/>
                             </div>
-                            {% for profile in user.profile_set.all %}
-                            <a href="{% url 'account:profile_detail' profile.slug %}">Click to View More</a>
-                            {% endfor %}
-                           <button><a class="" href="{% url 'account:logout' %}">Logout</a></button>
+                            <div class="row">
+                                <div class="col-lg-8">
+                                    <a href="{% url 'account:logout' %}" class="btn btn-primary btn-lg active"
+                                       role="button"
+                                       aria-pressed="true">Logout</a>
+                                </div>
+                                <div class="col-lg-4">
+                                    {% for profile in user.profile_set.all %}
+                                        <a href="{% url 'account:profile_detail' profile.slug %}">View Profile</a>
+                                    {% endfor %}
+                                </div>
+                            </div>
+
 
                         </form>
                         {% if not user.is_authenticated %}
