@@ -143,9 +143,7 @@
             </div>
         </div>
     </section>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCC0wYfBETVlXyjOqv0WtV6kTvQ-LUi3yU&callback=initMap&callback=initMap"></script>
-
-    <script type="text/javascript">
+        <script type="text/javascript">
     var disqus_config = function () {
                 this.page.url = '{{ request.build_absolute_uri }}.html'
                 console.log('kkdkd',this.page.url);
@@ -161,7 +159,6 @@
             })();
 
         function initMap() {
-            console.log('called')
             const address = {lat: {{ object.get_latitude }}, lng: {{ object.get_longitude }}};
             // The map, centered at Uluru
             const map = new google.maps.Map(document.getElementById("map"), {
@@ -175,4 +172,7 @@
             });
         }
     </script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCC0wYfBETVlXyjOqv0WtV6kTvQ-LUi3yU&callback=initMap&callback=initMap"></script>
+
 {% endblock content %}
