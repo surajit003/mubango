@@ -74,7 +74,7 @@ def SignupView(request):
         user.save()
         update_profile.apply_async(
             [user.id, phone_number, address, country, u_state],
-            eta=now() + timedelta(seconds=20),
+            eta=now() + timedelta(seconds=3),
         )
         # adding a small delay or else the task is unable to access the user record simultaneously
         if user:
