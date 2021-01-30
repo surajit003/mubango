@@ -1,0 +1,267 @@
+@media (max-width:1600px){
+.citieslists > button {left: 30px; }
+.citieslists > button.slick-next {left: auto; right: 25px; }
+header.s5 {padding: 0 20px; }
+header.s4 .listingform {display: none; }
+
+}
+
+@media (max-width:1366px){
+header {padding: 0 30px; }
+}
+
+@media (max-width:1200px){
+header {display: none; }
+.responsiveheader{display: block; }
+tbody tr td {padding-right: 0; }
+thead tr td {padding-right: 0; }
+.cartextras > a {float: left; margin-top: 12px; }
+.listingform form .fieldbtn {float: left; width: 100%; margin-top: 8px; }
+.listingform form .fieldbtn i {float: none; }
+.howwork {padding: 0; }
+.listingform.s2 .fieldform {float: left; width: 100%; display: inline-block; }
+.listingform.s2 .fieldform .dd-container {float: left; width: 100% !important; }
+.listingform.s2 .fieldform .dd-container .dd-select {float: left; width: 100% !important; }
+.listingform.s2 {float: left; width: 100%; }
+.listingform.s2 .fieldbtn {padding-left: 0; }
+.listingform.s3 .fieldform {float: left; width: 50%; padding: 0; }
+.listingform.s3 .fieldform .dd-container {float: left; width: 100% !important; }
+.listingform.s3 .fieldform .dd-container .dd-select {width: 100% !important; }
+.listingform.s3 .fieldform .dd-container .dd-options {width: 100% !important; }
+.listingform.s3 > form {float: left; width: 100%; }
+.hpf {float: left; width: 100%; display: inline-block; margin-top: 0; margin-bottom: 40px; }
+.hpftitle {float: left; width: 100%; padding: 0; margin: 0; margin-bottom: 0px; margin-bottom: 20px; text-align: center; }
+.hpftitle::before {display: none; }
+.hpfthumb {-webkit-transform: perspective(0) rotateY(0deg); -moz-transform: perspective(0) rotateY(0deg); -ms-transform: perspective(0) rotateY(0deg); -o-transform: perspective(0) rotateY(0deg); transform: perspective(0) rotateY(0deg); float: left; width: 100%; padding: 0; position: static; margin: 0; margin-top: 0px; margin-top: 10px; }
+.tes-for.s2 p {padding-left: 100px; padding-right: 100px; }
+.listingsf.justtitle {margin: 180px 0; }
+.mfilterform.forresponsive form > .row > div {float: left; width: 50%; flex: 50%; max-width: 50%; }
+.slbtns > a, .sharelisting > a {padding: 10px 20px; margin-left: 5px; }
+.slbtns .watchvideo {display: none; }
+.sltitle.light span {margin-right: 13px; }
+.iamusersec {margin: 0; }
+.userimg {margin: 0; }
+.userinfos {vertical-align: middle; }
+.iamuserstats {margin: 34px 0; }
+.menubarsec {padding: 21px 0px; text-align: center; }
+.menubarsec a {float: none; display: inline-block; margin: 0 10px; font-size: 12px; }
+.dashnum {padding: 30px 20px; }
+.dashnum strong {font-size: 15px; left: 16px; }
+.dashbadge.white .dashnum {padding: 20px 16px; }
+
+}
+
+@media (max-width:980px){
+.mlfilter-sec.withlayer {left: -100%; }
+.ml-listings.golist {width: 100%; }
+.ml-listings.golist.active {width: 100%; }
+.mlfilter-sec.withlayer.active {left: 0; }
+.sltitle {text-align: center; }
+.sltitle .listmetas {float: none; display: inline-block; width: auto; }
+.slbtnsspans {text-align: center; }
+.slbtnsspans > span {float: none; display: inline-block; margin: 0 10px; }
+.slbtnsspans .slbtns > a {float: left; }
+.slbtnsspans .slbtns > .sharelisting {float: right; }
+.ml-filterslide.openall {float: left; width: 100%; left: 0; position: static; height: auto; padding-bottom: 0; }
+.ml-filterslide {float: left; width: 100%; }
+.half-map.s2 {float: left; width: 100%; position: static; }
+.ml-listings {float: left; width: 100%; position: static; padding-top: 0 !important; }
+.ml-listings.godouble {width: 100%; }
+.half-map {position: static; padding: 0 !important; }
+.openfilters {width: 80px; }
+.openfilters span {font-size: 15px; margin-left: -27px; margin-top: 53px; }
+.ml-filterslide.scrollclass .openfilters {padding-top: 0 !important; }
+.openfilters {padding-top: 80px !important; }
+.mlfilter-sec {padding-top: 80px !important; }
+.ml-filterslide.scrollclass .mlfilter-sec {padding-top: 0px !important; }
+.ml-listings.godouble.active {padding-left: 0 !important; width: 100%; }
+.mlfilter-sec {z-index: 3; }
+.ml-listings.active {width: 100%; padding-left: 0 !important; }
+.listingsf {margin-top: 150px; margin-bottom: 150px; }
+.listingform.s3 .fieldbtn {float: left; width: 100%; }
+.block .container, .container {max-width: 100%; padding: 0 15px; }
+.container.fluid {padding: 0; }
+.innertitle.s2 {margin: 0; text-align: center; }
+.breadcrumbs.s2 {margin-top: 15px; text-align: center; width: 100%; }
+.breadcrumbs.s2 li {float: none; display: inline-block; padding-bottom: 0; padding-top: 0; }
+.column {float: left; width: 100%; margin-bottom: 70px; }
+.column:last-child {margin-bottom: 0px; }
+.cartextras > a {float: right; margin: 0; }
+.cartlist {text-align: center; display: inline-block; position: relative; }
+.cartextras {margin-top: 0; }
+.delcart {position: absolute; left: 50%; top: 10px; background: #333333; width: 20px; height: 20px; padding: 0; -webkit-border-radius: 6px; -moz-border-radius: 6px; -ms-border-radius: 6px; -o-border-radius: 6px; border-radius: 6px; color: #ffffff; line-height: 20px; font-size: 11px; font-weight: bold; margin-left: -10px; }
+.cartthumb {float: left; width: 100%; text-align: center; }
+.cartthumb img {width: 120px; float: none; display: inline-block; }
+.cartlist h3 {float: left; width: 100%; text-align: center; padding: 0; margin-top: 22px; }
+.cartlistinfo {float: none; display: inline-block; padding: 0; margin: 0; margin-top: 0px; margin-bottom: 0px; margin-top: 22px; margin-bottom: 20px; }
+.cartlistinfo > span {padding: 0 26px !important; }
+.innertitle {text-align: center; }
+.breadcrumbs {float: left; width: 100%; text-align: center; margin-top: 10px; }
+.breadcrumbs li {float: none; display: inline-block; padding: 0 13px; }
+.listingform form .fieldbtn {width: auto; float: right; margin: 0; }
+.howwork {margin-bottom: 30px; }
+.listingform.s2 .fieldbtn {float: left; width: 100%; }
+.boxthis {padding-left: 15px; padding-right: 15px; }
+.fcsec.widely .fc {float: left; width: 100%; height: 80px; }
+.fcsec.widely .fc:hover {height: 80px; margin: 0; padding-top: 5px; }
+.fcsec.widely .fc:hover strong {top: 45px; }
+.ml-listings {padding-left: 95px !important; }
+.ml-filterslide.openall .scrollWrap {margin-left: -18px; }
+.slhead.overlape {margin: 0; }
+.sltitle.light > h1 {color: #121212; }
+.sltitle.light span {color: #8d8d8d; float: none; display: inline-block; }
+.slbtnsspans.light .listmetas {float: left; width: 100%; }
+.slbtnsspans.light .listmetas > li {float: none; display: inline-block; color: #8d8d8d; border-color: #cdcdcd; }
+.slbtnsspans.light .listmetas li a {color: #8d8d8d; }
+.slbtnsspans.light .listmetas > li .currency {float: left; position: relative; margin: 0; top: 9px; }
+.slbtnsspans.light .slbtns > a, .slbtnsspans.light .slbtns .sharelisting > a {border-color: #28b8dc; color: #28b8dc; }
+.slbtnsspans.light .slbtns > a:hover, .slbtnsspans.light .slbtns .sharelisting > a:hover {color: #fff; }
+
+}
+
+@media (max-width:767px){
+.iamuser {display: inline-block; text-align: center; float: left; width: 100%; }
+.menubarsec a {margin: 7px 10px; }
+.userimg {float: none; display: inline-block; }
+.userinfos {float: left; width: 100%; padding: 0; text-align: center; margin-top: 20px; }
+.userinfos span {float: left; width: 100%; }
+.iamuserstats {float: left; width: 100%; }
+.hprices {float: left; width: 100%; text-align: center; }
+.hprices > span {float: none; display: inline-block; }
+.listingnav {float: left; width: 100%; text-align: center; padding-top: 10px; }
+.watchvideo {float: left; width: 100%; text-align: center; }
+.watchvideo a {float: none; display: inline-block; margin-bottom: 20px; }
+.listingnav a {margin: 0 14px; float: none; display: inline-block; padding: 13px 0; }
+.customdrops {width: 100%; }
+.ml-listings {padding-left: 95px !important; }
+.ml-listings.godouble .ml-placessec .row > div {float: left; width: 100%; max-width: 100%; }
+.listingsf > h3 {font-size: 30px; }
+.listingform.s3 .fieldform {float: left; width: 100%; padding: 0; }
+.listingform.s3 .fieldform .dd-container {float: left; width: 100% !important; }
+.listingform.s3 .fieldform .dd-container .dd-select {width: 100% !important; }
+.listingform.s3 .fieldform .dd-container .dd-options {width: 100% !important; }
+.listingform.s3 > form {float: left; width: 100%; }
+.scrollup {right: 20px; bottom: 50px; top: auto; }
+.accounttabs {width: 94%; margin-left: 3%; left: 0; }
+.closepopup {right: 0; top: -50px; }
+.tabletime table {width: 760px; }
+.tabletime {overflow-x: scroll; }
+.sgallery {float: left; margin-bottom: 16px; }
+.footersec > ul li {margin: 6px 0; }
+.cartextras > form input {padding: 10px 20px; height: auto; width: auto; }
+.cartextras > form button {padding: 11px 20px; }
+.cartextras > a {padding: 11px 20px; }
+.listingform form > div {float: left; width: 100%; }
+.listingform form > div #myDropdowns {float: left; width: 100% !important; }
+.listingform form > div #myDropdowns .dd-select {float: left; width: 100% !important; padding-left: 33px; padding-right: 33px; }
+.fieldform > i {right: 20px; }
+.listingform form .fieldbtn {float: left; width: 100%; padding: 0; }
+.dd-container {width: 100% !important; }
+.dd-select {width: 100% !important; }
+.dd-options {width: 100% !important; }
+.listingform {padding: 10px; }
+.cities {width: 50%; margin: 0; margin-bottom: 0px; margin-bottom: 2px; -webkit-transform: scale(1) !important; -moz-transform: scale(1) !important; -ms-transform: scale(1) !important; -o-transform: scale(1) !important; transform: scale(1) !important; }
+.bottomline.s2 span {float: left; width: 100%; }
+.bottomline.s2 .social {float: left; width: 100%; margin-top: -25px; }
+.extratips li {padding: 0px 20px; margin: 8px 0; }
+.bottomline.s2.minimal .social {margin-top: 0; }
+.mlfilter-sec.withlayer {width: 100%; }
+.amenties span {float: left; width: 50%; }
+.reviewssec {display: inline-block; text-align: center; }
+.reviewthumb {display: inline-block; }
+.reviewinfo {display: inline-block; padding: 0; margin-top: 20px; }
+.listmetas.justrate {position: static; float: left; width: 100%; text-align: center; }
+.listmetas.justrate li {float: none; display: inline-block; margin: 10px 0; }
+.wasreview > span {float: left; width: 100%; }
+.wasreviewbtn a {float: left; width: 100%; margin-bottom: 10px; margin-left: 0; }
+.reviewaction a {float: none; display: inline-block; }
+.rgallery a {float: none; display: inline-block; margin-right: 0; }
+.rgallery a img {max-width: 100%; }
+.wasreviewbtn {width: 100%; }
+.orderinfo li {float: left; width: 100%; margin-bottom: 20px; }
+.shipingtotal.order-details {padding: 30px 30px; }
+.favinfos p {padding: 0; }
+.favourites {display: inline-block; text-align: center; }
+.favthumb {display: inline-block; float: left; width: 100%; }
+.favinfos {float: left; width: 100%; padding: 30px 20px; }
+.mlistingdash .places.makelist > .placethumb {float: left; width: 100%; display: inline-block; }
+.mlistingdash .places.s2.makelist .boxplaces {display: inline-block; }
+.notificationlist a {position: static; float: left; width: 100%; margin-top: 10px; }
+
+}
+
+@media (max-width:520px){
+.iamuserstats {text-align: center; }
+.iamuserstats > span {float: none; display: inline-block; margin: 0; padding: 0 10px; }
+.iamuserstats a {float: left; width: 100%; margin-top: 20px; }
+.listingcomment {padding: 25px 20px; }
+.amenties span {float: left; width: 100%; }
+.bbox {padding: 25px 20px; }
+.bbox > h3 {font-size: 15px; }
+.slbtns > a, .sharelisting > a {padding: 13px 10px; font-size: 14px; width: 100%; margin-bottom: 10px; margin-left: 0; }
+.sharelisting {float: left; width: 100%; }
+.customdropdown {margin-bottom: 17px; }
+.customdropdown.active {z-index: 1; }
+.footersec .social a {margin: 6px 6px; }
+.scrollup {bottom: 71px; }
+.sgallery {float: left; width: 100%; }
+.rnaver {width: 300px; padding-top: 23px; }
+.rnaver > .logo {float: left; width: 100%; text-align: center; margin-left: 0; }
+.rnaver > .logo a {float: left; width: 100%; text-align: center; }
+.rnaver > .logo a img {float: none; } .rnaver .extras {float: left; width: 100%; text-align: center; margin-top: 0; }
+.rnaver .extras a {float: left; width: 100%; text-align: center; }
+.rnaver .extras a img {float: none; position: relative; top: 3px; }
+.closeresmenu {float: left; width: 100%; position: static; text-align: center; padding: 0; }
+.closeresmenu i {float: none; }
+.rnaver > ul > li > a {padding-left: 57px; }
+.rnaver > ul > li > a::before {left: 28px; width: 17px; }
+.rnaver > ul > li > a::after {left: 36px; height: 16px; top: 19px; }
+.rnaver > ul > li.menu-item-has-children > ul {padding-left: 56px; }
+.rheader {padding: 0 60px; }
+.rheader > span img {width: 28px; position: relative; right: 11px; }
+.rheader .logo img {width: 127px; }
+.rheader .extras span i {font-size: 20px; }
+.rheader .extras {padding-right: 19px; }
+.slisting {width: 50%; margin-bottom: 24px; }
+.pbox {padding: 30px; }
+.comment {display: inline-block; text-align: center; }
+.cavatar {display: inline-block; text-align: center; padding: 0; }
+.commentinfo {display: inline-block; float: left; width: 100%; padding: 0; margin-top: 10px; }
+.commentinfo a {float: none; display: inline-block; }
+.shipingtotal {padding: 40px 20px; }
+.cartextras > form input {float: left; width: 100%; padding: 16px 20px; }
+.cartextras > form button {float: left; width: 100%; margin: 0; margin-top: 0px; padding: 16px 0; margin-top: 12px; }
+.cartextras > a {float: left; width: 100%; text-align: center; padding: 16px 0; margin-top: 14px; }
+.cartextras > form {width: 100%; }
+.contact-map > a {padding: 12px 25px; margin-right: 10px; }
+.listingsf > h3 {font-size: 28px; }
+.formcat span {float: left; width: 100%; }
+.formcat a {margin-top: 7px; }
+.cattitle h3 {font-size: 17px; }
+.cattitle span {font-size: 13px; }
+.cattitle {padding: 20px 20px; }
+.heading h2 {font-size: 22px; letter-spacing: -1px; }
+.boxthis {padding-left: 10px; padding-right: 10px; }
+.tes-for.s2 p {padding-left: 50px; padding-right: 50px; padding-top: 50px; padding-bottom: 50px; }
+.mfilterform.forresponsive form > .row > div {width: 100%; max-width: 100%; flex: 100%; }
+.places.makelist {display: inline-block; }
+.places.makelist > .placethumb {width: 100%; }
+.dishlist {display: inline-block; }
+.dishlisthumb {display: inline-block; float: left; width: 100%; }
+.dishlistinfo {display: inline-block; float: left; width: 100%; padding: 0; margin-top: 20px; }
+.tabs {width: 50px; }
+.extrainput > span {margin-right: 20px; float: left; width: 50%; }
+.extrainput .quantity {float: right; }
+.extrainput > a {float: left; width: 100%; margin: 0; margin-top: 0px; text-align: center; margin-top: 10px; }
+.extrainput {padding-left: 10px; }
+.cities-title {padding: 20px 20px; }
+.ml-placessec .listmetas li {float: left; width: 100%; border: none; padding: 5px 0 !important; margin: 0; }
+.ml-placessec .placedetails span {float: left; width: 100%; padding: 3px 0; }
+.ml-placessec .placedetails span i {font-size: 15px; }
+.ml-placessec .placedetails {padding: 10px 20px; }
+.mlfilter-sec {width: 100% !important; }
+
+
+
+
+}

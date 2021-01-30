@@ -15,8 +15,6 @@
 .idea/
 venv/
 env/
-static/
-staticfiles/
 
 __pycache__/*
 
