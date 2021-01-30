@@ -72,10 +72,12 @@ def SignupView(request):
         user.set_password(password)
         user.is_active = True
         user.save()
-        update_profile.apply_async(
-            [user.id, phone_number, address, country, u_state],
-            eta=now() + timedelta(seconds=3),
-        )
+        # update_profile.apply_async(
+        #     [user.id, phone_number, address, country, u_state],
+        #     eta=now() + timedelta(seconds=3),
+        # )
+        update_profile(user.id, phone_number, address, country, u_state)
+
         # adding a small delay or else the task is unable to access the user record simultaneously
         if user:
             if user.is_active:
