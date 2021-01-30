@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 
 @app.task(name="update_user_profile")
 def update_profile(user_id, phone_number, address, country, u_state):
+    print("entered", user_id)
     user = User.objects.get(id=user_id)
     profile, _ = Profile.objects.get_or_create(user=user)
     profile.phone_number = phone_number
