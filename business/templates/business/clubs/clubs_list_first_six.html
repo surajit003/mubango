@@ -14,15 +14,15 @@
                                 <div class="col-lg-4">
                                     <div class="category">
                                         {% with default_image=STATIC_URL|add:"/mb/static/images/default.png" %}
-                                            <img src="{{ obj.get_thumbnail|default:default_image }}" alt=""/>
+                                            <a href="{{ obj.get_absolute_url }}"><img src="{{ obj.get_thumbnail|default:default_image }}" alt=""/></a>
                                         {% endwith %}
 
                                         <div class="cattitle">
                                             <h3><a href="{{ obj.get_absolute_url }}" title="">{{ obj.name }}</a></h3>
-                                            <span>{{ obj.rating }}</span>
                                         </div>
                                         <i class="flaticon-hotel color3"></i>
                                     </div><!-- Category -->
+                                        <a href="{{ obj.get_absolute_url }}" style="font-size: large">{{ obj.name|title }}</a>
                                 </div>
                             {% endfor %}
                         </div>
