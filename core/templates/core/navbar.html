@@ -142,6 +142,11 @@
 						</ul>
 					</li>
                 {% endif %}
+                {% if user.is_superuser %}
+                <li class="menu-item-has-children">
+						<a href="/mb/admin/">Admin</a>
+					</li>
+                {% endif %}
 
 				</ul>
 			</nav>
