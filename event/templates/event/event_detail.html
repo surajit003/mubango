@@ -170,9 +170,22 @@
             </div>
         </div>
     </section>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCC0wYfBETVlXyjOqv0WtV6kTvQ-LUi3yU&callback=initMap&callback=initMap"></script>
+
 
     <script type="text/javascript">
+     function initMap() {
+            const address = {lat: {{ object.get_latitude }}, lng: {{ object.get_longitude }}};
+            // The map, centered at Uluru
+            const map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 4,
+                center: address,
+            });
+            // The marker, positioned at Uluru
+            const marker = new google.maps.Marker({
+                position: address,
+                map: map,
+            });
+        }
         var disqus_config = function () {
             this.page.url = '{{ request.build_absolute_uri }}.html'
             console.log('kkdkd', this.page.url);
@@ -189,4 +202,6 @@
 
 
     </script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCC0wYfBETVlXyjOqv0WtV6kTvQ-LUi3yU&callback=initMap&callback=initMap"></script>
+
 {% endblock content %}
