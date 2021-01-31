@@ -1,0 +1,32 @@
+<section>
+    <div class="block gray">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="heading">
+                        <h2>Upcoming Event</h2>
+                    </div><!-- Heading -->
+                    <div class="catsec">
+                        <div class="row" id="masonry">
+                            {% for obj in event_featured_list %}
+                                <div class="col-lg-4">
+                                    <div class="category">
+                                        {% with default_image=STATIC_URL|add:"/mb/static/images/default.png" %}
+                                            <a href="{{ obj.get_absolute_url }}"><img
+                                                    src="{{ obj.get_thumbnail|default:default_image }}" alt=""/></a>
+                                        {% endwith %}
+                                        <div class="cattitle">
+                                            <h3><a href="{{ obj.get_absolute_url }}" title="">{{ obj.name }}</a></h3>
+                                        </div>
+                                        <a href="{{ obj.get_absolute_url }}"
+                                           style="font-size: large">{{ obj.name|title }}</a>
+                                    </div><!-- Category -->
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div><!-- Cat Sec -->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

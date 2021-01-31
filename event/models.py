@@ -21,7 +21,7 @@ class EventManager(models.Manager):
         return (
             self.get_queryset()
             .filter(
-                location__locality__state__name__icontains=state,
+                location__locality__state__name__startswith=state,
                 to_be_held_on__date__gte=datetime.date.today(),
             )
             .order_by("to_be_held_on")
