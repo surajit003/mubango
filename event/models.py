@@ -80,7 +80,7 @@ class Event(models.Model):
     event_manager = EventManager()  # The useroffer manager.
 
     def __str__(self):
-        return "{} {}".format(self.name, self.genre)
+        return "{}".format(self.name)
 
     def as_dict(self):
         return {
