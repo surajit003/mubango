@@ -15,8 +15,9 @@
                                             <a href="{{ obj.get_absolute_url }}"><img
                                                     src="{{ obj.get_thumbnail|default:default_image }}" alt=""/></a>
                                         {% endwith %}
-                                        <a href="{{ obj.get_absolute_url }}"
-                                           style="font-size: large">{{ obj.name|title }}</a>
+                                          <div class="cattitle">
+                                            <h3><a href="{{ obj.get_absolute_url }}" title="">{{ obj.name|title  }}</a></h3>
+                                        </div>
                                     </div><!-- Category -->
                                 </div>
                             {% endfor %}
