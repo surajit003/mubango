@@ -1,0 +1,81 @@
+{% extends 'core/base.html' %}
+{% block content %}
+    <section>
+        <div class="block gray less-top less-bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="innertitle">
+                            <h2>Offers</h2>
+                            <span>Listing all Offers</span>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <ul class="breadcrumbs">
+                            <li><a href="#" title="">Home</a></li>
+                            <li><a href="#" title="">Offer</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="block">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="fcsec">
+                            <div class="row">
+                                {% for obj in offer_list %}
+                                    <div class="col-lg-3 col-md-4 col-sm-6">
+                                        <div class="fc s2">
+                                           {% with default_image=STATIC_URL|add:"/mb/static/images/list_default.png" %}
+                                            <img src="{{ obj.get_thumbnail|default:default_image }}" alt=""/>
+                                            <a href="{{ obj.get_absolute_url }}" title="">{{ obj.title }} <i class="flaticon-wine-glass"></i></a>
+                                             {% endwith %}
+                                        </div>
+                                    </div><!-- Featured Category -->
+
+                                {% endfor %}
+                            </div>
+                        </div>
+                        {% if is_paginated %}
+                            <div class="pagination">
+                                <ul >
+
+                                    {% if page_obj.has_previous %}
+                                        <li class="page-item">
+                                            <a class="page-link" href="?page={{ page_obj.previous_page_number }}"
+                                               aria-label="Previous">
+                                                <span aria-hidden="true">&laquo;</span>
+                                                <span class="sr-only">Previous</span>
+                                            </a>
+                                        </li>
+                                    {% endif %}
+
+                                    <li class="page-item active">
+                                        <a class="page-link" href="?page={{ page_obj.number }}">{{ page_obj.number }}
+                                            <span class="sr-only">(current)</span>
+                                        </a>
+                                    </li>
+
+                                    {% if page_obj.has_next %}
+                                        <li class="page-item">
+                                            <a class="page-link" href="?page={{ page_obj.next_page_number }}"
+                                               aria-label="Next">
+                                                <span aria-hidden="true">&raquo;</span>
+                                                <span class="sr-only">Next</span>
+                                            </a>
+                                        </li>
+                                    {% endif %}
+                                </ul>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}

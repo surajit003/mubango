@@ -13,4 +13,9 @@ urlpatterns = [
         views.OfferDetailView.as_view(),
         name="offer_detail",
     ),
+    url(
+        r"^all/(?P<state>[\w|\W]+)/$",
+        views.OfferListView.as_view(),
+        name="get_all_offers",
+    ),
 ]

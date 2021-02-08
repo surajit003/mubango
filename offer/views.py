@@ -31,3 +31,15 @@ class OfferDetailView(DetailView):
             offer__slug=self.kwargs.get("slug"), img_category="top_slideshow"
         )
         return context
+
+
+class OfferListView(ListView):
+    paginate_by = 16
+    model = Offer
+    template_name = "offer/offer_list.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(OfferListView, self).get_context_data(**kwargs)
+        offer_list = Offer.offer_manager.upcoming_offers(self.kwargs.get("state"))
+        context["offer_list"] = offer_list
+        return context

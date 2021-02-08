@@ -8,6 +8,7 @@ from common.models import DateModel, Social
 from .utils import calculate_distance
 from address.models import AddressField
 from django.urls import reverse
+import datetime  # important if using timezones
 
 # Create your models here.
 class OfferManager(models.Manager):
@@ -38,6 +39,13 @@ class OfferManager(models.Manager):
                 )
             )
         return list(distance_user_offer.items())[:5]
+
+    def upcoming_offers(self, state):
+        # includes special and non special offers
+        return self.get_queryset().filter(
+            location__locality__state__name__startswith=state,
+            end_date__date__gte=datetime.date.today(),
+        )
 
 
 class Offer(models.Model):
