@@ -18,10 +18,11 @@ class EventManager(models.Manager):
 
     def upcoming_events(self, state):
         # includes special and non special events
+        print("s", self.get_queryset(), state)
         return (
             self.get_queryset()
             .filter(
-                location__locality__state__name__startswith=state,
+                location__locality__state__name__istartswith=state,
                 to_be_held_on__date__gte=datetime.date.today(),
             )
             .order_by("to_be_held_on")
