@@ -18,11 +18,10 @@
                                         {% endwith %}
 
                                         <div class="cattitle">
-                                            <h3><a href="{{ obj.get_absolute_url }}" title="">{{ obj.name }}</a></h3>
+                                            <h3><a href="{{ obj.get_absolute_url }}" title="">{{ obj.name|title  }}</a></h3>
                                         </div>
                                         <i class="flaticon-hotel color3"></i>
                                     </div><!-- Category -->
-                                        <a href="{{ obj.get_absolute_url }}" style="font-size: large">{{ obj.name|title }}</a>
                                 </div>
                             {% endfor %}
                         </div>
