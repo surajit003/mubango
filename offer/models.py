@@ -81,6 +81,12 @@ class Offer(models.Model):
         thumbnail = offer_image.image.url
         return thumbnail
 
+    def get_latitude(self):
+        return self.location.as_dict()["latitude"]
+
+    def get_longitude(self):
+        return self.location.as_dict()["longitude"]
+
     class Meta:
         unique_together = ("business", "title")
         verbose_name_plural = "Offers"
