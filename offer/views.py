@@ -36,7 +36,7 @@ class OfferDetailView(DetailView):
 class OfferListView(ListView):
     paginate_by = 16
     model = Offer
-    template_name = "offer/offer_list.html"
+    template_name = "offer/offer_featured_list.html"
 
     def get_context_data(self, **kwargs):
         context = super(OfferListView, self).get_context_data(**kwargs)

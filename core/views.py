@@ -4,8 +4,8 @@ from event.models import Event
 from account.models import Profile
 from account.context_processor import get_user_state_and_profile_id
 
-
 # Create your views here.
+from offer.models import Offer
 
 
 def Index(request):
@@ -21,6 +21,9 @@ def Index(request):
             event_featured_list = Event.event_manager.upcoming_events(
                 profile.get_state()
             )
+            offer_featured_list = Offer.offer_manager.upcoming_offers(
+                profile.get_state()
+            )
             return render(
                 request,
                 "core/index.html",
@@ -28,6 +31,7 @@ def Index(request):
                     "clubs_featured": clubs_featured,
                     "club_currently_hot_list": club_currently_hot_list,
                     "event_featured_list": event_featured_list,
+                    "offer_featured_list": offer_featured_list,
                     "club_list_six_header": "Featured Clubs in your Area",
                 },
             )
@@ -42,6 +46,9 @@ def Index(request):
             event_featured_list = Event.event_manager.upcoming_events(
                 state["user_state"]
             )
+            offer_featured_list = Offer.offer_manager.upcoming_offers(
+                state["user_state"]
+            )
 
             return render(
                 request,
@@ -53,5 +60,6 @@ def Index(request):
                     "club_list_six_header": "Featured Clubs in {}".format(
                         state["user_state"]
                     ),
+                    "offer_featured_list": offer_featured_list,
                 },
             )
