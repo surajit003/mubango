@@ -35,7 +35,7 @@
             <li class="menu-item-has-children">
                 <a href="" title="">Offers</a>
                 <ul>
-                    <li><a href="user-dashboard.html" title="">View Offers</a></li>
+                    <li><a href="{% url 'offer:get_all_offers' state=user_state %}" title="">View Offers</a></li>
 
                 </ul>
             </li>
@@ -87,7 +87,7 @@
             <li class="menu-item-has-children">
                 <a href="" title="">Offers</a>
                 <ul>
-                    <li><a href="user-dashboard.html" title="">View Offers</a></li>
+                    <li><a href="{% url 'offer:get_all_offers' state=user_state %}" title="">View Offers</a></li>
 
                 </ul>
             </li>
