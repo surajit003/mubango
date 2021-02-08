@@ -1,153 +1,110 @@
 {% load static %}
 <div class="responsiveheader">
-		<div class="rheader">
-			<span><img src="{% static 'images/ricon.png' %}" alt="" /></span>
-			<div class="logo">
-				<a href="#" title=""><img src="http://placehold.it/164x37" alt="" /></a>
-			</div>
-			<div class="extras">
-				<span class="accountbtn"><i class="flaticon-avatar"></i></span>
-			</div>
-		</div>
-		<div class="rnaver">
-			<span class="closeresmenu"><i>x</i>Close</span>
-			<div class="logo"><a href="#" title=""><img src="http://placehold.it/175x40" alt="" /></a></div>
-			<div class="extras">
-{#				<a href="add-listing.html" title=""><img src="{% static 'images/icon1.png' %}" alt="" /> Add Listing</a>#}
-			</div>
-			<ul>
-				<li class="menu-item-has-children">
-					<a href="{% url 'core:home' %}" title="">Home</a>
-					<ul>
-						<li><a href="index.html" title="">Home 1</a></li>
-						<li><a href="index2.html" title="">Home 2</a></li>
-						<li><a href="index3.html" title="">Home 3</a></li>
-						<li><a href="index4.html" title="">Home 4</a></li>
-						<li><a href="index5.html" title="">Home 5</a></li>
-					</ul>
-				</li>
-				<li class="menu-item-has-children">
-					<a href="{% url 'business:get_all_clubs' state=user_state%}" title="">Clubs</a>
-					<ul>
-						<li><a href="add-listing.html" title="">Add Listing</a></li>
-						<li><a href="listing-category.html" title="">Listing Category</a></li>
-						<li><a href="listing-category2.html" title="">Listing Category 2</a></li>
-						<li><a href="listing-full.html" title="">Listing Full</a></li>
-						<li><a href="listing-map.html" title="">Listing Map</a></li>
-						<li><a href="listing-map2.html" title="">Listing Map 2</a></li>
-						<li><a href="listing-sidebar.html" title="">Listing Sidebar</a></li>
-					</ul>
-				</li>
-				<li class="menu-item-has-children">
-					<a href="{% url 'event:get_all_events' state=user_state %}" title="">Events</a>
-					<ul>
-						<li><a href="listing-single1.html" title="">Listing Details 1</a></li>
-						<li><a href="listing-single2.html" title="">Listing Details 2</a></li>
-						<li><a href="listing-single3.html" title="">Listing Details 3</a></li>
-						<li><a href="listing-single4.html" title="">Listing Details 4</a></li>
-						<li><a href="listing-single5.html" title="">Listing Details 5</a></li>
-					</ul>
-				</li>
-				<li class="menu-item-has-children">
-					<a href="#" title="">Offers</a>
-					<ul>
-						<li><a href="user-dashboard.html" title="">User Dashboard</a></li>
-						<li><a href="user-favourite.html" title="">User Favourites</a></li>
-						<li><a href="user-my-listings.html" title="">User Listing</a></li>
-						<li><a href="user-notification.html" title="">User Notifications</a></li>
-						<li><a href="user-profile.html" title="">User Profile</a></li>
-						<li><a href="user-review.html" title="">User Review</a></li>
-					</ul>
-				</li>
-                {% if user.is_authenticated %}
-                <li class="menu-item-has-children">
-						<a href="#" title="">Account</a>
-						<ul>
-							<li><a href="{% url 'account:profile_detail' profile_id %}" title="">User Dashboard</a></li>
-							<li><a href="user-favourite.html" title="">User Favourites</a></li>
-							<li><a href="user-my-listings.html" title="">User Listing</a></li>
-							<li><a href="user-notification.html" title="">User Notifications</a></li>
-							<li><a href="user-profile.html" title="">User Profile</a></li>
-							<li><a href="user-review.html" title="">User Review</a></li>
-						</ul>
-					</li>
-                {% endif %}
+    <div class="rheader">
+        <span><img src="{% static 'images/ricon.png' %}" alt=""/></span>
+        <div class="logo">
+            <a href="#" title=""><img src="http://placehold.it/164x37" alt=""/></a>
+        </div>
+        <div class="extras">
+            <span class="accountbtn"><i class="flaticon-avatar"></i></span>
+        </div>
+    </div>
+    <div class="rnaver">
+        <span class="closeresmenu"><i>x</i>Close</span>
+        <div class="logo"><a href="#" title=""><img src="http://placehold.it/175x40" alt=""/></a></div>
+        <div class="extras">
+        </div>
+        <ul>
+            <li class="menu-item-has-children">
+                <a href="{% url 'core:home' %}" title="">Home</a>
+            </li>
+            <li class="menu-item-has-children">
+                <a href="{% url 'business:get_all_clubs' state=user_state %}" title="">Clubs</a>
+                <ul>
+                    <li><a href="{% url 'business:get_all_clubs' state=user_state %}" title="">View Clubs</a></li>
 
-			</ul>
-		</div>
-	</div><!-- Responsive header -->
+                </ul>
+            </li>
+            <li class="menu-item-has-children">
+                <a href="{% url 'event:get_all_events' state=user_state %}" title="">Events</a>
+                <ul>
+                    <li><a href="{% url 'event:get_all_events' state=user_state %}" title="">View Events</a></li>
 
-	<header class="sticktop">
-		<div class="logo">
-			<a href="#" title=""><img src="http://placehold.it/164x37" alt="" /></a>
-		</div>
-		<div class="extras">
-{#			<a href="add-listing.html" title=""><img src="{% static 'images/ricon.png' %}" alt="" /> Add Listing</a>#}
-			<span class="accountbtn"><i class="flaticon-avatar"></i></span>
-		</div>
-		<nav>
-				<ul>
-					<li class="menu-item-has-children">
-						<a href="{% url 'core:home' %}" title="">Home</a>
-						<ul>
-							<li><a href="index.html" title="">Home 1</a></li>
-							<li><a href="index2.html" title="">Home 2</a></li>
-							<li><a href="index3.html" title="">Home 3</a></li>
-							<li><a href="index4.html" title="">Home 4</a></li>
-							<li><a href="index5.html" title="">Home 5</a></li>
-						</ul>
-					</li>
-					<li class="menu-item-has-children">
-					<a href="{% url 'business:get_all_clubs' state=user_state%}" title="">Clubs</a>
-						<ul>
-							<li><a href="add-listing.html" title="">Add Listing</a></li>
-							<li><a href="listing-category.html" title="">Listing Category</a></li>
-							<li><a href="listing-category2.html" title="">Listing Category 2</a></li>
-							<li><a href="listing-full.html" title="">Listing Full</a></li>
-							<li><a href="listing-map.html" title="">Listing Map</a></li>
-							<li><a href="listing-map2.html" title="">Listing Map 2</a></li>
-							<li><a href="listing-sidebar.html" title="">Listing Sidebar</a></li>
-						</ul>
-					</li>
-					<li class="menu-item-has-children">
-					<a href="{% url 'event:get_all_events' state=user_state %}" title="">Events</a>
-						<ul>
-							<li><a href="listing-single1.html" title="">Listing Details 1</a></li>
-							<li><a href="listing-single2.html" title="">Listing Details 2</a></li>
-							<li><a href="listing-single3.html" title="">Listing Details 3</a></li>
-							<li><a href="listing-single4.html" title="">Listing Details 4</a></li>
-							<li><a href="listing-single5.html" title="">Listing Details 5</a></li>
-						</ul>
-					</li>
-					<li class="menu-item-has-children">
-						<a href="" title="">Offers</a>
-						<ul>
-							<li><a href="user-dashboard.html" title="">User Dashboard</a></li>
-							<li><a href="user-favourite.html" title="">User Favourites</a></li>
-							<li><a href="user-my-listings.html" title="">User Listing</a></li>
-							<li><a href="user-notification.html" title="">User Notifications</a></li>
-							<li><a href="user-profile.html" title="">User Profile</a></li>
-							<li><a href="user-review.html" title="">User Review</a></li>
-						</ul>
-					</li>
-                    {% if user.is_authenticated %}
-                <li class="menu-item-has-children">
-						<a href="#" title="">Account</a>
-						<ul>
-							<li><a href="{% url 'account:profile_detail' profile_id %}" title="">Profile</a></li>
-							<li><a href="user-favourite.html" title="">User Favourites</a></li>
-							<li><a href="user-my-listings.html" title="">User Listing</a></li>
-							<li><a href="user-notification.html" title="">User Notifications</a></li>
-							<li><a href="user-review.html" title="">User Review</a></li>
-						</ul>
-					</li>
-                {% endif %}
-                {% if user.is_superuser %}
-                <li class="menu-item-has-children">
-						<a href="/mb/admin/">Admin</a>
-					</li>
-                {% endif %}
+                </ul>
+            </li>
+            <li class="menu-item-has-children">
+                <a href="" title="">Offers</a>
+                <ul>
+                    <li><a href="user-dashboard.html" title="">View Offers</a></li>
 
-				</ul>
-			</nav>
-	</header>
+                </ul>
+            </li>
+            {% if user.is_authenticated %}
+                <li class="menu-item-has-children">
+                    <a href="#" title="">Account</a>
+                    <ul>
+                        <li><a href="{% url 'account:profile_detail' profile_id %}" title="">Profile</a></li>
+                    </ul>
+                </li>
+            {% endif %}
+            {% if user.is_superuser %}
+                <li class="menu-item-has-children">
+                    <a href="/mb/admin/">Admin</a>
+                </li>
+            {% endif %}
+
+        </ul>
+    </div>
+</div><!-- Responsive header -->
+
+<header class="sticktop">
+    <div class="logo">
+        <a href="#" title=""><img src="http://placehold.it/164x37" alt=""/></a>
+    </div>
+    <div class="extras">
+        {#			<a href="add-listing.html" title=""><img src="{% static 'images/ricon.png' %}" alt="" /> Add Listing</a>#}
+        <span class="accountbtn"><i class="flaticon-avatar"></i></span>
+    </div>
+    <nav>
+        <ul>
+            <li class="menu-item-has-children">
+                <a href="{% url 'core:home' %}" title="">Home</a>
+            </li>
+            <li class="menu-item-has-children">
+                <a href="{% url 'business:get_all_clubs' state=user_state %}" title="">Clubs</a>
+                <ul>
+                    <li><a href="{% url 'business:get_all_clubs' state=user_state %}" title="">View Clubs</a></li>
+
+                </ul>
+            </li>
+            <li class="menu-item-has-children">
+                <a href="{% url 'event:get_all_events' state=user_state %}" title="">Events</a>
+                <ul>
+                    <li><a href="{% url 'event:get_all_events' state=user_state %}" title="">View Events</a></li>
+
+                </ul>
+            </li>
+            <li class="menu-item-has-children">
+                <a href="" title="">Offers</a>
+                <ul>
+                    <li><a href="user-dashboard.html" title="">View Offers</a></li>
+
+                </ul>
+            </li>
+            {% if user.is_authenticated %}
+                <li class="menu-item-has-children">
+                    <a href="#" title="">Account</a>
+                    <ul>
+                        <li><a href="{% url 'account:profile_detail' profile_id %}" title="">Profile</a></li>
+                    </ul>
+                </li>
+            {% endif %}
+            {% if user.is_superuser %}
+                <li class="menu-item-has-children">
+                    <a href="/mb/admin/">Admin</a>
+                </li>
+            {% endif %}
+
+        </ul>
+    </nav>
+</header>
