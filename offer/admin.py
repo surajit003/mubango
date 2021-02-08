@@ -9,6 +9,10 @@ class OfferImageInline(admin.StackedInline):
     model = models.OfferImage
 
 
+class OfferSocialInline(admin.StackedInline):
+    model = models.OfferSocial
+
+
 @admin.register(models.Offer)
 class OfferAdmin(admin.ModelAdmin):
     form = OfferForm
@@ -26,23 +30,9 @@ class OfferAdmin(admin.ModelAdmin):
         "code",
         "business",
     )
-    inlines = [OfferImageInline]
+    inlines = [OfferImageInline, OfferSocialInline]
 
     def get_business_name(self, obj):
         return obj.business.name
 
     get_business_name.short_description = "Business"
-
-
-@admin.register(models.UserOffer)
-class UserOffer(admin.ModelAdmin):
-    list_display = (
-        "id",
-        "offer",
-        "user",
-    )
-
-
-@admin.register(models.OfferSocial)
-class OfferSocialAdmin(admin.ModelAdmin):
-    list_display = ("offer", "social", "url", "active")
