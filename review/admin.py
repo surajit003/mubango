@@ -6,3 +6,12 @@ from . import models
 class ReviewAdmin(admin.ModelAdmin):
     list_display = ("business", "user", "experience")
     search_fields = ("user__username",)
+
+
+@admin.register(models.BusinessServiceRating)
+class BusinessServiceAdmin(admin.ModelAdmin):
+    list_display = (
+        "service",
+        "rating",
+        "business",
+    )
