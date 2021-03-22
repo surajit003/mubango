@@ -1,5 +1,6 @@
 from django.shortcuts import HttpResponse, render
-from .models import Business, BusinessServiceRating, BusinessImage, BusinessSocial
+from .models import Business, BusinessImage, BusinessSocial
+from review.models import BusinessServiceRating
 import json
 from django.views.generic import ListView, DetailView, CreateView
 

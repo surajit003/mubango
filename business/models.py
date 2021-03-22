@@ -146,18 +146,6 @@ class Business(DateModel):
         verbose_name_plural = "Businesses"
 
 
-class BusinessServiceRating(models.Model):
-    service = models.ForeignKey(Service, on_delete=models.CASCADE)
-    rating = models.IntegerField(
-        default=1, validators=[MaxValueValidator(5), MinValueValidator(1)]
-    )
-    business = models.ForeignKey(Business, on_delete=models.CASCADE)
-    active = models.BooleanField(default=True)
-
-    def __str__(self):
-        return "{} {} {}".format(self.service.name, self.business.name, self.rating)
-
-
 class VisitorCount(models.Model):
     """
     can be used to keep track of users visiting business e.g club for a specific date

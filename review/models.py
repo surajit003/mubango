@@ -1,5 +1,6 @@
+from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
-from business.models import Business
+from business.models import Business, Service
 from common.models import DateModel
 from django.contrib.auth.models import User
 
@@ -59,3 +60,16 @@ class Review(DateModel):
         elif star_rating == "*****":
             self.ratings = 5
         self.save()
+
+
+class BusinessServiceRating(models.Model):
+    service = models.ForeignKey(Service, on_delete=models.CASCADE)
+    rating = models.IntegerField(
+        default=1, validators=[MaxValueValidator(5), MinValueValidator(1)]
+    )
+    business = models.ForeignKey(Business, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.PROTECT)
+    active = models.BooleanField(default=True)
+
+    def __str__(self):
+        return "{} {} {}".format(self.service.name, self.business.name, self.rating)

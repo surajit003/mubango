@@ -1,5 +1,6 @@
 from django.contrib import admin
 from . import models
+from review.models import BusinessServiceRating
 
 # Register your models here.
 class ProductImagesInline(admin.StackedInline):
@@ -11,7 +12,7 @@ class SocialLink(admin.StackedInline):
 
 
 class BusinessServiceLink(admin.StackedInline):
-    model = models.BusinessServiceRating
+    model = BusinessServiceRating
 
 
 @admin.register(models.Business)
