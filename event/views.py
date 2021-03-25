@@ -65,4 +65,5 @@ class EventListByRegion(ListView):
 
     def get_queryset(self):
         qs = Event.event_manager.upcoming_events(self.kwargs.get("region"))
+        print("sq", qs)
         return qs

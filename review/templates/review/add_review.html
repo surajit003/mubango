@@ -1,7 +1,10 @@
 <div class="listingcomment">
     <div class="leavecomment">
         <h3>Rate us and Write a Review</h3>
-        <form method="POST" enctype="multipart/form-data">
+        <form method="POST" enctype="multipart/form-data" action="{% url 'review:save_review' %}">
+            <div id="review_status" style="color:green"></div>
+            {% csrf_token %}
+            <input type="hidden" id="business_slug" value="{{ request.resolver_match.kwargs.slug }}">
             <input placeholder="Title" type="text" id="experience">
             <textarea placeholder="Review" id="comment"></textarea>
             <div class="fieldformy">
@@ -11,7 +14,7 @@
             <input type="file" name="image_3">
             </div>
             <div class="fieldformy">
-            <input value="Submit Review" type="submit">
+            <input id='btn_review' value="Submit Review" type="submit">
             </div>
         </form>
     </div>

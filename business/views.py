@@ -1,8 +1,9 @@
 from django.shortcuts import HttpResponse, render
-from .models import Business, BusinessImage, BusinessSocial
-from review.models import BusinessServiceRating
+from .models import Business, BusinessSocial
+from review.models import BusinessServiceRating, Review
 import json
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import ListView, DetailView
+from django.views.generic.list import MultipleObjectMixin
 
 
 # Create your views here.
@@ -42,12 +43,19 @@ class ClubListView(ListView):
         return context
 
 
-class ClubDetailView(DetailView):
+class ClubDetailView(MultipleObjectMixin, DetailView):
     model = Business
     template_name = "business/clubs/club_detail.html"
+    paginate_by = 10
 
     def get_context_data(self, **kwargs):
-        context = super(ClubDetailView, self).get_context_data(**kwargs)
+        object_list = Review.objects.filter(business__slug=self.kwargs.get("slug"))
+        context = super(ClubDetailView, self).get_context_data(
+            object_list=object_list, **kwargs
+        )
+        context["review_count"] = Review.objects.filter(
+            business__slug=self.kwargs.get("slug")
+        ).count()
         amenities = BusinessServiceRating.objects.filter(
             business__slug=self.kwargs.get("slug")
         ).select_related("service")

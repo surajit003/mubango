@@ -36,7 +36,6 @@ class Review(DateModel):
 
     class Meta:
         verbose_name_plural = "Reviews"
-        unique_together = ("business", "user")
 
     def __str__(self):
         return "{} {} {}".format(self.id, self.user.username, self.business.name)
