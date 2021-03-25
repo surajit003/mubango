@@ -24,7 +24,7 @@ class ReviewManager(models.Manager):
 
 class Review(DateModel):
     business = models.ForeignKey(Business, on_delete=models.CASCADE)
-    comment = models.TextField()
+    comment = models.TextField(blank=True, null=True)
     experience = models.CharField(max_length=200)
     image_1 = models.ImageField(null=True, blank=True)
     image_2 = models.ImageField(null=True, blank=True)
