@@ -5,13 +5,13 @@
             <div id="review_status" style="color:green"></div>
             {% csrf_token %}
             <input type="hidden" id="business_slug" value="{{ request.resolver_match.kwargs.slug }}">
-            <input placeholder="Title" type="text" id="experience">
+            <input placeholder="Title" type="text" id="experience" required>
             <textarea placeholder="Review" id="comment"></textarea>
             <div class="fieldformy">
             <span>Add Images</span>
-            <input type="file" name="image_1">
-            <input type="file" name="image_2">
-            <input type="file" name="image_3">
+            <input type="file" id="image_1">
+            <input type="file" id="image_2">
+            <input type="file" id="image_3">
             </div>
             <div class="fieldformy">
             <input id='btn_review' value="Submit Review" type="submit">

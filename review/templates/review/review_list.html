@@ -8,12 +8,24 @@
 
                 <span>{{ review.comment }}</span>
                 <p>{{ review.experience }}</p>
+            <div class="rgallery">
+                {% if review.image_1 %}
+                    <a href="{{ review.image_1.url }}" title="">
+                        <img src="{{ review.image_1.url }}" alt=""></a>
+                {% endif %}
+                {% if review.image_2 %}
+                    <a href="{{ review.image_2.url }}" title="">
+                        <img src="{{ review.image_2.url }}" alt=""></a>
+                {% endif %}
+                {% if review.image_3 %}
+                    <a href="{{ review.image_3.url }}" title="">
+                        <img src="{{ review.image_3.url }}" alt=""></a>
+                {% endif %}
+            </div>
             </div>
         </div>
 
     {% endfor %}
-
-
 
 
 </div>
