@@ -23,21 +23,14 @@ class ReviewManager(models.Manager):
 
 
 class Review(DateModel):
-    level_of_experience = (
-        ("positive", "Positive"),
-        ("neutral", "Neutral"),
-        ("negative", "Negative"),
-    )
     business = models.ForeignKey(Business, on_delete=models.CASCADE)
     comment = models.TextField()
-    experience = models.CharField(
-        max_length=20, choices=level_of_experience, default="neutral"
-    )
-    ratings = models.IntegerField(default=1)
-    images = models.ImageField(null=True, blank=True)
+    experience = models.CharField(max_length=200)
+    image_1 = models.ImageField(null=True, blank=True)
+    image_2 = models.ImageField(null=True, blank=True)
+    image_3 = models.ImageField(null=True, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     moderated = models.BooleanField(default=False)
-
     objects = models.Manager()  # The default manager.
     review_manager = ReviewManager()  # The review manager.
 
@@ -47,19 +40,6 @@ class Review(DateModel):
 
     def __str__(self):
         return "{} {} {}".format(self.id, self.user.username, self.business.name)
-
-    def conv_star_to_rating(self, star_rating):
-        if star_rating == "*":
-            self.ratings = 1
-        elif star_rating == "**":
-            self.ratings = 2
-        elif star_rating == "***":
-            self.ratings = 3
-        elif star_rating == "****":
-            self.ratings = 4
-        elif star_rating == "*****":
-            self.ratings = 5
-        self.save()
 
 
 class BusinessServiceRating(models.Model):

@@ -55,7 +55,7 @@
                                                     {% endfor %}
                                                 </div>
                                             </div>
-{#                                            <a onclick="add_review()" title=""><i class="flaticon-note"></i>Add review</a>#}
+                                            {#                                            <a onclick="add_review()" title=""><i class="flaticon-note"></i>Add review</a>#}
                                         </div>
                                     </div>
                                 </div>
@@ -87,10 +87,11 @@
                                 {% endfor %}
                             </div>
                         </div>
-                    <div class="bbox" id="disqus">
-                        <div id="disqus_thread"></div>
-
-                    </div>
+                        <div class="bbox">
+                            <div>
+                                {% include 'review/add_review.html' %}
+                            </div>
+                        </div>
                         <div class="bbox">
                             <h3>Gallery</h3>
                             <ul class="gallerylistin">
@@ -143,20 +144,20 @@
             </div>
         </div>
     </section>
-        <script type="text/javascript">
-    var disqus_config = function () {
-                this.page.url = '{{ request.build_absolute_uri }}.html'
-                console.log('kkdkd',this.page.url);
-                this.page.identifier = '{{ request.build_absolute_uri }}.html'
-                this.page.title = '{{ object.name }}' + '_title';
-            };
+    <script type="text/javascript">
+        var disqus_config = function () {
+            this.page.url = '{{ request.build_absolute_uri }}.html'
+            console.log('kkdkd', this.page.url);
+            this.page.identifier = '{{ request.build_absolute_uri }}.html'
+            this.page.title = '{{ object.name }}' + '_title';
+        };
 
-            (function () { // DON'T EDIT BELOW THIS LINE
-                var d = document, s = d.createElement('script');
-                s.src = 'https://mubango-disqus-com.disqus.com/embed.js';
-                s.setAttribute('data-timestamp', +new Date());
-                (d.head || d.body).appendChild(s);
-            })();
+        (function () { // DON'T EDIT BELOW THIS LINE
+            var d = document, s = d.createElement('script');
+            s.src = 'https://mubango-disqus-com.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
 
         function initMap() {
             const address = {lat: {{ object.get_latitude }}, lng: {{ object.get_longitude }}};
