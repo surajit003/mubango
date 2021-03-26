@@ -92,10 +92,14 @@
                                 {% include 'review/review_list.html' %}
                             </div>
                         </div>
+
                         <div class="bbox">
+                            {% if user.is_authenticated%}
+
                             <div>
                                 {% include 'review/add_review.html' %}
                             </div>
+                            {% endif %}
                         </div>
                         <div class="bbox">
                             <h3>Gallery</h3>
