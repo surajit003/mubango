@@ -46,7 +46,7 @@ class ClubListView(ListView):
 class ClubDetailView(MultipleObjectMixin, DetailView):
     model = Business
     template_name = "business/clubs/club_detail.html"
-    paginate_by = 10
+    paginate_by = 5
 
     def get_context_data(self, **kwargs):
         object_list = Review.objects.filter(business__slug=self.kwargs.get("slug"))
