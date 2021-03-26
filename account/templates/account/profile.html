@@ -33,7 +33,7 @@
                     <div class="col-lg-3"></div>
                     <div class="col-lg-9">
                         <a href="#" title=""><i class="flaticon-heart">{{ object.get_follower_count }}</i>Followers</a>
-                        <a href="#" title=""><i class="flaticon-thumb-up"></i>Reviews</a>
+                        <a href="{% url 'review:user_review_list' %}" title=""><i class="flaticon-thumb-up"></i>Reviews</a>
                     </div>
                 </div>
             </div>
