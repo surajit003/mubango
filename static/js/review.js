@@ -50,3 +50,113 @@ function submit_review(formdata) {
     });
 
 }
+
+function add_service_rating(formdata) {
+    $.ajax({
+        type: "POST",
+        url: '/mb/review/service/rating/',
+        data: formdata,
+        contentType: false,
+        processData: false,
+        cache: false,
+        success: function (response) {
+            //if request if made successfully then the response represent the data
+
+        }
+    });
+
+}
+
+$('#food').on('change', function () {
+    business_slug = $('#business_slug').val()
+    rating = this.value;
+    csrf_token = $("input[name=csrfmiddlewaretoken]").val()
+    service_name = 'Food'
+
+    var formData = new FormData();
+    formData.append("rating", rating);
+    formData.append("service_name", service_name);
+    formData.append('csrfmiddlewaretoken', csrf_token)
+    formData.append('business_slug', business_slug)
+    add_service_rating(formData)
+});
+
+$('#amenities').on('change', function () {
+    business_slug = $('#business_slug').val()
+    rating = this.value;
+    csrf_token = $("input[name=csrfmiddlewaretoken]").val()
+    service_name = 'Amenities'
+
+    var formData = new FormData();
+    formData.append("rating", rating);
+    formData.append("service_name", service_name);
+    formData.append('csrfmiddlewaretoken', csrf_token)
+    formData.append('business_slug', business_slug)
+    add_service_rating(formData)
+});
+$('#pricing').on('change', function () {
+    business_slug = $('#business_slug').val()
+    rating = this.value;
+    csrf_token = $("input[name=csrfmiddlewaretoken]").val()
+    service_name = 'Pricing'
+
+    var formData = new FormData();
+    formData.append("rating", rating);
+    formData.append("service_name", service_name);
+    formData.append('csrfmiddlewaretoken', csrf_token)
+    formData.append('business_slug', business_slug)
+    add_service_rating(formData)
+});
+$('#parking').on('change', function () {
+    business_slug = $('#business_slug').val()
+    rating = this.value;
+    csrf_token = $("input[name=csrfmiddlewaretoken]").val()
+    service_name = 'Parking'
+
+    var formData = new FormData();
+    formData.append("rating", rating);
+    formData.append("service_name", service_name);
+    formData.append('csrfmiddlewaretoken', csrf_token)
+    formData.append('business_slug', business_slug)
+    add_service_rating(formData)
+});
+$('#music').on('change', function () {
+    business_slug = $('#business_slug').val()
+    rating = this.value;
+    csrf_token = $("input[name=csrfmiddlewaretoken]").val()
+    service_name = 'Music'
+
+    var formData = new FormData();
+    formData.append("rating", rating);
+    formData.append("service_name", service_name);
+    formData.append('csrfmiddlewaretoken', csrf_token)
+    formData.append('business_slug', business_slug)
+    add_service_rating(formData)
+});
+$('#security').on('change', function () {
+    business_slug = $('#business_slug').val()
+    rating = this.value;
+    csrf_token = $("input[name=csrfmiddlewaretoken]").val()
+    service_name = 'Security'
+
+    var formData = new FormData();
+    formData.append("rating", rating);
+    formData.append("service_name", service_name);
+    formData.append('csrfmiddlewaretoken', csrf_token)
+    formData.append('business_slug', business_slug)
+    add_service_rating(formData)
+});
+
+$('#service').on('change', function () {
+    business_slug = $('#business_slug').val()
+    rating = this.value;
+    csrf_token = $("input[name=csrfmiddlewaretoken]").val()
+    service_name = 'Service'
+
+    var formData = new FormData();
+    formData.append("rating", rating);
+    formData.append("service_name", service_name);
+    formData.append('csrfmiddlewaretoken', csrf_token)
+    formData.append('business_slug', business_slug)
+    add_service_rating(formData)
+});

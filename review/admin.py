@@ -14,4 +14,5 @@ class BusinessServiceAdmin(admin.ModelAdmin):
         "service",
         "rating",
         "business",
+        "user",
     )
