@@ -102,17 +102,15 @@ function validate_password(confirm_new_pass, new_pass) {
     }
 }
 
-function update_profile_request(profile_id, payload) {
+function update_profile_request(fd, profile_id) {
     $.ajax({
         type: "POST",
         url: '/mb/account/profile/' + profile_id + '/update/',
-        data: {
-            'csrfmiddlewaretoken': payload['csrfmiddlewaretoken'],
-            'email': payload['email'],
-            'first_name': payload['first_name'],
-            'last_name': payload['last_name'],
-            'phone_number': payload['phone_number'],
-        },
+        data: fd,
+        contentType: false,
+        processData: false,
+        cache: false,
+        enctype: 'multipart/form-data',
         success: function (response) {
             //if request if made successfully then the response represent the data
             if (response['status'] === 204) {
@@ -188,22 +186,16 @@ $('#update_profile').click(function (e) {
     phone = $('#profile_phone').val();
     email = $('#profile_email').val();
     profile_id = $('#profile_id').val();
-    profile_image = $('#profile_image')[0].files[0];
+    profile_image = document.getElementById('profile_image').files[0];
     var fd = new FormData();
-    fd.append('image', profile_image)
-
-    console.log(profile_image)
-
+    fd.append('profile_image', profile_image)
+    fd.append('first_name', first_name)
+    fd.append('last_name', last_name)
+    fd.append('email', email)
+    fd.append('phone_number', phone)
+    fd.append('csrfmiddlewaretoken', csrf_token)
     if (profile_id) {
-        payload = {
-            "first_name": first_name,
-            "last_name": last_name,
-            "email": email,
-            "phone_number": phone,
-            'csrfmiddlewaretoken': csrf_token,
-
-        }
-        update_profile_request(profile_id, payload)
+        update_profile_request(fd,profile_id)
 
     } else {
 
@@ -338,8 +330,7 @@ $('#update_password').click(function (e) {
 
             }
         });
-    }
-    else{
+    } else {
         $('#password_response').append('')
         document.getElementById('password_response').innerHTML = 'Passwords Dont Match'
     }
