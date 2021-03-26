@@ -1,0 +1,10 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block content %}
+    <section style="margin-top: 30px">
+    <form class="form-control" method="post">{% csrf_token %}
+        <p>Are you sure you want to delete "{{ object.experience }}"?</p>
+        <input type="submit" value="Confirm">
+    </form>
+    </section>
+{% endblock content %}

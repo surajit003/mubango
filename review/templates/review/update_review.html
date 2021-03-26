@@ -1,0 +1,51 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block content %}
+    <section style="margin-top: 20px">
+        <div class="pbox">
+            <div class="addlistingform">
+                <form method="post" action="{% url 'review:user_update' object.pk %}">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="fieldformy">
+                                <input type="hidden" name="business" value="{{ object.business.slug }}"/>
+                                <input type="hidden" name="user" value="{{ object.user }}">
+                                <span>Comment</span>
+                                <input type="text" name="experience" value="{{ object.experience }}">
+                            </div>
+                            <div class="fieldformy">
+                                <span>Experience</span>
+                                <input type="text" name="comment" value="{{ object.comment }}">
+                            </div>
+                            {% if object.image_1 %}
+                                <div class="fieldformy">
+                                    <span>ReviewImage1</span>
+                                    <img src="{{ object.image_1 }}"/>
+                                </div>
+                            {% endif %}
+                            {% if object.image_2 %}
+                                <div class="fieldformy">
+                                    <span>ReviewImage2</span>
+                                    <img src="{{ object.image_2 }}"/>
+                                </div>
+                            {% endif %}
+                            {% if object.image_3 %}
+                                <div class="fieldformy">
+                                    <span>ReviewImage3</span>
+                                    <img src="{{ object.image_3 }}"/>
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="formaction">
+                                <input class="btn btn-primary" type="submit" name="Update" value="Update">
+                                <a href="{% url 'review:review_delete' object.id %}" title="" class="cancelbtn">Cancel</a>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+{% endblock content %}

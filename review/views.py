@@ -1,6 +1,8 @@
 from django.http import JsonResponse
-from django.views.generic import ListView
+from django.shortcuts import redirect
+from django.views.generic import ListView, UpdateView, DeleteView
 
+from account.models import Profile
 from .models import Review, BusinessServiceRating, Service
 from business.models import Business
 
@@ -47,3 +49,65 @@ def add_service_rating(request):
         business_service_rating.save()
         data = {"status": 200, "response": "Review Saved Successfully"}
         return JsonResponse(data, safe=False)
+
+
+class ReviewList(ListView):
+    model = Review
+    template_name = "review/user_review_list.html"
+    paginate_by = 10
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(ReviewList, self).get_context_data(**kwargs)
+        context["profile"] = Profile.objects.get(user=self.request.user)
+        return context
+
+    def get_queryset(self):
+        return self.model.objects.filter(user=self.request.user)
+
+
+class ReviewUpdate(UpdateView):
+    model = Review
+    template_name = "review/update_review.html"
+    paginate_by = 10
+    fields = (
+        "comment",
+        "experience",
+        "user",
+        "business",
+    )
+
+    def form_valid(self, form):
+        review = form.save(commit=False)
+        business = Business.objects.get(slug=form.cleaned_data.get("business"))
+        review.business = business
+        review.save()
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(ReviewUpdate, self).get_context_data(**kwargs)
+        context["profile"] = Profile.objects.get(user=self.request.user)
+        return context
+
+    def get_success_url(self):
+        return redirect("review:user_review_list")
+
+    def dispatch(self, request, *args, **kwargs):
+        """ Making sure that only authors can update stories """
+        obj = self.get_object()
+        print("entered")
+        if obj.user != self.request.user:
+            print("entered here")
+            return redirect("review:user_review_list")
+        return super(ReviewUpdate, self).dispatch(request, *args, **kwargs)
+
+
+class ReviewDeleteView(DeleteView):
+    model = Review
+    template_name = "review/review_confirm_delete.html"
+    success_url = "/mb/review/all/"
+
+    def dispatch(self, request, *args, **kwargs):
+        """ Making sure that only authors can update stories """
+        obj = self.get_object()
+        if obj.user != self.request.user:
+            return redirect("review:user_review_list")
+        return super(ReviewDeleteView, self).dispatch(request, *args, **kwargs)

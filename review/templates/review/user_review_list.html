@@ -1,0 +1,63 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block content %}
+    <section style="margin-top: 20px">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="dashboradsec">
+                    <h3>Reviews</h3>
+                    {% for review in review_list %}
+                        <div class="pbox">
+                            <div class="reviewssec">
+                                <div class="reviewthumb"><img src="{{ profile.image.url }}"
+                                                              alt="{{ profile.image.url }}"></div>
+                                <div class="reviewinfo">
+                                    <h3>{{ review.user }} <i>You posted a review on <strong></strong></i></h3>
+                                    <span>{{ review.date_added }}</span>
+                                    <p>{{ review.experience }}</p>
+                                    <p>{{ review.comment }}</p>
+                                    <div class="reviewaction">
+                                        <a href="{% url 'review:user_update' review.pk %}" title=""><i class="flaticon-eraser"></i> Edit</a>
+                                        <a href="{% url 'review:review_delete' review.pk %}" title=""><i class="flaticon-dustbin"></i> Remove</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+    {% if is_paginated %}
+        <div class="pagination">
+            <ul>
+
+                {% if page_obj.has_previous %}
+                    <li class="page-item">
+                        <a style="background: #3ebfdf" href="?page={{ page_obj.previous_page_number }}"
+                           aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                    </li>
+                {% endif %}
+
+                <li class="page-item active">
+                    <a style="background: #3ebfdf" href="?page={{ page_obj.number }}">{{ page_obj.number }}
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+
+                {% if page_obj.has_next %}
+                    <li class="page-item">
+                        <a style="background: #3ebfdf" href="?page={{ page_obj.next_page_number }}"
+                           aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    {% endif %}
+{% endblock content %}
