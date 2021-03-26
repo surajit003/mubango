@@ -2,9 +2,18 @@
 {% load static %}
 {% block content %}
     <section style="margin-top: 30px">
-    <form class="form-control" method="post">{% csrf_token %}
-        <p>Are you sure you want to delete "{{ object.experience }}"?</p>
-        <input type="submit" value="Confirm">
-    </form>
+        <form class="form-control" method="post">{% csrf_token %}
+            <p>Are you sure you want to delete "{{ object.experience }}"?</p>
+            <div class="row">
+                <div class="col-md-2">
+                    <a href="{% url 'review:user_review_list' %}" title="" class="cancelbtn">Cancel</a>
+                </div>
+                <div class="col-md-2">
+                    <input class="btn btn-danger" type="submit" value="Confirm">
+
+                </div>
+            </div>
+
+        </form>
     </section>
 {% endblock content %}

@@ -39,8 +39,15 @@
                         </div>
                         <div class="col-lg-12">
                             <div class="formaction">
-                                <input class="btn btn-primary" type="submit" name="Update" value="Update">
-                                <a href="{% url 'review:review_delete' object.id %}" title="" class="cancelbtn">Delete</a>
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <input class="btn btn-primary" type="submit" name="Update" value="Update">
+                                    </div>
+                                    <div class="col-md-2">
+                                        <a href="{% url 'review:user_review_list' %}"  title="" class="btn btn-secondary">Cancel</a>
+
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
