@@ -104,17 +104,17 @@ class ProfileDetail(DetailView):
 
 def UpdateProfile(request, slug):
     if request.method == "POST" and request.is_ajax():
+        profile_image = request.FILES.get("profile_image")
         first_name = request.POST.get("first_name")
         last_name = request.POST.get("last_name")
         email = request.POST.get("email")
         phone = request.POST.get("phone_number")
-        image = request.FILES.get("image")
         profile = Profile.objects.get(profile_id=slug)
         profile.user.first_name = first_name
         profile.user.last_name = last_name
         profile.user.email = email
         profile.phone_number = phone
-        profile.image = image
+        profile.image = profile_image
         profile.user.save()
         profile.save()
         data = {"status": 204, "response": "Profile Updated Successfully"}
