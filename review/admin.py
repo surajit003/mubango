@@ -21,3 +21,4 @@ class BusinessServiceAdmin(admin.ModelAdmin):
         "business",
         "user",
     )
+    readonly_fields = ("rating",)
