@@ -86,7 +86,6 @@ class Business(DateModel):
     active = models.BooleanField(default=False)
     type = models.CharField(max_length=30, choices=category, default="other")
     address = AddressField()
-    price_type = models.CharField(max_length=10, null=True, blank=True)  # e.g $$$ or $$
     currently_hot = models.BooleanField(default=False)
     featured = models.BooleanField(default=False)
     openning_times = models.ManyToManyField(OpeningTime)
@@ -100,8 +99,6 @@ class Business(DateModel):
         return {
             "name": self.name,
             "location": self.address.raw,
-            "rating": self.rating,
-            "price_type": self.price_type,
             "phone_number": "{}-{}".format(
                 self.phone_number.country_code, self.phone_number.national_number
             ),
