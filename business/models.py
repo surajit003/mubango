@@ -145,10 +145,13 @@ class Business(DateModel):
         for business_rating in review_rating:
             count += 1
             total_rating = total_rating + business_rating.rating
-        return int(total_rating / count)
+        try:
+            return int(total_rating / count)
+        except ZeroDivisionError:
+            return 0
 
     def get_price_type(self):
-        price_mapping = {0: "$", 1: "$", 2: "$$", 3: "$$$", 4: "$$$$", 5: "$$$$$"}
+        price_mapping = {1: "$", 2: "$$", 3: "$$$", 4: "$$$$", 5: "$$$$$"}
         from review.models import BusinessServiceRating
 
         count = 0
@@ -159,7 +162,10 @@ class Business(DateModel):
         for business_rating in review_rating:
             count += 1
             total_rating = total_rating + business_rating.rating
-        return price_mapping[int(total_rating / count)]
+        try:
+            return price_mapping[int(total_rating / count)]
+        except ZeroDivisionError:
+            return 0
 
     class Meta:
         verbose_name_plural = "Businesses"
