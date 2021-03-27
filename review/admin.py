@@ -4,7 +4,10 @@ from . import models
 
 @admin.register(models.Service)
 class ServiceAdmin(admin.ModelAdmin):
-    list_display = ("name",)
+    list_display = (
+        "id",
+        "name",
+    )
 
 
 @admin.register(models.Review)
