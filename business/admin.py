@@ -15,7 +15,6 @@ class BusinessAdmin(admin.ModelAdmin):
     list_display = (
         "name",
         "active",
-        "rating",
         "get_address",
         "featured",
         "currently_hot",

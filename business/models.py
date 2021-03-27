@@ -75,7 +75,7 @@ class Business(DateModel):
         ("other", "Other"),
     ]
     name = models.CharField(max_length=200, db_index=True)
-    description = models.TextField(blank=True, null=True)
+    description = models.CharField(blank=True, null=True, max_length=200)
     slug = models.SlugField(
         max_length=255,
         help_text="Unique value for product page URL, created from name.",
@@ -87,9 +87,6 @@ class Business(DateModel):
     type = models.CharField(max_length=30, choices=category, default="other")
     address = AddressField()
     price_type = models.CharField(max_length=10, null=True, blank=True)  # e.g $$$ or $$
-    rating = models.IntegerField(
-        default=1, validators=[MaxValueValidator(5), MinValueValidator(1)]
-    )
     currently_hot = models.BooleanField(default=False)
     featured = models.BooleanField(default=False)
     openning_times = models.ManyToManyField(OpeningTime)
@@ -141,6 +138,17 @@ class Business(DateModel):
 
     def get_longitude(self):
         return self.address.as_dict()["longitude"]
+
+    def calculate_rating(self):
+        from review.models import BusinessServiceRating
+
+        count = 0
+        total_rating = 0
+        review_rating = BusinessServiceRating.objects.filter(business__slug=self.slug)
+        for business_rating in review_rating:
+            count += 1
+            total_rating = total_rating + business_rating.rating
+        return int(total_rating / count)
 
     class Meta:
         verbose_name_plural = "Businesses"
