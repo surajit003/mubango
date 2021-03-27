@@ -148,7 +148,7 @@ class Business(DateModel):
         return int(total_rating / count)
 
     def get_price_type(self):
-        price_mapping = {1: "$", 2: "$$", 3: "$$$", 4: "$$$$", 5: "$$$$$"}
+        price_mapping = {0: "$", 1: "$", 2: "$$", 3: "$$$", 4: "$$$$", 5: "$$$$$"}
         from review.models import BusinessServiceRating
 
         count = 0
