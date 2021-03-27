@@ -165,7 +165,7 @@ class Business(DateModel):
         try:
             return price_mapping[int(total_rating / count)]
         except ZeroDivisionError:
-            return 0
+            return "$"
 
     class Meta:
         verbose_name_plural = "Businesses"
